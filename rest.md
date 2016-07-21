@@ -34,16 +34,10 @@ Request:
   "load": {
     "load_id": "load-id", // Required
     "external_id": "external-id", // Required
-    "actual_shipped_at": "2016-07-18 19:00:00 +0200",
     "actual_delivered_at": "2016-07-17 19:00:00 +0200",
     "pro_number": "pro-number",
     "primary_reference": "primary-reference",
     "primary_reference_type": "primary-reference-type",
-    "number_of_carrier_invoices": 10,
-    "number_of_drops": 4,
-    "number_of_pickups": 5,
-    "total_events": 8,
-    "number_of_shipments": 10,
     "quantity": 1,
     "weight": 1000,
     "status": "new",
@@ -80,17 +74,12 @@ Request:
       "other": 87.87
     },
     "tms_created_at": "2016-07-15 19:00:00 +0200",
-    "created_by": "John",
     "distance": "500",
     "mode": "truck",
     "po": "po",
     "pickup_reference": "pickup-reference",
     "memo": "memo",
-    "target_ship_start": "2016-07-11 19:00:00 +0200",
-    "target_ship_end": "2016-07-12 19:00:00 +0200",
-    "target_delivery_start": "2016-07-14 19:00:00 +0200",
-    "target_delivery_end": "2016-07-15 19:00:00 +0200",
-    "tender_user": "2016-04-10 19:00:00 +0200",
+    "tender_user": "jim",
     "tms_updated_at": "2016-07-17 19:00:00 +0200",
     "delivery_number": "delivery-number",
     "ppe": "ppe",
@@ -208,7 +197,6 @@ Request:
   "shipments": [
     {
       "external_id": "1234", // Required
-      "number_of_loads": 2,
       "origin": {
         "code": "origin-code",
         "name": "origin-name",
@@ -229,11 +217,6 @@ Request:
         "postal_code": "destination-postal-code",
         "country": "destination-country"
       },
-      "target_ship_start": "2016-07-11 20:43:00 +0300",
-      "target_ship_end": "2016-07-12 20:43:00 +0300",
-      "target_delivery_start": "2016-07-14 20:43:00 +0300",
-      "target_delivery_end": "2016-07-15 20:43:00 +0300",
-      "actual_shipped_at": "2016-07-18 20:43:00 +0300",
       "actual_delivered_at": "2016-07-17 20:43:00 +0300",
       "quantity": 1,
       "weight": 1000,
@@ -242,7 +225,6 @@ Request:
       "customer_mode": "FSC and Rate Review",
       "type": "REGULAR",
       "owner": "Owner name",
-      "created_by": "bob",
       "po": "po",
       "pickup_reference": "pickup-reference",
       "charges": {
