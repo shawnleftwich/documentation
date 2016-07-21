@@ -1,7 +1,6 @@
 # API Documentation
 
-You might want to take a look at the [high level overview](High Level
-Overview.pdf) before digging into the more detailed documentation.
+You might want to take a look at the [high level overview](High Level Overview.pdf) before digging into the more detailed documentation.
 
 * [REST](rest.md)
 * [Webhook](webhook.md)
