@@ -1,0 +1,128 @@
+# Webhook
+
+When a carrier invoice is approved, processed, or marked as an exception
+we can POST a JSON payload to an endpoint that you provide us. If you
+would like us to authenticate the endpoint you should add a token to the
+URL you provide us and verify that is correct.
+
+Each of the payloads will have an event "type" that will allow you to
+choose which payloads you want to use and ignore the rest.
+
+## Approved Payload
+
+```
+{
+  "account": {
+    "alias": "account-alias"
+  },
+  "event": {
+    "load_id": "load-id",
+    "load": {
+      "external_id": "load-external-id" // YOUR internal id
+    },
+    "type": "approved",
+    "id": 7, // HubTran's internal id
+    "invoice": {
+      "number": "invoice-number",
+      "date": null,
+      "date_to_pay": "1981-08-13",
+      "amount_to_pay": "10.2",
+      "quickpay": false,
+      "approver": {
+        "email": "test@example.com"
+      }
+    },
+    "carrier": {
+      "external_id": "carrier-external-id"
+    },
+    "documents": [
+      {
+        "id": 14,
+        "type": "proofOfDelivery",
+        "proof_of_delivery": true,
+        "url": "https://api.hubtran.com/downloads/documents/unique-id",
+        "visibility": {
+          "carrier": true,
+          "customer": true
+        }
+      }
+    ],
+    "combined_document_urls": [ // All documents of the same type, combined
+      {
+        "type": "proofOfDelivery",
+        "url": "https://api.hubtran.com/downloads/documents/combined/unique-id",
+        "proof_of_delivery": true,
+        "visibility": {
+          "carrier": true,
+          "customer": true
+        }
+      }
+    ],
+    "remit_to": {
+      "name": "name",
+      "address_line_1": "address1",
+      "address_line_2": "address2",
+      "city": "city",
+      "state": "state",
+      "postal_code": "12345",
+      "country": "USA"
+    }
+  }
+}
+```
+
+## Processed Payload
+
+Same as the approved payload except the type is "processed".
+
+## Exception Payload
+
+```
+{
+  "account": {
+    "alias": "account-alias"
+  },
+  "event": {
+    "load_id": "load-id",
+    "load": {
+      "external_id": "load-external-id" // YOUR internal id
+    },
+    "id": 1,
+    "exceptions": [
+      {
+        "id": 1,
+        "message": "exception 1 message",
+        "resolution": "not my circus, not my monkeys"
+      },
+      {
+        "id": 2,
+        "message": "exception 2 message",
+        "resolution": "your circus, your monkeys"
+      }
+    ],
+    "documents": [
+      {
+        "id": 14,
+        "type": "proofOfDelivery",
+        "proof_of_delivery": true,
+        "url": "https://api.hubtran.com/downloads/documents/unique-id",
+        "visibility": {
+          "carrier": true,
+          "customer": true
+        }
+      }
+    ],
+    "combined_document_urls": [ // All documents of the same type, combined
+      {
+        "type": "proofOfDelivery",
+        "url": "https://api.hubtran.com/downloads/documents/combined/unique-id",
+        "proof_of_delivery": true,
+        "visibility": {
+          "carrier": true,
+          "customer": true
+        }
+      }
+    ],
+  }
+}
+```
