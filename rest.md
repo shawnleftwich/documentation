@@ -76,6 +76,7 @@ Request:
     "tms_created_at": "2016-07-15 19:00:00 +0200",
     "distance": "500",
     "mode": "truck",
+    "freight_class": "class",
     "po": "po",
     "pickup_reference": "pickup-reference",
     "memo": "memo",
