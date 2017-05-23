@@ -161,8 +161,8 @@ are one of these special cases you'll know it.
 * load_external_id
 * invoice_number
 * invoice_date
-* invoice_date_to_pay
-* invoice_amount_to_pay
+* invoice_pay_on
+* invoice_total
 * invoice_quickpay
 * invoice_approver
 * carrier_external_id
