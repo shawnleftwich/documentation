@@ -79,6 +79,8 @@ The subject of the email must exactly match `tms_shipment:<<API TOKEN>>`
 * **external_id**
 * **load_external_ids** - comma-separated list of load external_ids
 * **customer_external_id** - this should match what is in the load CSV
+* customer_name
+* customer_account_number
 * origin_name
 * origin_address_line_1
 * origin_address_line_2
