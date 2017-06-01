@@ -140,7 +140,7 @@ Request:
   "carrier": {
     "name": "carrier name", // Required
     "external_id": "external-id", // Required
-    "external_vendor_id": "evid", // A reference the user will double check it matches TMS
+    "external_vendor_id": "evid", // A reference the user will use to make sure it matches TMS
     "scac": "scac",
     "mc_number": "mc_number",
     "dot_number": "dot_number",
