@@ -4,6 +4,12 @@ Very little information is required to actually create objects in
 HubTran, often just a name and external_id. However, in order for
 HubTran to work well, we need as much information as you can give us.
 
+* [Authentication](#authentication)
+* [Create + Update Loads](#create--update-loads)
+* [Create + Update Shipments](#create--update-shipments)
+* [Create + Update Carriers](#create--update-carriers)
+* [Create + Update Debtors](#create--update-debtors)
+
 ## Authentication
 
 In order to authenticate you need to send an Authorization header with the token associated with your account. It should look something like:
