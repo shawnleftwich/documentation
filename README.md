@@ -1,10 +1,16 @@
 # API Documentation
 
-You might want to take a look at the [high level overview](High Level Overview.pdf) before digging into the more detailed documentation.
+You might want to take a look at the [high level overview](high_level_overview.pdf) before digging into the more detailed documentation.
 
-* [REST](rest.md)
-* [Webhook](webhook.md)
-* [CSV](csv.md)
+## Brokers
+
+* [REST](brokers/rest.md)
+* [Webhook](brokers/webhook.md)
+* [CSV](brokers/csv.md)
+
+## Factors
+
+* [REST](factors/rest.md)
 
 ## General Notes
 
