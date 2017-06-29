@@ -8,6 +8,7 @@ HubTran to work well, we need as much information as you can give us.
 * [Create + Update Loads](#create--update-loads)
 * [Create + Update Shipments](#create--update-shipments)
 * [Create + Update Carriers](#create--update-carriers)
+* [Bulk Create + Update Carriers](#bulk-create--update-carriers)
 
 ## Create + Update Loads
 
@@ -252,6 +253,48 @@ Response:
     "id": 1, // HubTran's internal id for the carrier
     "external_id": "carrier-external-id" // YOUR internal id for the carrier
   }
+}
+
+```
+
+## Bulk Create + Update Carriers
+
+PUT https://api.hubtran.com/tms/carriers
+
+```
+curl -X PUT https://api.hubtran.com/tms/carriers \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Token token=YOUR_TOKEN" \
+  -d '{"carriers": [{"name": "example name", "external_id": "example_id"}]}'
+```
+
+Request:
+
+See [Create + Update Carriers](#create--update-carriers) for the rest of
+the supported carrier params.
+
+```
+{
+  "carriers": [
+    {
+      "name": "carrier name", // Required
+      "external_id": "external-id", // Required
+    }
+  ]
+}
+```
+
+Response:
+
+```
+{
+  "carriers": [
+    {
+        "id": 1, // HubTran's internal id for the carrier
+        "external_id": "carrier-external-id" // YOUR internal id for the carrier
+        "errors": {} // If this carrier had errors and couldn't be updated, they'll be here
+    }
+  ]
 }
 
 ```
