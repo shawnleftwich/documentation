@@ -291,7 +291,7 @@ Response:
   "carriers": [
     {
         "id": 1, // HubTran's internal id for the carrier
-        "external_id": "carrier-external-id" // YOUR internal id for the carrier
+        "external_id": "carrier-external-id", // YOUR internal id for the carrier
         "errors": {} // If this carrier had errors and couldn't be updated, they'll be here
     }
   ]
