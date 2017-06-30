@@ -6,6 +6,7 @@ HubTran to work well, we need as much information as you can give us.
 
 * [Authentication](../rest_authentication.md)
 * [Create + Update Loads](#create--update-loads)
+* [Load Details](#load-details)
 * [Create + Update Shipments](#create--update-shipments)
 * [Create + Update Carriers](#create--update-carriers)
 * [Bulk Create + Update Carriers](#bulk-create--update-carriers)
@@ -114,6 +115,82 @@ Response:
 {
   "load": {
     "id": 5 // HubTran's internal id for the load
+  }
+}
+```
+
+## Load Details
+
+GET https://api.hubtran.com/tms/loads/:id
+
+Where :id is one of:
+
+1) HubTran id you previously saved
+2) The external_id you send us when creating loads
+3) The load_id you send us when creating loads
+
+```
+curl -X GET https://api.hubtran.com/tms/loads/example_id \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Token token=YOUR_TOKEN"
+```
+
+Response:
+
+```
+{
+  "load": {
+    "id": 5, // HubTran's internal id for the load
+    "load_id": "load-id", // The load_id you sent us when creating the load
+    "external_id": "external-id", // The external_id you sent us when creating the load
+    "carrier_invoices": [
+      {
+        "number": "invoice-number",
+        "state": "approved",
+        "date": "1981-08-11",
+        "date_to_pay": "1981-08-13",
+        "amount_to_pay": "1110.2",
+        "quickpay": false,
+        "approver": {
+          "email": "test@example.com"
+        }
+        "carrier": {
+          "external_id": "carrier-external-id"
+        },
+        "documents": [
+          {
+            "id": 14,
+            "type": "proofOfDelivery",
+            "proof_of_delivery": true,
+            "url": "https://api.hubtran.com/downloads/documents/unique-id",
+            "visibility": {
+              "carrier": true,
+              "customer": true
+            }
+          }
+        ],
+        "combined_document_urls": [ // All documents of the same type, combined
+          {
+            "type": "proofOfDelivery",
+            "url": "https://api.hubtran.com/downloads/documents/combined/unique-id",
+            "proof_of_delivery": true,
+            "visibility": {
+              "carrier": true,
+              "customer": true
+            }
+          }
+        ],
+        "remit_to": {
+          "name": "name",
+          "address_line_1": "address1",
+          "address_line_2": "address2",
+          "city": "city",
+          "state": "state",
+          "postal_code": "12345",
+          "country": "USA"
+        }
+      }
+    ]
   }
 }
 ```
