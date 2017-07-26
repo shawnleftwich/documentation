@@ -4,6 +4,9 @@ Very little information is required to actually create objects in
 HubTran, often just a name and external_id. However, in order for
 HubTran to work well, we need as much information as you can give us.
 
+All dates + times should be in
+[iso8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+
 * [Authentication](../rest_authentication.md)
 * [Create + Update Loads](#create--update-loads)
 * [Load Details](#load-details)
