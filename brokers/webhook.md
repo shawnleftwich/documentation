@@ -91,6 +91,7 @@ Same as the approved payload except the type is "processed".
     "load": {
       "external_id": "load-external-id" // YOUR internal id
     },
+    "type": "exception",
     "id": 1,
     "exceptions": [
       {
