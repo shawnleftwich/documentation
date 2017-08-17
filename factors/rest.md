@@ -29,6 +29,7 @@ Request:
   "debtor": {
     "name": "debtor name", // Required
     "external_id": "external-id", // Required
+    "active": true,
     "remit_to": {
       "name": "Address name",
       "address_line_1": "Address line 1",
