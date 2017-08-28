@@ -42,6 +42,7 @@ Request:
     "weight": 1000,
     "status": "new",
     "require_pod": false,
+    "require_weight_ticket": false,
     "origin": {
       "name": "origin-name",
       "address_line_1": "origin-address-line-1",
