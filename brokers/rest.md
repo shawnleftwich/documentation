@@ -98,23 +98,25 @@ Request:
         "external_id": "shipment-external-id"
       }
     ],
-    "stops": [
+    "picks": [
       {
-        "external_id": "stop-external-id", // Required
-        "type": "pick", // or "drop", Required
+        "external_id": "pick-external-id", // Required
         "shipments": [ // Required
           {
             "external_id": "shipment-external-id"
           }
         ],
-        "name": "stop-name",
-        "address_line_1": "stop-address-line-1",
-        "address_line_2": "stop-address-line-2",
-        "city": "stop-city",
-        "state": "stop-state",
-        "postal_code": "stop-postal-code",
-        "country": "stop-country"
+        "name": "pick-name",
+        "address_line_1": "pick-address-line-1",
+        "address_line_2": "pick-address-line-2",
+        "city": "pick-city",
+        "state": "pick-state",
+        "postal_code": "pick-postal-code",
+        "country": "pick-country"
       }
+    ],
+    "drops": [
+      // same format as picks
     ],
     "line_items": [ // Displayed and used to calculate the carrier_charge.
       {
