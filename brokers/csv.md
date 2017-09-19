@@ -12,6 +12,7 @@ Required fields are **bold**.
 
 * [Loads](#loads)
 * [Shipments](#shipments)
+* [Stops](#stops)
 * [Carriers](#carriers)
 * [Invoice Approval Response](#invoice-approval-response)
 
@@ -123,6 +124,25 @@ The subject of the email must exactly match `tms_shipment:<<API TOKEN>>`
 * delivery_reference_x_value (x is 1-6)
 * created_at
 * updated_at
+
+## Stops
+
+We recommend that you send us Stop details three times a day at 6am, 10am and 1pm. You
+may send Stops as infrequently as once per day, but it will
+increase the likelihood of a necessary stop not being in the system.
+
+* **external_id**
+* **load_external_id** - must match what is in the loads file
+* **shipment_external_ids** - comma-separated list of shipment external
+  ids, must match what is in the shipments file
+* **type** - the value should be "pick" or "drop"
+* name
+* address_line_1
+* address_line_2
+* city
+* state
+* postal_code
+* country
 
 ## Carriers
 

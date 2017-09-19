@@ -98,6 +98,24 @@ Request:
         "external_id": "shipment-external-id"
       }
     ],
+    "stops": [
+      {
+        "external_id": "stop-external-id", // Required
+        "type": "pick", // or "drop", Required
+        "shipments": [ // Required
+          {
+            "external_id": "shipment-external-id"
+          }
+        ],
+        "name": "stop-name",
+        "address_line_1": "stop-address-line-1",
+        "address_line_2": "stop-address-line-2",
+        "city": "stop-city",
+        "state": "stop-state",
+        "postal_code": "stop-postal-code",
+        "country": "stop-country"
+      }
+    ],
     "line_items": [ // Displayed and used to calculate the carrier_charge.
       {
         "description": "line item description",
