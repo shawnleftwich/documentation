@@ -133,7 +133,7 @@ increase the likelihood of a necessary stop not being in the system.
 
 * **external_id**
 * **load_external_id** - must match what is in the loads file
-* **shipment_external_ids** - comma-separated list of shipment external
+* shipment_external_ids - comma-separated list of shipment external
   ids, must match what is in the shipments file
 * **type** - the value should be "pick" or "drop"
 * name
