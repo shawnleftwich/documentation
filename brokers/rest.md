@@ -98,6 +98,26 @@ Request:
         "external_id": "shipment-external-id"
       }
     ],
+    "picks": [
+      {
+        "external_id": "pick-external-id", // Required
+        "shipments": [ // Required
+          {
+            "external_id": "shipment-external-id"
+          }
+        ],
+        "name": "pick-name",
+        "address_line_1": "pick-address-line-1",
+        "address_line_2": "pick-address-line-2",
+        "city": "pick-city",
+        "state": "pick-state",
+        "postal_code": "pick-postal-code",
+        "country": "pick-country"
+      }
+    ],
+    "drops": [
+      // same format as picks
+    ],
     "line_items": [ // Displayed and used to calculate the carrier_charge.
       {
         "description": "line item description",
