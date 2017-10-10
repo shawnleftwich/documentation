@@ -35,7 +35,8 @@ choose which payloads you want to use and ignore the rest.
       "payment_strategy": "direct", // or "factor"
       "approver": {
         "email": "test@example.com"
-      }
+      },
+      "extracted_fields": {} // If custom extracted fields are configured, they'll be here
     },
     "carrier": {
       "external_id": "carrier-external-id"
@@ -104,7 +105,8 @@ Same as the approved payload except the type is "processed" and
     "invoice": {
       "processor": {
         "email": "test@example.com"
-      }
+      },
+      "extracted_fields": {} // If custom extracted fields are configured, they'll be here
     },
     "exceptions": [
       {
