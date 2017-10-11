@@ -43,6 +43,7 @@ Request:
     "status": "new",
     "require_pod": false,
     "require_weight_ticket": false,
+    "require_customer_rate_confirmation": false,
     "require_originals": false,
     "origin": {
       "name": "origin-name",
