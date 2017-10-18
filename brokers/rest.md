@@ -259,6 +259,7 @@ Request:
         "postal_code": "destination-postal-code",
         "country": "destination-country"
       },
+      "actual_shipped_at": "2016-07-16 20:43:00 +0300",
       "actual_delivered_at": "2016-07-17 20:43:00 +0300",
       "quantity": 1,
       "weight": 1000,
