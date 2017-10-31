@@ -240,26 +240,6 @@ Request:
   "shipments": [
     {
       "external_id": "1234", // Required
-      "origin": {
-        "code": "origin-code",
-        "name": "origin-name",
-        "address_line_1": "origin-address-line-1",
-        "address_line_2": "origin-address-line-2",
-        "city": "origin-city",
-        "state": "origin-state",
-        "postal_code": "origin-postal-code",
-        "country": "origin-country"
-      },
-      "destination": {
-        "code": "destination-code",
-        "name": "destination-name",
-        "address_line_1": "destination-address-line-1",
-        "address_line_2": "destination-address-line-2",
-        "city": "destination-city",
-        "state": "destination-state",
-        "postal_code": "destination-postal-code",
-        "country": "destination-country"
-      },
       "actual_shipped_at": "2016-07-16 20:43:00 +0300",
       "actual_delivered_at": "2016-07-17 20:43:00 +0300",
       "quantity": 1,
