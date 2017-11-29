@@ -346,10 +346,10 @@ Response:
 
 ## Bulk Create + Update Carriers
 
-PUT https://api.hubtran.com/tms/carriers
+PUT https://api.hubtran.com/tms/carriers/bulk
 
 ```
-curl -X PUT https://api.hubtran.com/tms/carriers \
+curl -X PUT https://api.hubtran.com/tms/carriers/bulk \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN" \
   -d '{"carriers": [{"name": "example name", "external_id": "example_id"}]}'
