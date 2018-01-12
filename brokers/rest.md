@@ -13,7 +13,7 @@ All dates + times should be in
 * [Create + Update Shipments](#create--update-shipments)
 * [Create + Update Carriers](#create--update-carriers)
 * [Bulk Create + Update Carriers](#bulk-create--update-carriers)
-* [Create Invoice Payments](#create-invoice-payments)
+* [Create Payments](#create-payments)
 
 ## Create + Update Loads
 
@@ -390,26 +390,26 @@ Response:
 
 ```
 
-## Create Invoice Payments
+## Create Payments
 
-POST https://api.hubtran.com/tms/invoice_payments
+POST https://api.hubtran.com/tms/payments
 
 ```
-curl -X POST https://api.hubtran.com/tms/invoice_payments \
+curl -X POST https://api.hubtran.com/tms/payments \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN" \
-  -d '{"invoice_payment": {...}}'
+  -d '{"payment": {...}}'
 ```
 
 Request:
 
 ```
 {
-  "invoice_payment": {
+  "payment": {
     "external_id": "1234", // Required
     "load_id": "load_id", // Required if no load_external_id
     "load_external_id": "load_external_id", // Required if no load_id
-    "invoice_number": "invoice_number", // Required
+    "invoice_number": "invoice_number", // Optional, but highly desired if it is a payment for an invoice
     "carrier_external_id": "carrier_external_id", // Required
     "amount": 123.1, // Required
     "method": "check",
@@ -424,7 +424,7 @@ Response:
 
 ```
 {
-  "invoice_payment": {
+  "payment": {
     "id": 1, // HubTran's internal id for the payment
   }
 }
