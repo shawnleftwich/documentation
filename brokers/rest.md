@@ -14,6 +14,7 @@ All dates + times should be in
 * [Create + Update Carriers](#create--update-carriers)
 * [Bulk Create + Update Carriers](#bulk-create--update-carriers)
 * [Create Payments](#create-payments)
+* [Clear Exceptions](#clear-exceptions)
 
 ## Create + Update Loads
 
@@ -431,5 +432,30 @@ Response:
   "payment": {
     "id": 1, // HubTran's internal id for the payment
   }
+}
+```
+
+## Clear Exceptions
+
+POST https://api.hubtran.com/tms/carrier_invoices/:id/exceptions/clear
+
+```
+curl -X POST https://api.hubtran.com/tms/carrier_invoices/:id/exceptions/clear \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Token token=YOUR_TOKEN" \
+  -d '{}'
+```
+
+Request:
+
+```
+{}
+```
+
+Response:
+
+```
+{
+  "ok": true
 }
 ```
