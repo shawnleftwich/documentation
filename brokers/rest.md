@@ -36,8 +36,8 @@ Request:
   "load": {
     "load_id": "load-id", // Required
     "external_id": "external-id", // Required
-    "target_delivered_start": "2016-07-17 19:00:00 +0200",
-    "target_delivered_end": "2016-07-17 19:00:00 +0200",
+    "target_delivery_start": "2016-07-17 19:00:00 +0200",
+    "target_delivery_end": "2016-07-17 19:00:00 +0200",
     "actual_delivered_at": "2016-07-17 19:00:00 +0200",
     "target_ship_start": "2016-07-16 12:00:00 +0200",
     "target_ship_end": "2016-07-16 14:00:00 +0200",
