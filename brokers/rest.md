@@ -324,6 +324,7 @@ Request:
     "country": "Country",
     "account_exec": "Bob",
     "active": true,
+    "labels": ["LABEL1","LABEL2"],
     "remit_to": {
       "name": "Address name",
       "address_line_1": "Address line 1",
