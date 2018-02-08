@@ -10,6 +10,7 @@ All dates + times should be in
 * [Authentication](../rest_authentication.md)
 * [Create + Update Debtors](#create--update-debtors)
 * [Bulk Create + Update Debtors](#bulk-create--update-debtors)
+* [Invoice Purchased](#invoice-purchased)
 
 ## Create + Update Debtors
 
@@ -99,3 +100,23 @@ Response:
 }
 
 ```
+
+## Invoice Purchased
+
+PUT https://api.hubtran.com/tms/invoices/:hubtran_id/purchase
+
+```
+curl -X PUT https://api.hubtran.com/tms/invoices/example_id/purchase \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Token token=YOUR_TOKEN" \
+  -d '{"ignored": "true"}'
+```
+
+Request:
+
+The `hubtran_id` in the URL is the value of the `id` field in the payload we send you.
+
+Response:
+
+Empty JSON on success, error status code on failure
+
