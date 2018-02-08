@@ -114,7 +114,7 @@ curl -X PUT https://api.hubtran.com/tms/invoices/example_id/purchase \
 
 Request:
 
-The `hubtran_id` in the URL is the value of the `id` field in the payload we send you.
+The `hubtran_id` in the URL is the value of the `hubtran_id` field in the payload we send you.
 
 Response:
 
