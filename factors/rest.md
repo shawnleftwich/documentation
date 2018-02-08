@@ -11,6 +11,7 @@ All dates + times should be in
 * [Create + Update Debtors](#create--update-debtors)
 * [Bulk Create + Update Debtors](#bulk-create--update-debtors)
 * [Invoice Purchased](#invoice-purchased)
+* [Invoice Declined](#invoice-declined)
 
 ## Create + Update Debtors
 
@@ -120,3 +121,21 @@ Response:
 
 Empty JSON on success, error status code on failure
 
+## Invoice Declined
+
+PUT https://api.hubtran.com/tms/invoices/:hubtran_id/decline
+
+```
+curl -X PUT https://api.hubtran.com/tms/invoices/example_id/decline \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Token token=YOUR_TOKEN" \
+  -d '{"ignored": "true"}'
+```
+
+Request:
+
+The `hubtran_id` in the URL is the value of the `hubtran_id` field in the payload we send you.
+
+Response:
+
+Empty JSON on success, error status code on failure
