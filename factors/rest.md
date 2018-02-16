@@ -104,7 +104,7 @@ Response:
 
 ## Invoice Purchased
 
-PUT https://api.hubtran.com/tms/invoices/:hubtran_id/purchase
+POST https://api.hubtran.com/tms/invoices/:hubtran_id/purchase
 
 ```
 curl -X PUT https://api.hubtran.com/tms/invoices/example_id/purchase \
@@ -123,7 +123,7 @@ Empty JSON on success, error status code on failure
 
 ## Invoice Declined
 
-PUT https://api.hubtran.com/tms/invoices/:hubtran_id/decline
+POST https://api.hubtran.com/tms/invoices/:hubtran_id/decline
 
 ```
 curl -X PUT https://api.hubtran.com/tms/invoices/example_id/decline \
