@@ -52,10 +52,6 @@ Request:
     "require_weight_ticket": false,
     "require_customer_rate_confirmation": false,
     "require_originals": false,
-    "references": {
-      "key": "value",
-      "other key": "other value"
-    },
     "origin": {
       "name": "origin-name",
       "address_line_1": "origin-address-line-1",
