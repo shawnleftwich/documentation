@@ -138,6 +138,20 @@ Request:
         }
       }
     ],
+    "shipped_items": [{
+      external_id: "1234", // Required
+      description: "Shipped item", // Required
+      weight_unit: "lb",
+      quantity: 2.0,
+      item_type: "CARTON",
+      hazardous_material: false,
+      weight: 417.0,
+      class_name: '400',
+      nmfc: "82270",
+      width: 10.0,
+      height: 12.0,
+      length: 20.0
+    }],
     "references": {
       "Key": "Value",
       "Anything": "You Want"
