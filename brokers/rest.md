@@ -15,6 +15,7 @@ All dates + times should be in
 * [Bulk Create + Update Carriers](#bulk-create--update-carriers)
 * [Create Payments](#create-payments)
 * [Clear Exceptions](#clear-exceptions)
+* [Document Upload](#document-upload)
 
 ## Create + Update Loads
 
@@ -451,7 +452,50 @@ Response:
 }
 ```
 
+## Document Upload
+
+Please let us know if you would like to use this API, as it needs to be enabled for your account.
+
+
+POST https://api.hubtran.com/tms/documents
+
+```
+curl -X POST https://api.hubtran.com/tms/documents \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Token token=YOUR_TOKEN" \
+  -d '{"document":{"load_id": "1234","type":"invoice","url":"url of image"}}'
+```
+
+Request:
+
+```
+{
+  "document": {
+    "load_id": "2134",
+    "type": "rateConfirmation",
+    "url": "URL of image to download. Required unless data is provided",
+    "data": "base64 encoded data for image. Required unless url is provided"
+  }
+}
+```
+
+Response:
+
+On success:
+```
+{}
+```
+
+On Failure:
+
+```
+{
+  "errors": ["list of errors"]
+}
+```
+
 ## Clear Exceptions
+
 
 POST https://api.hubtran.com/tms/carrier_invoices/:id/exceptions/clear
 
