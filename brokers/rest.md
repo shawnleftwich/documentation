@@ -89,6 +89,11 @@ Request:
       "scac": "carrier-scac",
       "external_id": "carrier-external-id"
     },
+    "customer": {
+      "external_id": "customer-external-id",
+      "name": "customer-name",
+      "account_number": "customer-account-number"
+    },
     "charges": {
       "total": 1200.23,
       "currency": "USD",
@@ -96,11 +101,6 @@ Request:
       "fuel": 129.32,
       "detention": 22.22,
       "other": 87.87
-    },
-    "customer": {
-      "external_id": "customer-external-id",
-      "name": "customer-name",
-      "account_number": "customer-account-number"
     },
     "shipments": [ // Used to link the load to shipments created via the shipment API
       {
