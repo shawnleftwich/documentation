@@ -32,6 +32,7 @@ Request:
     "name": "debtor name", // Required
     "external_id": "external-id", // Required
     "active": true,
+    "mc_number": "123456",
     "remit_to": {
       "name": "Address name",
       "address_line_1": "Address line 1",
