@@ -5,7 +5,7 @@ HubTran, often just a name and external_id. However, in order for
 HubTran to work well, we need as much information as you can give us.
 
 All dates + times should be in
-[iso8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+[iso8601](https://en.wikipedia.org/wiki/ISO_8601) format. All `external_id`s should be strings. 
 
 * [Authentication](../rest_authentication.md)
 * [Create + Update Loads](#create--update-loads)
