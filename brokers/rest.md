@@ -5,7 +5,7 @@ HubTran, often just a name and external_id. However, in order for
 HubTran to work well, we need as much information as you can give us.
 
 All dates + times should be in
-[iso8601](https://en.wikipedia.org/wiki/ISO_8601) format. All `external_id`s should be strings. 
+[iso8601](https://en.wikipedia.org/wiki/ISO_8601) format. All `external_id`s should be strings.
 
 * [Authentication](../rest_authentication.md)
 * [Create + Update Loads](#create--update-loads)
@@ -163,13 +163,7 @@ Request:
 
 Response:
 
-```
-{
-  "load": {
-    "id": 5 // HubTran's internal id for the load
-  }
-}
-```
+Same as the response for the [load details](#load-details) API.
 
 ## Load Details
 
@@ -195,7 +189,125 @@ Response:
     "id": 5, // HubTran's internal id for the load
     "load_id": "load-id", // The load_id you sent us when creating the load
     "external_id": "external-id", // The external_id you sent us when creating the load
-    "carrier_invoices": [
+    "status": "new",
+    "tms_created_at": "2016-07-15 19:00:00 +0200",
+    "tms_updated_at": "2016-07-17 19:00:00 +0200",
+    "target_delivery_start": "2016-07-17 19:00:00 +0200",
+    "target_delivery_end": "2016-07-17 19:00:00 +0200",
+    "actual_delivered_at": "2016-07-17 19:00:00 +0200",
+    "target_ship_start": "2016-07-16 12:00:00 +0200",
+    "target_ship_end": "2016-07-16 14:00:00 +0200",
+    "actual_shipped_at": "2016-07-16 13:00:00 +0200",
+    "require_pod": false,
+    "require_weight_ticket": false,
+    "require_customer_rate_confirmation": false,
+    "require_originals": false,
+    "pro_number": "pro-number",
+    "primary_reference": "primary-reference",
+    "primary_reference_type": "primary-reference-type",
+    "quantity": 1,
+    "weight": 1000,
+    "distance": "500",
+    "mode": "truck",
+    "freight_class": "class",
+    "po": "po",
+    "pickup_reference": "pickup-reference",
+    "memo": "memo",
+    "tender_user": "jim",
+    "delivery_number": "delivery-number",
+    "ppe": "ppe",
+    "quote_number": "quote-number",
+    "ship_ref": "ship-ref",
+    "origin": { // null if all fields are empty
+      "name": "origin-name",
+      "address_line_1": "origin-address-line-1",
+      "address_line_2": "origin-address-line-2",
+      "city": "origin-city",
+      "state": "origin-state",
+      "postal_code": "origin-postal-code",
+      "country": "origin-country"
+    },
+    "destination": { // null if all fields are empty
+      "name": "destination-name",
+      "address_line_1": "destination-address-line-1",
+      "address_line_2": "destination-address-line-2",
+      "city": "destination-city",
+      "state": "destination-state",
+      "postal_code": "destination-postal-code",
+      "country": "destination-country"
+    },
+    "carrier": { // null if no carrier
+      "name": "carrier-name",
+      "scac": "carrier-scac",
+      "external_id": "carrier-external-id"
+    },
+    "customer": { // null if no customer
+      "external_id": "customer-external-id",
+      "name": "customer-name",
+      "account_number": "customer-account-number"
+    },
+    "charges": { // object with null values if null
+      "total": 1200.23,
+      "currency": "USD",
+      "line_haul": 1100.32,
+      "fuel": 129.32,
+      "detention": 22.22,
+      "other": 87.87
+    },
+    "shipments": [ // Used to link the load to shipments created via the shipment API. Empty array if no shipments.
+      {
+        "external_id": "shipment-external-id"
+      }
+    ],
+    "picks": [ // empty array if no picks
+      {
+        "external_id": "pick-external-id", // Required
+        "name": "pick-name",
+        "address_line_1": "pick-address-line-1",
+        "address_line_2": "pick-address-line-2",
+        "city": "pick-city",
+        "state": "pick-state",
+        "postal_code": "pick-postal-code",
+        "country": "pick-country",
+        "shipments": [ // Required
+          {
+            "external_id": "shipment-external-id"
+          }
+        ]
+      }
+    ],
+    "drops": [ // empty array if no drops
+      // same format as picks
+    ],
+    "line_items": [ // Displayed and used to calculate the carrier_charge. Empty array if no line items.
+      {
+        "description": "line item description",
+        "total": 123.45,
+        "quantity": 5,
+        "carrier": { // Used to calculate carrier_charge for each carrier
+          "external_id": "carrier-external-id",
+          "scac": "scac",
+          "name": "carrier name"
+        }
+      }
+    ],
+    "shipped_items": [ // empty array if no shipped items
+      {
+        "external_id": "1234", // Required
+        "description": "Shipped item", // Required
+        "weight_unit": "lb",
+        "quantity": 2.0,
+        "item_type": "CARTON",
+        "hazardous_material": false,
+        "weight": 417.0,
+        "class_name": '400',
+        "nmfc": "82270",
+        "width": 10.0,
+        "height": 12.0,
+        "length": 20.0
+      }
+    ],
+    "carrier_invoices": [ // empty array if no invoices
       {
         "number": "invoice-number",
         "state": "approved",
@@ -242,7 +354,11 @@ Response:
           "country": "USA"
         }
       }
-    ]
+    ],
+    "references": { // empty object if no references
+      "Key": "Value",
+      "Anything": "You Want"
+    }
   }
 }
 ```
