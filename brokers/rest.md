@@ -463,6 +463,10 @@ Request:
     "country": "Country",
     "account_exec": "Bob",
     "labels": ["LABEL1","LABEL2"],
+    "contacts": [ // Helps us associate carriers and incoming invoices
+      "joe@example.com",
+      "tom@example.com"
+    ],
     "remit_to": {
       "name": "Address name",
       "address_line_1": "Address line 1",
@@ -471,11 +475,7 @@ Request:
       "state": "State",
       "postal_code": "Postal code",
       "country": "Country"
-    },
-    "contacts": [ // Helps us associate carriers and incoming invoices
-      "joe@example.com",
-      "tom@example.com"
-    ]
+    }
   }
 }
 ```
