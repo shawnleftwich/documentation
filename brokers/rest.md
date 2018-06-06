@@ -169,11 +169,17 @@ Same as the response for the [load details](#load-details) API.
 
 GET https://api.hubtran.com/tms/loads/:id
 
-Where :id is one of:
+Where :id is the HubTran id you previously saved.
 
-1) HubTran id you previously saved
-2) The external_id you send us when creating loads
-3) The load_id you send us when creating loads
+If you don't have the HubTran id you can alternatively use one of the
+following forms:
+
+GET https://api.hubtran.com/tms/loads?load_id=:your_load_id
+GET https://api.hubtran.com/tms/loads?external_id=:your_load_external_id
+
+load_id is what the user sees in the UI and external_id is what you
+would have passed us as your internal, immutable id for the load.
+Sometimes they are the same thing.
 
 ```
 curl -X GET https://api.hubtran.com/tms/loads/example_id \
