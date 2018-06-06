@@ -486,10 +486,38 @@ Response:
 {
   "carrier": {
     "id": 1, // HubTran's internal id for the carrier
-    "external_id": "carrier-external-id" // YOUR internal id for the carrier
+    "external_id": "carrier-external-id", // YOUR internal id for the carrier
+    "external_vendor_id": "evid",
+    "active": true,
+    "scac": "scac",
+    "mc_number": "mc_number",
+    "dot_number": "dot_number",
+    "ein": "ein",
+    "address_name": "Address name",
+    "address_line_1": "Address line 1",
+    "address_line_2": "Address line 2",
+    "city": "City",
+    "state": "State",
+    "postal_code": "Postal code",
+    "country": "Country",
+    "account_exec": "Bob",
+    "labels": ["LABEL1","LABEL2"], // Empty list if there aren't any
+labels
+    "contacts": [ // Empty list if there aren't any contacts
+      "joe@example.com",
+      "tom@example.com"
+    ],
+    "remit_to": { // null if there is no remit to address
+      "name": "Address name",
+      "address_line_1": "Address line 1",
+      "address_line_2": "Address line 2",
+      "city": "City",
+      "state": "State",
+      "postal_code": "Postal code",
+      "country": "Country"
+    }
   }
 }
-
 ```
 
 ## Bulk Create + Update Carriers
@@ -525,9 +553,10 @@ Response:
 {
   "carriers": [
     {
-        "id": 1, // HubTran's internal id for the carrier
-        "external_id": "carrier-external-id", // YOUR internal id for the carrier
-        "errors": {} // If this carrier had errors and couldn't be updated, they'll be here
+      "carrier": {
+        // Same as the single carrier response
+      },
+      "errors": {} // If this carrier had errors and couldn't be updated, they'll be here
     }
   ]
 }
