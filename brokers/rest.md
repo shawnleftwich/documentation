@@ -94,7 +94,7 @@ Request:
       "name": "customer-name",
       "account_number": "customer-account-number"
     },
-    "charges": {
+    "charges": { // Ignored if line items are sent
       "total": 1200.23,
       "currency": "USD",
       "line_haul": 1100.32,
