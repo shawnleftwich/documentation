@@ -40,12 +40,12 @@ Request:
     "status": "new",
     "tms_created_at": "2016-07-15 19:00:00 +0200",
     "tms_updated_at": "2016-07-17 19:00:00 +0200",
-    "target_delivery_start": "2016-07-17 19:00:00 +0200",
-    "target_delivery_end": "2016-07-17 19:00:00 +0200",
-    "actual_delivered_at": "2016-07-17 19:00:00 +0200",
     "target_ship_start": "2016-07-16 12:00:00 +0200",
     "target_ship_end": "2016-07-16 14:00:00 +0200",
     "actual_shipped_at": "2016-07-16 13:00:00 +0200",
+    "target_delivery_start": "2016-07-17 19:00:00 +0200",
+    "target_delivery_end": "2016-07-17 19:00:00 +0200",
+    "actual_delivered_at": "2016-07-17 19:00:00 +0200",
     "require_pod": false,
     "require_weight_ticket": false,
     "require_customer_rate_confirmation": false,
@@ -94,6 +94,11 @@ Request:
       "name": "customer-name",
       "account_number": "customer-account-number"
     },
+    "shipments": [ // Used to link the load to shipments created via the shipment API
+      {
+        "external_id": "shipment-external-id"
+      }
+    ],
     "charges": { // Ignored if line items are sent
       "total": 1200.23,
       "currency": "USD",
@@ -102,11 +107,6 @@ Request:
       "detention": 22.22,
       "other": 87.87
     },
-    "shipments": [ // Used to link the load to shipments created via the shipment API
-      {
-        "external_id": "shipment-external-id"
-      }
-    ],
     "picks": [
       {
         "external_id": "pick-external-id", // Required
@@ -253,6 +253,11 @@ Response:
       "name": "customer-name",
       "account_number": "customer-account-number"
     },
+    "shipments": [ // Used to link the load to shipments created via the shipment API. Empty array if no shipments.
+      {
+        "external_id": "shipment-external-id"
+      }
+    ],
     "charges": { // object with null values if null
       "total": 1200.23,
       "currency": "USD",
@@ -261,11 +266,6 @@ Response:
       "detention": 22.22,
       "other": 87.87
     },
-    "shipments": [ // Used to link the load to shipments created via the shipment API. Empty array if no shipments.
-      {
-        "external_id": "shipment-external-id"
-      }
-    ],
     "picks": [ // empty array if no picks
       {
         "external_id": "pick-external-id", // Required
@@ -388,11 +388,16 @@ Request:
 {
   "shipments": [
     {
-      "external_id": "1234", // Required
+      "external_id": "shipment-external-id", // Required
       "status": "new",
-      "created_at": "2016-07-15 20:43:00 +0300",
-      "actual_shipped_at": "2016-07-16 20:43:00 +0300",
-      "actual_delivered_at": "2016-07-17 20:43:00 +0300",
+      "tms_created_at": "2016-07-10 20:43:00 +0300",
+      "tms_updated_at": "2016-07-15 20:43:00 +0300",
+      "target_ship_start": "2016-07-16 12:00:00 +0200",
+      "target_ship_end": "2016-07-16 14:00:00 +0200",
+      "actual_shipped_at": "2016-07-16 13:00:00 +0200",
+      "target_delivery_start": "2016-07-17 19:00:00 +0200",
+      "target_delivery_end": "2016-07-17 19:00:00 +0200",
+      "actual_delivered_at": "2016-07-17 19:00:00 +0200",
       "quantity": 1,
       "weight": 1000,
       "customer_mode": "FSC and Rate Review",
@@ -401,6 +406,24 @@ Request:
       "po": "po",
       "pickup_reference": "pickup-reference",
       "ship_ref": "C16091",
+      "origin": {
+        "name": "origin-name",
+        "address_line_1": "origin-address-line-1",
+        "address_line_2": "origin-address-line-2",
+        "city": "origin-city",
+        "state": "origin-state",
+        "postal_code": "origin-postal-code",
+        "country": "origin-country"
+      },
+      "destination": {
+        "name": "destination-name",
+        "address_line_1": "destination-address-line-1",
+        "address_line_2": "destination-address-line-2",
+        "city": "destination-city",
+        "state": "destination-state",
+        "postal_code": "destination-postal-code",
+        "country": "destination-country"
+      },
       "loads": [ // Used to link shipments and loads representing a "delivery"
         {
           "external_id": "load-external-id"
@@ -427,6 +450,54 @@ Response:
     {
       "id": 1, // HubTran's internal id for the shipment
       "external_id": "shipment-external-id" // YOUR internal id for the shipment
+      "status": "new",
+      "tms_created_at": "2016-07-10 20:43:00 +0300",
+      "tms_updated_at": "2016-07-15 20:43:00 +0300",
+      "target_ship_start": "2016-07-16 12:00:00 +0200",
+      "target_ship_end": "2016-07-16 14:00:00 +0200",
+      "actual_shipped_at": "2016-07-16 13:00:00 +0200",
+      "target_delivery_start": "2016-07-17 19:00:00 +0200",
+      "target_delivery_end": "2016-07-17 19:00:00 +0200",
+      "actual_delivered_at": "2016-07-17 19:00:00 +0200",
+      "quantity": 1,
+      "weight": 1000,
+      "customer_mode": "FSC and Rate Review",
+      "type": "REGULAR",
+      "owner": "Owner name",
+      "po": "po",
+      "pickup_reference": "pickup-reference",
+      "ship_ref": "C16091",
+      "origin": {
+        "name": "origin-name",
+        "address_line_1": "origin-address-line-1",
+        "address_line_2": "origin-address-line-2",
+        "city": "origin-city",
+        "state": "origin-state",
+        "postal_code": "origin-postal-code",
+        "country": "origin-country"
+      },
+      "destination": {
+        "name": "destination-name",
+        "address_line_1": "destination-address-line-1",
+        "address_line_2": "destination-address-line-2",
+        "city": "destination-city",
+        "state": "destination-state",
+        "postal_code": "destination-postal-code",
+        "country": "destination-country"
+      },
+      "loads": [ // Used to link shipments and loads representing a "delivery"
+        {
+          "external_id": "load-external-id"
+        }
+      ],
+      "charges": {
+        "total": 1200.23,
+        "currency": "USD",
+        "line_haul": 1100.32,
+        "fuel": 129.32,
+        "detention": 22.22,
+        "other": 87.87
+      }
     }
   ]
 }
