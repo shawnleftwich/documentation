@@ -34,7 +34,7 @@ Request:
     "active": true,
     "mc_number": "123456",
     "remit_to": {
-      "name": "Address name",
+      "name": "Address name", // Required if sending a remit to address
       "address_line_1": "Address line 1",
       "address_line_2": "Address line 2",
       "city": "City",
