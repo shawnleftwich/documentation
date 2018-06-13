@@ -155,6 +155,7 @@ Request:
     }],
     "references": {
       "Key": "Value",
+      "Key2": "Value2,Value3",
       "Anything": "You Want"
      }
   }
@@ -363,6 +364,7 @@ Response:
     ],
     "references": { // empty object if no references
       "Key": "Value",
+      "Key2": "Value2,Value3",
       "Anything": "You Want"
     }
   }
