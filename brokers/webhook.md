@@ -36,6 +36,17 @@ choose which payloads you want to use and ignore the rest.
       "approver": {
         "email": "test@example.com"
       },
+      "line_items": [ // Only present if line items is enabled for the account
+        {
+          "description": "line item description",
+          "total": 123.45,
+          "quantity": 5,
+          "type_code": "Line Haul",
+          "carrier": {
+            "external_id": "carrier-external-id",
+          }
+        }
+      ],
       "extracted_fields": {} // If custom extracted fields are configured, they'll be here
     },
     "carrier": {
