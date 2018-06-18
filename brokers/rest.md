@@ -653,15 +653,20 @@ Request:
 {
   "payment": {
     "external_id": "1234", // Required
-    "load_id": "load_id", // Required if no load_external_id
-    "load_external_id": "load_external_id", // Required if no load_id
-    "invoice_number": "invoice_number", // Optional, but highly desired if it is a payment for an invoice
-    "carrier_external_id": "carrier_external_id", // Required
     "amount": 123.1, // Required
-    "method": "check",
     "date": "2015-12-09",
+    "method": "check",
     "reference": "payment_reference",
-    "source_system": "your_tms" // something other than "hubtran"; Required
+    "invoice_number": "invoice_number", // Optional, but highly desired if it is a payment for an invoice
+    "description": "some description",
+    "source_system": "your_tms", // something other than "hubtran"; Required
+    "load": {
+      "load_id": "load_id", // Required if no load external_id
+      "external_id": "load_external_id", // Required if no load_id
+    },
+    "carrier": {
+      "external_id": "carrier_external_id", // Required
+    }
   }
 }
 ```
@@ -672,6 +677,21 @@ Response:
 {
   "payment": {
     "id": 1, // HubTran's internal id for the payment
+    "external_id": "1234",
+    "amount": 123.1,
+    "date": "2015-12-09",
+    "method": "check",
+    "reference": "payment_reference",
+    "invoice_number": "invoice_number",
+    "description": "some description",
+    "source_system": "your_tms",
+    "load": {
+      "load_id": "load_id",
+      "external_id": "load_external_id",
+    },
+    "carrier": {
+      "external_id": "carrier_external_id"
+    }
   }
 }
 ```
