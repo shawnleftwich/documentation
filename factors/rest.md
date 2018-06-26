@@ -5,7 +5,7 @@ HubTran, often just a name and external_id. However, in order for
 HubTran to work well, we need as much information as you can give us.
 
 All dates + times should be in
-[iso8601](https://en.wikipedia.org/wiki/ISO_8601) format. All `external_id`s should be strings. 
+[iso8601](https://en.wikipedia.org/wiki/ISO_8601) format. All `external_id`s should be strings.
 
 * [Authentication](../rest_authentication.md)
 * [Create + Update Debtors](#create--update-debtors)
@@ -55,7 +55,23 @@ Response:
 {
   "debtor": {
     "id": 1, // HubTran's internal id for the debtor
-    "external_id": "debtor-external-id" // YOUR internal id for the debtor
+    "external_id": "debtor-external-id", // YOUR internal id for the debtor
+    "name": "debtor name",
+    "active": true,
+    "mc_number": "123456",
+    "remit_to": {
+      "name": "Address name", // Required if sending a remit to address
+      "address_line_1": "Address line 1",
+      "address_line_2": "Address line 2",
+      "city": "City",
+      "state": "State",
+      "postal_code": "Postal code",
+      "country": "Country",
+      "contact": {
+        "email": "joe@example.com"
+      }
+    },
+    errors: {}
   }
 }
 
@@ -93,11 +109,7 @@ Response:
 ```
 {
   "debtors": [
-    {
-      "id": 1, // HubTran's internal id for the debtor
-      "external_id": "debtor-external-id", // YOUR internal id for the debtor
-      "errors": {} // If this debtor had errors and couldn't be updated, they'll be here
-    }
+    // same as the single debtor response above
   ]
 }
 
