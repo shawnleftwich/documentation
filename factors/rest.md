@@ -33,6 +33,7 @@ Request:
     "external_id": "external-id", // Required
     "active": true,
     "mc_number": "123456",
+    "no_buy": false, // if excluded default is false
     "remit_to": {
       "name": "Address name", // Required if sending a remit to address
       "address_line_1": "Address line 1",
@@ -59,6 +60,7 @@ Response:
     "name": "debtor name",
     "active": true,
     "mc_number": "123456",
+    "no_buy": false,
     "remit_to": {
       "name": "Address name", // Required if sending a remit to address
       "address_line_1": "Address line 1",
