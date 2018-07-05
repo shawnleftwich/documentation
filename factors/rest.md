@@ -188,11 +188,17 @@ Response:
 
 | Value |
 | ----- |
-| `pending` — retry in 1 minute |
+| `pending` |
 | `success` |
 | `fail` |
 | `non_participating_carrier` |
 | `non_participating_broker` |
+
+In the case of a `pending` response,
+you should retry the same request after 1 minute.
+In the event that the verification data is still unavailable after 5 attempts,
+you can consider this a failure in our service.
+We monitor for these issues, and they should rarely occur.
 
 #### Possible `disclosure_details`
 
