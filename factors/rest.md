@@ -154,3 +154,71 @@ The `hubtran_id` in the URL is the value of the `hubtran_id` field in the payloa
 Response:
 
 Empty JSON on success, error status code on failure
+
+
+## Verifications
+
+POST https://api.hubtran.com/verifications
+
+```
+curl -X POST https://api.hubtran.com/verifications \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Token token=YOUR_TOKEN" \
+  -d '{"amount":100.00, "load_id":"123", "debtor":{"external_id":"456"}, "carrier":{"external_id":"789"}}'
+```
+
+Request:
+
+All parameters are required.
+
+Response:
+
+```js
+{
+  "state": "success",            // MANDATORY
+  "disclosure_details": {        // OPTIONAL, may be `null`
+    "amount_mismatch_failure": {
+      "broker_amount": 50.0      // OPTIONAL additional data
+    }
+  }
+}
+```
+
+#### Possible `state`
+
+| Value |
+| ----- |
+| `pending` |
+| `success` |
+| `fail` |
+| `non_participating_carrier` |
+| `non_participating_broker` |
+
+In the case of a `pending` response,
+you should retry the same request after 1 minute.
+In the event that the verification data is still unavailable after 5 attempts,
+you can consider this a failure in our service.
+We monitor for these issues, and they should rarely occur.
+
+#### Possible `disclosure_details`
+
+This field provides more detailed information in the `fail` case.
+It is `null` for all other states.
+
+Verifications can fail for multiple reasons,
+so the value object will have _at least_ one key.
+Keys may be added in the future for new failure types.
+
+Each failure _may_ provide additional data within the JSON value.
+Each additional data field is _optional_.
+Keys may be added in the future for new failure data.
+
+| Key | Additional data fields |
+| --- | ----- |
+| `amount_mismatch_failure` | `broker_amount` — NUMERIC STRING, ex. `"99.99"` |
+| `undelivered_failure` | none |
+| `load_issue_failure` | none |
+| `load_not_found_failure` | none |
+| `carrier_mismatch_failure` | none |
+| `possible_fees_failure` | none |
+| `remit_to_failure` | none |
