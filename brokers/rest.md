@@ -656,6 +656,7 @@ Request:
     "amount": 123.1, // Required
     "date": "2015-12-09",
     "method": "check",
+    "void": true, // defaults to false
     "reference": "payment_reference",
     "invoice_number": "invoice_number", // Optional, but highly desired if it is a payment for an invoice
     "description": "some description",
