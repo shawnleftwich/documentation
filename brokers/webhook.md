@@ -30,7 +30,7 @@ choose which payloads you want to use and ignore the rest.
       "number": "invoice-number",
       "date": null,
       "date_to_pay": "1981-08-13",
-      "amount_to_pay": "10.2",
+      "amount_to_pay": 10.2,
       "quickpay": false,
       "payment_strategy": "direct", // or "factor"
       "approver": {
@@ -38,9 +38,12 @@ choose which payloads you want to use and ignore the rest.
       },
       "line_items": [ // Only present if line items is enabled for the account
         {
+          "external_id": "line-item-external-id",
           "description": "line item description",
           "total": 123.45,
+          "customer_total": 150.00,
           "quantity": 5,
+          "rate": 2.0,
           "type_code": "Line Haul",
           "carrier": {
             "external_id": "carrier-external-id",

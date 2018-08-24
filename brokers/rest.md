@@ -14,8 +14,11 @@ All dates + times should be in
 * [Create + Update Carriers](#create--update-carriers)
 * [Bulk Create + Update Carriers](#bulk-create--update-carriers)
 * [Create Payments](#create-payments)
-* [Clear Exceptions](#clear-exceptions)
 * [Document Upload](#document-upload)
+* [Clear Exceptions](#clear-exceptions)
+* [List Approved Invoices](#list-approved-invoices)
+* [Mark Approved Invoice as Received](#mark-approved-invoice-as-received)
+* [Mark Approved Invoice as Not Received](#mark-approved-invoice-as-not-received)
 
 ## Create + Update Loads
 
@@ -38,6 +41,7 @@ Request:
     "load_id": "load-id", // Required
     "external_id": "external-id", // Required
     "status": "new",
+    "brokered": true,
     "tms_created_at": "2016-07-15 19:00:00 +0200",
     "tms_updated_at": "2016-07-17 19:00:00 +0200",
     "target_ship_start": "2016-07-16 12:00:00 +0200",
@@ -55,7 +59,7 @@ Request:
     "primary_reference_type": "primary-reference-type",
     "quantity": 1,
     "weight": 1000,
-    "distance": "500",
+    "distance": 500,
     "mode": "truck",
     "freight_class": "class",
     "po": "po",
@@ -129,9 +133,13 @@ Request:
     ],
     "line_items": [ // Displayed and used to calculate the carrier_charge.
       {
+        "external_id": "line_item_1", // You're id for matching up line items when sending back to your TMS
         "description": "line item description",
         "total": 123.45,
+        "customer_total": 150.00,
         "quantity": 5,
+        "rate": 2.0,
+        "type_code": "abc",
         "carrier": { // Used to calculate carrier_charge for each carrier
           "external_id": "carrier-external-id",
           "scac": "scac",
@@ -142,13 +150,13 @@ Request:
     "shipped_items": [{
       "external_id": "1234", // Required
       "description": "Shipped item", // Required
-      "weight_unit": "lb",
-      "quantity": 2.0,
-      "item_type": "CARTON",
-      "hazardous_material": false,
-      "weight": 417.0,
       "class_name": '400',
+      "item_type": "CARTON",
       "nmfc": "82270",
+      "hazardous_material": false,
+      "quantity": 2.0,
+      "weight": 417.0,
+      "weight_unit": "lb",
       "width": 10.0,
       "height": 12.0,
       "length": 20.0
@@ -197,6 +205,7 @@ Response:
     "load_id": "load-id", // The load_id you sent us when creating the load
     "external_id": "external-id", // The external_id you sent us when creating the load
     "status": "new",
+    "brokered": true,
     "tms_created_at": "2016-07-15 19:00:00 +0200",
     "tms_updated_at": "2016-07-17 19:00:00 +0200",
     "target_delivery_start": "2016-07-17 19:00:00 +0200",
@@ -214,7 +223,7 @@ Response:
     "primary_reference_type": "primary-reference-type",
     "quantity": 1,
     "weight": 1000,
-    "distance": "500",
+    "distance": 500,
     "mode": "truck",
     "freight_class": "class",
     "po": "po",
@@ -288,9 +297,13 @@ Response:
     ],
     "line_items": [ // Displayed and used to calculate the carrier_charge. Empty array if no line items.
       {
+        "external_id": "line_item_1", // You're id for matching up line items when sending back to your TMS
         "description": "line item description",
         "total": 123.45,
+        "customer_total": 150.00,
         "quantity": 5,
+        "rate": 2.0,
+        "type_code": "abc",
         "carrier": { // Used to calculate carrier_charge for each carrier
           "external_id": "carrier-external-id",
           "scac": "scac",
@@ -302,13 +315,13 @@ Response:
       {
         "external_id": "1234", // Required
         "description": "Shipped item", // Required
-        "weight_unit": "lb",
-        "quantity": 2.0,
-        "item_type": "CARTON",
-        "hazardous_material": false,
-        "weight": 417.0,
         "class_name": '400',
+        "item_type": "CARTON",
         "nmfc": "82270",
+        "hazardous_material": false,
+        "quantity": 2.0,
+        "weight": 417.0,
+        "weight_unit": "lb",
         "width": 10.0,
         "height": 12.0,
         "length": 20.0
@@ -436,6 +449,37 @@ Request:
         "fuel": 129.32,
         "detention": 22.22,
         "other": 87.87
+      },
+      "line_items": [
+        {
+          "external_id": "line_item_1", // The line external_id you sent us
+          "description": "line item description",
+          "total": 123.45,
+          "quantity": 5,
+          "rate": 2.0,
+          "type_code": "abc"
+        }
+      ],
+      "shipped_items": [
+        {
+          "external_id": "1234", // Required
+          "description": "Shipped item", // Required
+          "class_name": '400',
+          "item_type": "CARTON",
+          "nmfc": "82270",
+          "hazardous_material": false,
+          "quantity": 2.0,
+          "weight": 417.0,
+          "weight_unit": "lb",
+          "width": 10.0,
+          "height": 12.0,
+          "length": 20.0
+        }
+      ],
+      "references": {
+        "Key": "Value",
+        "Key2": "Value2,Value3",
+        "Anything": "You Want"
       }
     }
   ]
@@ -497,6 +541,37 @@ Response:
         "fuel": 129.32,
         "detention": 22.22,
         "other": 87.87
+      },
+      "line_items": [
+        {
+          "external_id": "line_item_1", // The line external_id you sent us
+          "description": "line item description",
+          "total": 123.45,
+          "quantity": 5,
+          "rate": 2.0,
+          "type_code": "abc"
+        }
+      ],
+      "shipped_items": [
+        {
+          "external_id": "1234", // Required
+          "description": "Shipped item", // Required
+          "class_name": '400',
+          "item_type": "CARTON",
+          "nmfc": "82270",
+          "hazardous_material": false,
+          "quantity": 2.0,
+          "weight": 417.0,
+          "weight_unit": "lb",
+          "width": 10.0,
+          "height": 12.0,
+          "length": 20.0
+        }
+      ],
+      "references": {
+        "Key": "Value",
+        "Key2": "Value2,Value3",
+        "Anything": "You Want"
       }
     }
   ]
@@ -705,10 +780,10 @@ Please let us know if you would like to use this API, as it needs to be enabled 
 POST https://api.hubtran.com/tms/documents
 
 ```
-curl -X POST https://api.hubtran.com/tms/documents \
+curl -X POST https://api.hubtran.com/tms/loads/:external_id/documents \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN" \
-  -d '{"document":{"load_id": "1234","type":"invoice","url":"url of image"}}'
+  -d '{"document":{"type":"invoice","url":"url of image"}}'
 ```
 
 Request:
@@ -716,7 +791,7 @@ Request:
 ```
 {
   "document": {
-    "load_id": "2134",
+    "external_id": "document_external_id", // Your id for the document
     "type": "rateConfirmation",
     "url": "URL of image to download. Required unless data is provided",
     "data": "base64 encoded data for image. Required unless url is provided"
@@ -728,7 +803,14 @@ Response:
 
 On success:
 ```
-{}
+{
+  "document": {
+    "id": 5, // HubTran's internal id for the document
+    "token": "some-random-token", // HubTran's token that can be used in document URLs
+    "external_id": "document_external_id", // Your id for the document
+    "type": "rateConfirmation"
+  }
+}
 ```
 
 On Failure:
@@ -740,7 +822,6 @@ On Failure:
 ```
 
 ## Clear Exceptions
-
 
 POST https://api.hubtran.com/tms/carrier_invoices/:id/exceptions/clear
 
@@ -755,6 +836,150 @@ Request:
 
 ```
 {}
+```
+
+Response:
+
+```
+{
+  "ok": true
+}
+```
+
+## List Approved Invoices
+
+GET https://api.hubtran.com/tms/carrier_invoices/approved
+
+```
+curl -X GET https://api.hubtran.com/tms/carrier_invoices/approved \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Token token=YOUR_TOKEN"
+```
+
+Optional URL params:
+
+1. `results_per_page` - number of results to return per page, max 50
+2. `page` - which page of results to return based on `results_per_page`
+
+Response:
+
+```
+{
+  "results_per_page": 20, // how many results per page
+  "page_count": 2, // number of pages using results_per_page
+  "current_page": 1, // current page
+  "carrier_invoices": [
+    {
+      "id": 123,
+      "number": "invoice-number",
+      "state": "approved",
+      "date": "1981-08-11",
+      "date_to_pay": "1981-08-13",
+      "amount_to_pay": 1110.2,
+      "quickpay": false,
+      "approver": {
+        "email": "test@example.com"
+      },
+      "carrier": {
+        "external_id": "carrier-external-id"
+      },
+      load: {
+        "external_id": "load-external-id"
+      },
+      "line_items": [
+        {
+          "external_id": "line_item_1", // The line external_id you sent us
+          "description": "line item description",
+          "total": 123.45,
+          "customer_total": 150.00,
+          "quantity": 3,
+          "rate": 2.0,
+          "type_code": "abc",
+          "carrier": {
+            "external_id": "carrier-external-id",
+          }
+        }
+      ],
+      "shipped_items": [{
+        "external_id": "1234",
+        "description": "Shipped item",
+        "class_name": '400',
+        "item_type": "CARTON",
+        "nmfc": "82270",
+        "hazardous_material": false,
+        "quantity": 2.0,
+        "weight_unit": "lb",
+        "weight": 417.0,
+        "width": 10.0,
+        "height": 12.0,
+        "length": 20.0
+      }],
+      "documents": [
+        {
+          "id": 14,
+          "type": "proofOfDelivery",
+          "proof_of_delivery": true,
+          "url": "https://api.hubtran.com/downloads/documents/unique-id",
+          "visibility": {
+            "carrier": true,
+            "customer": true
+          }
+        }
+      ],
+      "combined_document_urls": [ // All documents of the same type, combined
+        {
+          "type": "proofOfDelivery",
+          "url": "https://api.hubtran.com/downloads/documents/combined/unique-id",
+          "proof_of_delivery": true,
+          "visibility": {
+            "carrier": true,
+            "customer": true
+          }
+        }
+      ],
+      "remit_to": {
+        "name": "name",
+        "address_line_1": "address1",
+        "address_line_2": "address2",
+        "city": "city",
+        "state": "state",
+        "postal_code": "12345",
+        "country": "USA"
+      }
+    }
+  ]
+}
+```
+
+## Mark Approved Invoice as Received
+
+POST https://api.hubtran.com/tms/carrier_invoices/:id/received
+
+```
+curl -X POST https://api.hubtran.com/tms/carrier_invoices/:id/received \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Token token=YOUR_TOKEN"
+```
+
+Response:
+
+```
+{
+  "ok": true
+}
+```
+
+## Mark Approved Invoice as Not Received
+
+This is more for when you're developing and you want to reset an invoice
+to mark as received again.
+
+POST https://api.hubtran.com/tms/carrier_invoices/:id/not_received
+
+```
+curl -X POST https://api.hubtran.com/tms/carrier_invoices/:id/not_received \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Token token=YOUR_TOKEN"
 ```
 
 Response:
