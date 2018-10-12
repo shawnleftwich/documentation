@@ -7,8 +7,12 @@ shipments.csv, and stops.csv. If possible add ".inprogress" to the end of
 the filename while the file is being imported so we don't attempt to
 import partially uploaded files.
 
-Files should be uploaded to our SFTP at most once an hour and maybe less
-frequently if they are very large.
+All carriers must be uploaded every hour.
+
+The last 24 hours of updated+inserted loads must be uploaded at most every hour
+between 6 AM and 6 PM and the last 60 days of updated+inserted loads must
+be uploaded at 10 PM every night. This may be subject to change
+depending on how large the files are.
 
 All dates + times should be in
 [iso8601](https://en.wikipedia.org/wiki/ISO_8601) format.
