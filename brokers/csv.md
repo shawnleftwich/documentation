@@ -172,6 +172,10 @@ In some special situations (specific customers) `_url_` may be changed
 to `_filename_` and some of the document fields may be removed. If you
 are one of these special cases you'll know it.
 
+Once the invoice has been inserted into your TMS you should send a GET
+request to the url listed in `acknowledgement_url` to verify the invoice
+in HubTran.
+
 * load_id
 * load_external_id
 * invoice_number
@@ -198,3 +202,4 @@ are one of these special cases you'll know it.
 * combined_document_url_X
 * combined_customer_documents_url
 * combined_carrier_documents_url
+* acknowledgement_url
