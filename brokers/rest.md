@@ -837,7 +837,8 @@ Response:
         "external_id": "carrier-external-id"
       },
       load: {
-        "external_id": "load-external-id"
+        "external_id": "load-external-id",
+        "load_id": "load-id"
       },
       "line_items": [
         {
