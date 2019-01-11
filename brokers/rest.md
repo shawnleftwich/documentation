@@ -831,7 +831,10 @@ Response:
       "currency": "USD",
       "quickpay": false,
       "approver": {
-        "email": "test@example.com"
+        "email": "approver@example.com"
+      },
+      "processor": {
+        "email": "processor@example.com"
       },
       "carrier": {
         "external_id": "carrier-external-id"
