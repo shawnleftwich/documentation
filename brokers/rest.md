@@ -70,6 +70,8 @@ Request:
     "ppe": "ppe",
     "quote_number": "quote-number",
     "ship_ref": "ship-ref",
+    "load_note": "load was stolen",
+    "payables_note": "do not pay",
     "origin": {                                           // Recommended
       "name": "origin-name",
       "address_line_1": "origin-address-line-1",
@@ -234,6 +236,8 @@ Response:
     "ppe": "ppe",
     "quote_number": "quote-number",
     "ship_ref": "ship-ref",
+    "load_note": "load was stolen",
+    "payables_note": "do not pay",
     "origin": {                                 // null if all fields are empty
       "name": "origin-name",
       "address_line_1": "origin-address-line-1",
