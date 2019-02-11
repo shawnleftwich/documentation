@@ -113,7 +113,7 @@ Request:
       "fuel": 129.32,
       "detention": 22.22,
       "other": 87.87,
-      "customer_charge": 1500.00
+      "customer_total": 1500.00
     },
     "picks": [
       {
@@ -279,7 +279,8 @@ Response:
       "line_haul": 1100.32,
       "fuel": 129.32,
       "detention": 22.22,
-      "other": 87.87
+      "other": 87.87,
+      "customer_total": 1500.00
     },
     "picks": [                                  // empty array if no picks
       {
