@@ -112,7 +112,8 @@ Request:
       "line_haul": 1100.32,
       "fuel": 129.32,
       "detention": 22.22,
-      "other": 87.87
+      "other": 87.87,
+      "customer_charge": 1500.00
     },
     "picks": [
       {
