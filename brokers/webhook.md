@@ -34,6 +34,29 @@ choose which payloads you want to use and ignore the rest.
       "currency": "USD",
       "quickpay": false,
       "payment_strategy": "direct",     // or "factor"
+      "load": {
+        "external_id": "load-external-id", // YOUR internal id
+        "shipments": [
+          {
+            "external_id": "shipment-external-id",
+            "documents": [{
+              "id": 14,
+              "type": "proofOfDelivery",
+              "proof_of_delivery": true,
+              "url": "https://api.hubtran.com/downloads/documents/unique-id",
+              "pages": [
+                {"png_url": "https://api.hubtran.com/downloads/documents/unique-id/pages/123.png"},
+                {"png_url": "https://api.hubtran.com/downloads/documents/unique-id/pages/456.png"}
+              ],
+              "visibility": {
+                "carrier": true,
+                "customer": true // based on the shipment customer if
+present
+              }
+            }]
+          }
+        ]
+      },
       "approver": {
         "email": "approver@example.com"
       },
@@ -71,7 +94,7 @@ choose which payloads you want to use and ignore the rest.
         ],
         "visibility": {
           "carrier": true,
-          "customer": true
+          "customer": true // based on the load customer
         }
       }
     ],
@@ -86,7 +109,7 @@ choose which payloads you want to use and ignore the rest.
         ],
         "visibility": {
           "carrier": true,
-          "customer": true
+          "customer": true // based on the load customer
         }
       }
     ],
@@ -147,7 +170,7 @@ choose which payloads you want to use and ignore the rest.
         ],
         "visibility": {
           "carrier": true,
-          "customer": true
+          "customer": true // based on the load customer
         }
       }
     ],
@@ -162,7 +185,7 @@ choose which payloads you want to use and ignore the rest.
         ],
         "visibility": {
           "carrier": true,
-          "customer": true
+          "customer": true // based on the load customer
         }
       }
     ],
