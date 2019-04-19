@@ -65,7 +65,7 @@ present
                 ],
                 "visibility": {
                   "carrier": true,
-                  "customer": true // based on the load customer
+                  "customer": true // based on the shipment customer if present
                 }
               }
             ]
