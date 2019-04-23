@@ -178,7 +178,7 @@ Response:
   "state": "success",            // Required
   "disclosure_details": {        // Optional, may be `null`
     "amount_mismatch_failure": {
-      "broker_amount": 50.0      // Optional additional data
+      "broker_amount": "50.0"    // Optional additional data
     }
   }
 }
