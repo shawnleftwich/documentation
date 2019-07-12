@@ -753,14 +753,14 @@ Request:
                                                                // Use document_types endpoints to find possible values.
         "customerInvoice"
       ],
-      "email_settings": {                                      // To set settings for when method is "email"
+      "email_settings": {                                      // Use when "method" is "email"
         "billing_email": "billing@customer.com",
         "link_or_attachment": "link",                          // One of "link", "attachment". Default is "link".
-        "invoice_grouping_strategy": "email_single",           // One of "email_single", "email_per_invoice", "email_account_default".
+        "invoice_grouping_strategy": "email_single",           // See "Possible invoice_grouping_strategy values" section below.
         "custom_filename": "example_{invoice_number}"          // Optional. See "Templating" section below. Do not provide extension -- '.pdf' is automatically appended.
                                                                // Used only if "link_or_attachment" is set to "attachment". Defaults to "your_account_name_invoices_1".
       },
-      "ftp_settings": {
+      "ftp_settings": {                                        // Use when "method" is "ftp"
         "username": "admin",
         "password": "123",
         "host": "ftp.hubtran.com",
@@ -768,7 +768,7 @@ Request:
         "custom_filename": "example_{invoice_number}"          // Optional. See "Templating" section below. Do not provide extension -- '.pdf' is automatically appended.
                                                                // Defaults to "_invoice_number_INV".
       },
-      "fpa_cass_settings": {
+      "fpa_cass_settings": {                                   // Use when "method" is "fpa_cass"
         "username": "admin",
         "password": "123",
         "account_name": "ABC Manufacturing"
@@ -812,6 +812,14 @@ Response:
   }
 }
 ```
+### Possible `invoice_grouping_strategy` values
+
+| Value | Explanation |
+| ----- | ----- |
+| `email_single` | Send a consolidated email containing all invoices |
+| `email_per_invoice` | Send a separate email for each invoice |
+| `email_account_default` | Defer to the setting on account level |
+
 ### Templating
 
 For the `custom_subject_template` and `custom_filename` attributes, you have the option of providing a template with variables. Variables should be surrounded by curly brackets. If no variables are provided, the string is used as is.
@@ -829,21 +837,21 @@ Examples:
 
 #### Possible template variables
 
-| Value |
-| ----- |
-| `invoice_number` |
-| `bill_of_lading_number` |
-| `customer_load_id` |
-| `customer_name` |
-| `customer_address_line_1` |
-| `load_id` |
-| `edi_import_primary_reference` |
-| `ship_ref` |
-| `job_number` |
-| `po` |
-| `customer_reference_number` |
-| `accounting_unit` |
-| `invoice_date_YYYYMMDD` |
+| Value | Source of value |
+| ----- | ----- |
+| `invoice_number` | The "number" attribute on customer invoices |
+| `bill_of_lading_number` | The "BOL" reference on loads |
+| `customer_load_id` | The "Customer Load ID" reference on loads |
+| `customer_name` | The "name" attribute on customers |
+| `customer_address_line_1` | The "address_line_1" attribute on customers |
+| `load_id` | The "Load ID" reference on loads |
+| `edi_import_primary_reference` | The "EDI Import Primary Reference" reference on loads |
+| `ship_ref` | The "Ship Ref" reference on loads |
+| `job_number` | The "Job Number" reference on loads |
+| `po` | Either the "PO#" or the "PO Number" reference on loads |
+| `customer_reference_number` | The "Customer Reference Number" reference on loads |
+| `accounting_unit` | The "Accounting Unit" reference on loads |
+| `invoice_date_YYYYMMDD` | The "date" attribute on invoices |
 
 ## Create + Update Customer Invoices
 
@@ -894,7 +902,7 @@ Response:
 ```
 {
   "customer_invoice": {
-    "id": 10, // HubTran's internal id for the customer invoice
+    "id": 10,                                       // HubTran's internal id for the customer invoice
     "customer": {
       "external_id": "customer-external-id"
     },
@@ -903,7 +911,7 @@ Response:
     "date": "2019-04-09",
     "currency": "USD",
     "invoice_document": {
-      "id": 17, // HubTran's internal id for the document
+      "id": 17,                                     // HubTran's internal id for the document
       "type": "customerInvoice",
       "proof_of_delivery": false,
       "url": "https://api.hubtran.com/downloads/documents/unique-id",
@@ -916,9 +924,9 @@ Response:
       {"external_id": "123"},
       {"external_id": "456"}
     ],
-    "supporting_documents": [ // Empty array if no documents
+    "supporting_documents": [                       // Empty array if no documents
       {
-        "id": 14, // HubTran's internal id for the document
+        "id": 14,                                   // HubTran's internal id for the document
         "type": "billOfLading",
         "proof_of_delivery": false,
         "url": "https://api.hubtran.com/downloads/documents/unique-id",
