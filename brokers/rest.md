@@ -18,6 +18,7 @@ All dates + times should be in
 * [List Approved Invoices](#list-approved-invoices)
 * [Mark Approved Invoice as Verified](#mark-approved-invoice-as-verified)
 * [Mark Approved Invoice as Not Verified](#mark-approved-invoice-as-not-verified)
+* [List Documents](#list-documents)
 * [Update Account](#update-account)
 * [Document Types](#document-types)
 
@@ -56,20 +57,15 @@ Request:
     "require_customer_rate_confirmation": false,
     "require_originals": false,
     "pro_number": "pro-number",
-    "primary_reference": "primary-reference",
-    "primary_reference_type": "primary-reference-type",
     "quantity": 1,
     "weight": 1000,
     "distance": 500,
     "mode": "truck",
     "freight_class": "class",
-    "po": "po",
-    "pickup_reference": "pickup-reference",
     "memo": "memo",
     "delivery_number": "delivery-number",
     "ppe": "ppe",
     "quote_number": "quote-number",
-    "ship_ref": "ship-ref",
     "load_note": "load was stolen",
     "payables_note": "do not pay",
     "office": "Chicago",
@@ -168,10 +164,12 @@ Request:
       "length": 20.0
     }],
     "references": {                                       // Recommended
-      "Key": "Value",
-      "Key2": "Value2,Value3",
-      "Anything": "You Want"
-     }
+      "Example Reference Label 1": "Value1",
+      "Example Reference Label 2": "Value2",
+      // To send multiple references with the same label, comma-separate the values:
+      "Example Reference Label 3": "Value3a, Value3b"
+      ... as many label-value pairs as you want
+    }
   }
 }
 ```
@@ -225,20 +223,15 @@ Response:
     "require_customer_rate_confirmation": false,
     "require_originals": false,
     "pro_number": "pro-number",
-    "primary_reference": "primary-reference",
-    "primary_reference_type": "primary-reference-type",
     "quantity": 1,
     "weight": 1000,
     "distance": 500,
     "mode": "truck",
     "freight_class": "class",
-    "po": "po",
-    "pickup_reference": "pickup-reference",
     "memo": "memo",
     "delivery_number": "delivery-number",
     "ppe": "ppe",
     "quote_number": "quote-number",
-    "ship_ref": "ship-ref",
     "load_note": "load was stolen",
     "payables_note": "do not pay",
     "office": "Chicago",
@@ -388,9 +381,9 @@ Response:
       }
     ],
     "references": {                             // empty object if no references
-      "Key": "Value",
-      "Key2": "Value2,Value3",
-      "Anything": "You Want"
+      "Example Reference Label 1": "Value1",
+      "Example Reference Label 2": "Value2",
+      "Example Reference Label 3": "Value3a, Value3b"
     }
   }
 }
@@ -427,9 +420,6 @@ Request:
       "weight": 1000,
       "customer_mode": "FSC and Rate Review",
       "owner": "Owner name",
-      "po": "po",
-      "pickup_reference": "pickup-reference",
-      "ship_ref": "C16091",
       "origin": {                                         // Recommended
         "name": "origin-name",
         "address_line_1": "origin-address-line-1",
@@ -488,9 +478,11 @@ Request:
         }
       ],
       "references": {                                     // Recommended
-        "Key": "Value",
-        "Key2": "Value2,Value3",
-        "Anything": "You Want"
+        "Example Reference Label 1": "Value1",
+        "Example Reference Label 2": "Value2",
+        // To send multiple references with the same label, comma-separate the values:
+        "Example Reference Label 3": "Value3a, Value3b"
+        ... as many label-value pairs as you want
       }
     }
   ]
@@ -518,9 +510,6 @@ Response:
       "weight": 1000,
       "customer_mode": "FSC and Rate Review",
       "owner": "Owner name",
-      "po": "po",
-      "pickup_reference": "pickup-reference",
-      "ship_ref": "C16091",
       "origin": {
         "name": "origin-name",
         "address_line_1": "origin-address-line-1",
@@ -578,10 +567,10 @@ Response:
           "length": 20.0
         }
       ],
-      "references": {
-        "Key": "Value",
-        "Key2": "Value2,Value3",
-        "Anything": "You Want"
+      "references": {                       // empty object if no references
+        "Example Reference Label 1": "Value1",
+        "Example Reference Label 2": "Value2",
+        "Example Reference Label 3": "Value3a, Value3b"
       }
     }
   ]
@@ -625,8 +614,10 @@ Request:
       "joe@example.com",
       "tom@example.com"
     ],
-    "remit_to": {                         // Recommended
-      "name": "Address name",
+    "remit_to": {                         // Recommended, should be
+factor remit to if carrier is factored
+      "name": "Address name",             // Required if remit_to block
+is sent
       "address_line_1": "Address line 1",
       "address_line_2": "Address line 2",
       "city": "City",
