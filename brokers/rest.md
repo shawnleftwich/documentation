@@ -12,6 +12,7 @@ All dates + times should be in
 * [Load Details](#load-details)
 * [Create + Update Shipments](#create--update-shipments)
 * [Create + Update Carriers](#create--update-carriers)
+* [Create + Update Customers](#create--update-customers)
 * [Bulk Create + Update Carriers](#bulk-create--update-carriers)
 * [Create Payments](#create-payments)
 * [Clear Exceptions](#clear-exceptions)
@@ -711,6 +712,83 @@ Response:
 }
 
 ```
+
+## Create + Update Customers
+
+POST https://api.hubtran.com/tms/customers/:external_id
+
+```
+curl -X PUT https://api.hubtran.com/tms/customers/example_id \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Token token=YOUR_TOKEN" \
+  -d '{"customer":  {...}}'
+```
+
+Request:
+
+```
+{
+  "customer": {
+    "external_id": "customer-external-id",                     // Required
+    "name": "customer-name",                                   // Required
+    "account_number": "customer-account-number"                // Required
+    "invoicing": {
+      "method": "email",                                       // Required. One of "print", "email".
+      "billing_interval": "daily",                             // Optional. One of "daily", "weekly", "monthly", "never". Defaults to "daily".
+      "visible_document_types": [                              // Optional. If not passed, sets it to mirror account defaults.
+                                                               // Use document_types endpoints to find possible values.
+        "customerInvoice",
+        "billOfLading"
+      ],
+      "required_document_types": [                             // Optional. If not passed, sets it to mirror account defaults.
+                                                               // Use document_types endpoints to find possible values.
+        "customerInvoice"
+      ],
+      "email_settings": {                                      // Use when "method" is "email"
+        "billing_email": "billing@customer.com",
+        "link_or_attachment": "link",                          // One of "link", "attachment". Default is "link".
+        "invoice_grouping_strategy": "email_single"            // See "Possible invoice_grouping_strategy values" section below.
+      }
+    }
+  }
+}
+```
+
+Response:
+
+```
+{
+  "customer": {
+    "id": 20,                               // HubTran's internal id for the customer
+    "external_id": "customer-external-id",  // YOUR internal id for the customer
+    "name": "customer-name",
+    "account_number": "customer-account-number"
+    "invoicing": {
+      "method": "email",
+      "billing_interval": "daily",
+      "visible_document_types": [
+        "customerInvoice",
+        "billOfLading"
+      ],
+      "required_document_types": [
+        "customerInvoice"
+      ],
+      "email_settings": {
+        "billing_email": "billing@customer.com",
+        "link_or_attachment": "link",
+        "invoice_grouping_strategy": "email_single"
+      }
+    }
+  }
+}
+```
+### Possible `invoice_grouping_strategy` values
+
+| Value | Explanation |
+| ----- | ----- |
+| `email_single` | Send a consolidated email containing all invoices |
+| `email_per_invoice` | Send a separate email for each invoice |
+| `email_account_default` | Defer to the setting on account level |
 
 ## Create Payments
 
