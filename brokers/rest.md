@@ -13,7 +13,6 @@ All dates + times should be in
 * [Create + Update Shipments](#create--update-shipments)
 * [Create + Update Carriers](#create--update-carriers)
 * [Bulk Create + Update Carriers](#bulk-create--update-carriers)
-* [Create + Update Customers](#create--update-customers)
 * [Create + Update Customer Invoices](#create--update-customer-invoices)
 * [Create Payments](#create-payments)
 * [Clear Exceptions](#clear-exceptions)
@@ -719,140 +718,6 @@ Response:
 
 ```
 
-## Create + Update Customers
-
-POST https://api.hubtran.com/tms/customers/:external_id
-
-```
-curl -X PUT https://api.hubtran.com/tms/customers/example_id \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Token token=YOUR_TOKEN" \
-  -d '{"customer":  {...}}'
-```
-
-Request:
-
-```
-{
-  "customer": {
-    "external_id": "customer-external-id",                     // Required
-    "name": "customer-name",                                   // Required
-    "account_number": "customer-account-number"                // Required
-    "invoicing": {
-      "method": "email",                                       // Required. One of "print", "email", "ftp", "fpa_cass".
-      "days_to_pay": 10,                                       // Required
-      "instructions": "",                                      // Optional
-      "billing_interval": "daily",                             // Optional. One of "daily", "weekly", "monthly", "never". Defaults to "daily".
-      "custom_subject_template": "Example - {invoice_number}", // See "Templating" section below.
-      "visible_document_types": [                              // Optional. If not passed, sets it to mirror account defaults.
-                                                               // Use document_types endpoints to find possible values.
-        "customerInvoice",
-        "billOfLading"
-      ],
-      "required_document_types": [                             // Optional. If not passed, sets it to mirror account defaults.
-                                                               // Use document_types endpoints to find possible values.
-        "customerInvoice"
-      ],
-      "email_settings": {                                      // Use when "method" is "email"
-        "billing_email": "billing@customer.com",
-        "link_or_attachment": "link",                          // One of "link", "attachment". Default is "link".
-        "invoice_grouping_strategy": "email_single",           // See "Possible invoice_grouping_strategy values" section below.
-        "custom_filename": "example_{invoice_number}"          // Optional. See "Templating" section below. Do not provide extension -- '.pdf' is automatically appended.
-                                                               // Used only if "link_or_attachment" is set to "attachment". Defaults to "your_account_name_invoices_1".
-      },
-      "ftp_settings": {                                        // Use when "method" is "ftp"
-        "username": "admin",
-        "password": "123",
-        "host": "ftp.hubtran.com",
-        "root_directory": "/incoming",                         // Optional.
-        "custom_filename": "example_{invoice_number}"          // Optional. See "Templating" section below. Do not provide extension -- '.pdf' is automatically appended.
-                                                               // Defaults to "_invoice_number_INV".
-      },
-      "fpa_cass_settings": {                                   // Use when "method" is "fpa_cass"
-        "username": "admin",
-        "password": "123",
-        "account_name": "ABC Manufacturing"
-      }
-    }
-  }
-}
-```
-
-Response:
-
-```
-{
-  "customer": {
-    "id": 20,                               // HubTran's internal id for the customer
-    "external_id": "customer-external-id",  // YOUR internal id for the customer
-    "name": "customer-name",
-    "account_number": "customer-account-number"
-    "invoicing": {
-      "method": "email",
-      "days_to_pay": 10,
-      "instructions": "",
-      "billing_interval": "daily",
-      "custom_subject_template": "Example - {invoice_number}",
-      "visible_document_types": [
-        "customerInvoice",
-        "billOfLading"
-      ],
-      "required_document_types": [
-        "customerInvoice"
-      ],
-      "email_settings": {
-        "billing_email": "billing@customer.com",
-        "link_or_attachment": "link",
-        "invoice_grouping_strategy": "email_single",
-        "custom_filename": "example_{invoice_number}"
-      },
-      "ftp_settings": {},
-      "fpa_cass_settings": {}
-    }
-  }
-}
-```
-### Possible `invoice_grouping_strategy` values
-
-| Value | Explanation |
-| ----- | ----- |
-| `email_single` | Send a consolidated email containing all invoices |
-| `email_per_invoice` | Send a separate email for each invoice |
-| `email_account_default` | Defer to the setting on account level |
-
-### Templating
-
-For the `custom_subject_template` and `custom_filename` attributes, you have the option of providing a template with variables. Variables should be surrounded by curly brackets. If no variables are provided, the string is used as is.
-
-Examples:
-
-`_TEST_{invoice_number}_INV`
-
-`ABC Company Invoice - {customer_name}`
-
-`{invoice_number}`
-
-`EXAMPLE CO - Invoice`
-
-
-#### Possible template variables
-
-| Value | Source of value |
-| ----- | ----- |
-| `invoice_number` | The "number" attribute on customer invoices |
-| `bill_of_lading_number` | The "BOL" reference on loads |
-| `customer_load_id` | The "Customer Load ID" reference on loads |
-| `customer_name` | The "name" attribute on customers |
-| `customer_address_line_1` | The "address_line_1" attribute on customers |
-| `load_id` | The "Load ID" reference on loads |
-| `edi_import_primary_reference` | The "EDI Import Primary Reference" reference on loads |
-| `ship_ref` | The "Ship Ref" reference on loads |
-| `job_number` | The "Job Number" reference on loads |
-| `po` | Either the "PO#" or the "PO Number" reference on loads |
-| `customer_reference_number` | The "Customer Reference Number" reference on loads |
-| `accounting_unit` | The "Accounting Unit" reference on loads |
-| `invoice_date_YYYYMMDD` | The "date" attribute on invoices |
-
 ## Create + Update Customer Invoices
 
 POST https://api.hubtran.com/tms/customer_invoices/:number
@@ -874,24 +739,14 @@ Request:
     },
     "number": "invoice-number",             // Required
     "amount": 1000.00,                      // Required
-    "date": "2019-04-09",                   // Required, in iso8601 format
-    "currency": "USD",                      // Optional, defaults to "USD"
+    "date": "2019-04-09",                   // Required, in ISO 8601 format
+    "currency": "USD",                      // Optional, in alphabetic ISO 4217 format. Defaults to "USD".
     "invoice_document": {
       data: "base-64-data"                  // Required
     },
     "shipments": [                          // Required
       {"external_id": "123"},
       {"external_id": "456"}
-    ],
-    "supporting_documents": [               // Optional
-      {
-        "type": "billOfLading",             // Use the document_types endpoint to view possible values.
-        "data": "base-64-data"
-      },
-      {
-        "type": "lumperApproval",
-        "data": "base-64-data"
-      }
     ]
   }
 }
@@ -910,41 +765,9 @@ Response:
     "amount": 1000.00,
     "date": "2019-04-09",
     "currency": "USD",
-    "invoice_document": {
-      "id": 17,                                     // HubTran's internal id for the document
-      "type": "customerInvoice",
-      "proof_of_delivery": false,
-      "url": "https://api.hubtran.com/downloads/documents/unique-id",
-      "visibility": {
-        "carrier": false,
-        "customer": true
-      }
-    },
     "shipments": [
       {"external_id": "123"},
       {"external_id": "456"}
-    ],
-    "supporting_documents": [                       // Empty array if no documents
-      {
-        "id": 14,                                   // HubTran's internal id for the document
-        "type": "billOfLading",
-        "proof_of_delivery": false,
-        "url": "https://api.hubtran.com/downloads/documents/unique-id",
-        "visibility": {
-          "carrier": true,
-          "customer": true
-        }
-      },
-      {
-        "id": 15,
-        "type": "lumperApproval",
-        "proof_of_delivery": false,
-        "url": "https://api.hubtran.com/downloads/documents/unique-id-2",
-        "visibility": {
-          "carrier": true,
-          "customer": true
-        }
-      }
     ]
   }
 }
