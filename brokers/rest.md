@@ -735,16 +735,17 @@ Request:
 {
   "customer_invoice": {
     "customer": {
-      "external_id": "customer-external-id" // Required
+      "external_id": "customer-external-id", // Required
+      "name": "example-name"                 // Optional, recommended if new customer
     },
-    "number": "invoice-number",             // Required
-    "amount": 1000.00,                      // Required
-    "date": "2019-04-09",                   // Required, in ISO 8601 format
-    "currency": "USD",                      // Optional, in alphabetic ISO 4217 format. Defaults to "USD".
+    "number": "invoice-number",              // Required
+    "amount": 1000.00,                       // Required
+    "date": "2019-04-09",                    // Required, in ISO 8601 format
+    "currency": "USD",                       // Optional, in alphabetic ISO 4217 format. Defaults to "USD".
     "invoice_document": {
-      data: "base-64-data"                  // Required
+      data: "base-64-data"                   // Required, in Base64 encoding for MIME
     },
-    "shipments": [                          // Required
+    "shipments": [                           // Required
       {"external_id": "123"},
       {"external_id": "456"}
     ]
