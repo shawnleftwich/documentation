@@ -18,6 +18,7 @@ All dates + times should be in
 * [List Approved Invoices](#list-approved-invoices)
 * [Mark Approved Invoice as Verified](#mark-approved-invoice-as-verified)
 * [Mark Approved Invoice as Not Verified](#mark-approved-invoice-as-not-verified)
+* [Create Carrier Invoice Submissions](#create-carrier-invoice-submissions)
 * [List Documents](#list-documents)
 * [Update Account](#update-account)
 * [Document Types](#document-types)
@@ -944,6 +945,85 @@ Response:
 ```
 {
   "ok": true
+}
+```
+
+## Create Carrier Invoice Submissions
+
+If you already have an invoice submission from a carrier (paperwork and/or invoice details)
+you may want to programatically flow that into HubTran. This will create an item in the "New" queue
+just like if HubTran received an email with paperwork. 
+
+For invoices submitted via this API, HubTran will not perform machine learning and data extraction
+on the submitted documents. Instead we will use the invoice data you submit, as the sole source of data
+about the invoice.  
+
+POST https://api.hubtran.com/broker/invoice_submissions
+
+```
+curl -X POST https://api.hubtran.com/broker/invoice_submissions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Token token=YOUR_TOKEN" \
+  -d '{"invoice": {...}}'
+```
+
+Request:
+
+```
+{
+  "invoice": {
+    "external_id": "456",    // Required, your internal ID
+    "source": "web_billing", // Required
+    "number": "111",         // Required
+    "amount": 123.0,         // Required
+    "date": "2019-04-09",      // Required, in iso8601 format
+    "other": {      
+      "trailer": "333",  // Optional
+      "factoring": true, // Optional
+    },
+    "vendor": {
+      "external_id": "789" // Required, the vendor or carrier id that matches id in TMS.
+    },
+    "load_id": "156", // Required, ID of load in TMS
+    "documents": [
+      { 
+        "external_id": "d123",      // Optional, your internal ID for the document. 
+        "type": "invoice",          // Required, your document type.
+        "file_name": "invoice.pdf", // Required
+        "data": DATA                // Required, base64-encoded document data
+      },
+      { 
+        "external_id": "d456",
+        "document_type": "BOL",
+        "file_name": "bol.pdf",
+        "data": DATA
+      } 
+    ]
+  }
+}
+```
+
+Success Response:
+
+```
+HTTP Status Code 201
+{ 
+  "invoice": {
+    "id": 123 // The HubTran ID of the invoice if you want to store it
+  }
+}
+```
+
+Failure Response:
+
+```
+HTTP Status Code 422
+{ 
+  "errors": [
+    { 
+      "message": "carrier is missing" // Error message describing the issue.
+    }
+  ]
 }
 ```
 
