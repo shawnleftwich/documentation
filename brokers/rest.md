@@ -336,8 +336,7 @@ Response:
       {
         "number": "invoice-number",
         "state": "approved",
-        "date": "1981-08-11",
-        "date_to_pay": "1981-08-13",
+        "date": "2019-08-13",
         "amount_to_pay": "1110.2",
         "currency": "USD",
         "quickpay": false,
@@ -826,8 +825,7 @@ Response:
       "id": 123,
       "number": "invoice-number",
       "state": "approved",
-      "date": "1981-08-11",
-      "date_to_pay": "1981-08-13",
+      "date": "2019-08-13",
       "amount_to_pay": 1110.2,
       "currency": "USD",
       "quickpay": false,
@@ -952,11 +950,11 @@ Response:
 
 If you already have an invoice submission from a carrier (paperwork and/or invoice details)
 you may want to programatically flow that into HubTran. This will create an item in the "New" queue
-just like if HubTran received an email with paperwork. 
+just like if HubTran received an email with paperwork.
 
 For invoices submitted via this API, HubTran will not perform machine learning and data extraction
 on the submitted documents. Instead we will use the invoice data you submit, as the sole source of data
-about the invoice.  
+about the invoice.
 
 POST https://api.hubtran.com/broker/invoice_submissions
 
@@ -977,7 +975,7 @@ Request:
     "number": "111",         // Required
     "amount": 123.0,         // Required
     "date": "2019-04-09",      // Required, in iso8601 format
-    "other": {      
+    "other": {
       "trailer": "333",  // Optional
       "factoring": true, // Optional
     },
@@ -986,18 +984,18 @@ Request:
     },
     "load_id": "156", // Required, ID of load in TMS
     "documents": [
-      { 
-        "external_id": "d123",      // Optional, your internal ID for the document. 
+      {
+        "external_id": "d123",      // Optional, your internal ID for the document.
         "type": "invoice",          // Required, your document type.
         "file_name": "invoice.pdf", // Required
         "data": DATA                // Required, base64-encoded document data
       },
-      { 
+      {
         "external_id": "d456",
         "document_type": "BOL",
         "file_name": "bol.pdf",
         "data": DATA
-      } 
+      }
     ]
   }
 }
@@ -1007,7 +1005,7 @@ Success Response:
 
 ```
 HTTP Status Code 201
-{ 
+{
   "invoice": {
     "id": 123 // The HubTran ID of the invoice if you want to store it
   }
@@ -1018,9 +1016,9 @@ Failure Response:
 
 ```
 HTTP Status Code 422
-{ 
+{
   "errors": [
-    { 
+    {
       "message": "carrier is missing" // Error message describing the issue.
     }
   ]
