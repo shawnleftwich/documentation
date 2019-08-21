@@ -13,6 +13,7 @@ All dates + times should be in
 * [Create + Update Shipments](#create--update-shipments)
 * [Create + Update Carriers](#create--update-carriers)
 * [Bulk Create + Update Carriers](#bulk-create--update-carriers)
+* [Create + Update Customer Invoices](#create--update-customer-invoices)
 * [Create Payments](#create-payments)
 * [Clear Exceptions](#clear-exceptions)
 * [List Approved Invoices](#list-approved-invoices)
@@ -711,6 +712,62 @@ Response:
   ]
 }
 
+```
+
+## Create + Update Customer Invoices
+
+POST https://api.hubtran.com/tms/customer_invoices/:number
+
+```
+curl -X PUT https://api.hubtran.com/tms/customer_invoices \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Token token=YOUR_TOKEN" \
+  -d '{"customer_invoice": {...}}'
+```
+
+Request:
+
+```
+{
+  "customer_invoice": {
+    "customer": {
+      "external_id": "customer-external-id", // Required
+      "name": "example-name"                 // Optional, recommended if new customer
+    },
+    "number": "invoice-number",              // Required
+    "amount": 1000.00,                       // Required
+    "date": "2019-04-09",                    // Required, in ISO 8601 format
+    "currency": "USD",                       // Optional, in alphabetic ISO 4217 format. Defaults to "USD".
+    "invoice_document": {
+      data: "base-64-data"                   // Required, in Base64 encoding for MIME
+    },
+    "shipments": [                           // Required
+      {"external_id": "123"},
+      {"external_id": "456"}
+    ]
+  }
+}
+```
+
+Response:
+
+```
+{
+  "customer_invoice": {
+    "id": 10,                                       // HubTran's internal id for the customer invoice
+    "customer": {
+      "external_id": "customer-external-id"
+    },
+    "number": "invoice-number",
+    "amount": 1000.00,
+    "date": "2019-04-09",
+    "currency": "USD",
+    "shipments": [
+      {"external_id": "123"},
+      {"external_id": "456"}
+    ]
+  }
+}
 ```
 
 ## Create Payments
