@@ -357,7 +357,12 @@ Response:
             "visibility": {
               "carrier": true,
               "customer": true
-            }
+            },
+            "pages": [
+              {
+                "png_url": "https://api.hubtran.com/downloads/documents/unique-id/pages/xxx.png"
+              }
+            ]  
           }
         ],
         "combined_document_urls": [             // All documents of the same type, combined
@@ -386,7 +391,24 @@ Response:
       "Example Reference Label 1": "Value1",
       "Example Reference Label 2": "Value2",
       "Example Reference Label 3": "Value3a, Value3b"
-    }
+    },
+    "documents": [             // Documents on the load
+      {
+        "id": 14,
+        "type": "proofOfDelivery",
+        "proof_of_delivery": true,
+        "url": "https://api.hubtran.com/downloads/documents/unique-id",
+        "visibility": {
+          "carrier": true,
+          "customer": true
+        },
+        "pages": [
+          {
+            "png_url": "https://api.hubtran.com/downloads/documents/unique-id/pages/xxx.png"
+          }
+        ]   
+      }
+    ],
   }
 }
 ```
