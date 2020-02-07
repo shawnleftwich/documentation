@@ -25,8 +25,8 @@ choose which payloads you want to use and ignore the rest.
       "external_id": "load-external-id" // YOUR internal id
     },
     "type": "approved",
-    "id": 7,                            // HubTran's internal id
     "invoice": {
+      "id": 7,                            // HubTran's internal id
       "number": "invoice-number",
       "date": null,
       "date_to_pay": "1981-08-13",
@@ -164,8 +164,8 @@ present
       "external_id": "load-external-id" // YOUR internal id
     },
     "type": "exception",
-    "id": 1,
     "invoice": {
+      "id": 7,                            // HubTran's internal id
       "processor": {
         "email": "test@example.com"
       },
