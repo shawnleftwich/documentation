@@ -28,8 +28,8 @@ choose which payloads you want to use and ignore the rest.
     "invoice": {
       "id": 7,                            // HubTran's internal id
       "number": "invoice-number",
-      "date": null,
-      "date_to_pay": "1981-08-13",
+      "date": "2019-07-13",
+      "date_to_pay": "2019-08-13",
       "amount_to_pay": 10.2,
       "source_invoice_amount": 15.2,
       "currency": "USD",
