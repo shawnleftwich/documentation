@@ -464,6 +464,11 @@ Request:
         "postal_code": "destination-postal-code",
         "country": "destination-country"
       },
+      "customer": {                                       // Recommended
+        "external_id": "customer-external-id",
+        "name": "customer-name",
+        "account_number": "customer-account-number"
+      },
       "loads": [                                          // Used to link shipments and loads representing a "delivery"
         {
           "external_id": "load-external-id"
