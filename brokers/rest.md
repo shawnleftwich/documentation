@@ -420,7 +420,7 @@ Response:
 POST https://api.hubtran.com/tms/shipments
 
 ```
-curl -X POST https://api.hubtran.com/tms/shipments \
+curl -X PUT https://api.hubtran.com/tms/shipments \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN" \
   -d '{"shipments": [{"external_id": "example_id"}]}'
