@@ -86,8 +86,8 @@ Required fields are **bold**.
 * charges_customer_total - recommended
 * created_at
 * updated_at
-* reference_x_label (x is 1-4) - recommended
-* reference_x_value (x is 1-4) - recommended
+* reference_x_label (x is 1-6) - recommended
+* reference_x_value (x is 1-6) - recommended
 * line_item_x_description (x is 1-10)
 * line_item_x_type_code (x is 1-10)
 * line_item_x_total (x is 1-10)

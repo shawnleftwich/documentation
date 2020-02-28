@@ -7,6 +7,8 @@ HubTran to work well, we need as much information as you can give us.
 All dates + times should be in
 [iso8601](https://en.wikipedia.org/wiki/ISO_8601) format. All `external_id`s should be strings.
 
+If you receive a status code other than 2xx, please retry your request once with a slight delay - there may be a temporary issue that resolves itself upon retry.
+
 * [Authentication](../rest_authentication.md)
 * [Create + Update Loads](#create--update-loads)
 * [Load Details](#load-details)
@@ -14,11 +16,13 @@ All dates + times should be in
 * [Create + Update Carriers](#create--update-carriers)
 * [Create + Update Customers](#create--update-customers)
 * [Bulk Create + Update Carriers](#bulk-create--update-carriers)
+* [Create + Update Customer Invoices](#create--update-customer-invoices)
 * [Create Payments](#create-payments)
 * [Clear Exceptions](#clear-exceptions)
 * [List Approved Invoices](#list-approved-invoices)
 * [Mark Approved Invoice as Verified](#mark-approved-invoice-as-verified)
 * [Mark Approved Invoice as Not Verified](#mark-approved-invoice-as-not-verified)
+* [Create Carrier Invoice Submissions](#create-carrier-invoice-submissions)
 * [List Documents](#list-documents)
 * [Update Account](#update-account)
 * [Document Types](#document-types)
@@ -58,7 +62,7 @@ Request:
     "require_customer_rate_confirmation": false,
     "require_originals": false,
     "pro_number": "pro-number",
-    "quantity": 1,
+    "quantity": 1.0,
     "weight": 1000,
     "distance": 500,
     "mode": "truck",
@@ -138,9 +142,9 @@ Request:
       {
         "external_id": "line_item_1",                     // You're id for matching up line items when sending back to your TMS
         "description": "line item description",
-        "total": 123.45,
+        "total": 123.45,                                  // Required
         "customer_total": 150.00,
-        "quantity": 5,
+        "quantity": 5.0,
         "rate": 2.0,
         "type_code": "abc",
         "carrier": {                                      // Used to calculate carrier_charge for each carrier
@@ -224,7 +228,7 @@ Response:
     "require_customer_rate_confirmation": false,
     "require_originals": false,
     "pro_number": "pro-number",
-    "quantity": 1,
+    "quantity": 1.0,
     "weight": 1000,
     "distance": 500,
     "mode": "truck",
@@ -306,7 +310,7 @@ Response:
         "description": "line item description",
         "total": 123.45,
         "customer_total": 150.00,
-        "quantity": 5,
+        "quantity": 5.0,
         "rate": 2.0,
         "type_code": "abc",
         "carrier": {                            // Used to calculate carrier_charge for each carrier
@@ -356,7 +360,12 @@ Response:
             "visibility": {
               "carrier": true,
               "customer": true
-            }
+            },
+            "pages": [
+              {
+                "png_url": "https://api.hubtran.com/downloads/documents/unique-id/pages/xxx.png"
+              }
+            ]
           }
         ],
         "combined_document_urls": [             // All documents of the same type, combined
@@ -385,7 +394,24 @@ Response:
       "Example Reference Label 1": "Value1",
       "Example Reference Label 2": "Value2",
       "Example Reference Label 3": "Value3a, Value3b"
-    }
+    },
+    "documents": [             // Documents on the load
+      {
+        "id": 14,
+        "type": "proofOfDelivery",
+        "proof_of_delivery": true,
+        "url": "https://api.hubtran.com/downloads/documents/unique-id",
+        "visibility": {
+          "carrier": true,
+          "customer": true
+        },
+        "pages": [
+          {
+            "png_url": "https://api.hubtran.com/downloads/documents/unique-id/pages/xxx.png"
+          }
+        ]
+      }
+    ],
   }
 }
 ```
@@ -395,7 +421,7 @@ Response:
 POST https://api.hubtran.com/tms/shipments
 
 ```
-curl -X POST https://api.hubtran.com/tms/shipments \
+curl -X PUT https://api.hubtran.com/tms/shipments \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN" \
   -d '{"shipments": [{"external_id": "example_id"}]}'
@@ -417,7 +443,7 @@ Request:
       "target_delivery_start": "2016-07-17 19:00:00 +0200",
       "target_delivery_end": "2016-07-17 19:00:00 +0200",
       "actual_delivered_at": "2016-07-17 19:00:00 +0200", // Recommended
-      "quantity": 1,
+      "quantity": 1.0,
       "weight": 1000,
       "customer_mode": "FSC and Rate Review",
       "owner": "Owner name",
@@ -439,6 +465,11 @@ Request:
         "postal_code": "destination-postal-code",
         "country": "destination-country"
       },
+      "customer": {                                       // Recommended
+        "external_id": "customer-external-id",
+        "name": "customer-name",
+        "account_number": "customer-account-number"
+      },
       "loads": [                                          // Used to link shipments and loads representing a "delivery"
         {
           "external_id": "load-external-id"
@@ -456,8 +487,8 @@ Request:
         {
           "external_id": "line_item_1",                   // The line external_id you sent us
           "description": "line item description",
-          "total": 123.45,
-          "quantity": 5,
+          "total": 123.45,                                // Required
+          "quantity": 5.0,
           "rate": 2.0,
           "type_code": "abc"
         }
@@ -507,7 +538,7 @@ Response:
       "target_delivery_start": "2016-07-17 19:00:00 +0200",
       "target_delivery_end": "2016-07-17 19:00:00 +0200",
       "actual_delivered_at": "2016-07-17 19:00:00 +0200",
-      "quantity": 1,
+      "quantity": 1.0,
       "weight": 1000,
       "customer_mode": "FSC and Rate Review",
       "owner": "Owner name",
@@ -547,7 +578,7 @@ Response:
           "external_id": "line_item_1",                     // The line external_id you sent us
           "description": "line item description",
           "total": 123.45,
-          "quantity": 5,
+          "quantity": 5.0,
           "rate": 2.0,
           "type_code": "abc"
         }
@@ -710,7 +741,139 @@ Response:
     }
   ]
 }
+```
 
+## Create + Update Customers
+
+POST https://api.hubtran.com/tms/customers/:external_id
+
+```
+curl -X PUT https://api.hubtran.com/tms/customers/example_id \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Token token=YOUR_TOKEN" \
+  -d '{"customer":  {...}}'
+```
+
+Request:
+
+```
+{
+  "customer": {
+    "external_id": "customer-external-id",                     // Required
+    "name": "customer-name",                                   // Required
+    "account_number": "customer-account-number"                // Required
+    "invoicing": {
+      "method": "email",                                       // Required. One of "print", "email".
+      "billing_interval": "daily",                             // Optional. One of "daily", "weekly", "monthly", "never". Defaults to "daily".
+      "visible_document_types": [                              // Optional. If not passed, sets it to mirror account defaults.
+                                                               // Use document_types endpoints to find possible values.
+        "customerInvoice",
+        "billOfLading"
+      ],
+      "required_document_types": [                             // Optional. If not passed, sets it to mirror account defaults.
+                                                               // Use document_types endpoints to find possible values.
+        "customerInvoice"
+      ],
+      "email_settings": {                                      // Use when "method" is "email"
+        "billing_email": "billing@customer.com",
+        "link_or_attachment": "link",                          // One of "link", "attachment". Default is "link".
+        "invoice_grouping_strategy": "email_single"            // See "Possible invoice_grouping_strategy values" section below.
+      }
+    }
+  }
+}
+```
+
+Response:
+
+```
+{
+  "customer": {
+    "id": 20,                               // HubTran's internal id for the customer
+    "external_id": "customer-external-id",  // YOUR internal id for the customer
+    "name": "customer-name",
+    "account_number": "customer-account-number"
+    "invoicing": {
+      "method": "email",
+      "billing_interval": "daily",
+      "visible_document_types": [
+        "customerInvoice",
+        "billOfLading"
+      ],
+      "required_document_types": [
+        "customerInvoice"
+      ],
+      "email_settings": {
+        "billing_email": "billing@customer.com",
+        "link_or_attachment": "link",
+        "invoice_grouping_strategy": "email_single"
+      }
+    }
+  }
+}
+```
+
+### Possible `invoice_grouping_strategy` values
+
+| Value | Explanation |
+| ----- | ----- |
+| `email_single` | Send a consolidated email containing all invoices |
+| `email_per_invoice` | Send a separate email for each invoice |
+| `email_account_default` | Defer to the setting on account level |
+
+## Create + Update Customer Invoices
+
+POST https://api.hubtran.com/tms/customer_invoices/:number
+
+```
+curl -X POST https://api.hubtran.com/tms/customer_invoices \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Token token=YOUR_TOKEN" \
+  -d '{"customer_invoice": {...}}'
+```
+
+Request:
+
+```
+{
+  "customer_invoice": {
+    "customer": {
+      "external_id": "customer-external-id", // Required
+      "name": "example-name"                 // Optional, recommended if new customer
+    },
+    "number": "invoice-number",              // Required
+    "amount": 1000.00,                       // Required
+    "date": "2019-04-09",                    // Required, in ISO 8601 format
+    "currency": "USD",                       // Optional, in alphabetic ISO 4217 format. Defaults to "USD".
+    "invoice_document": {
+      data: "base-64-data"                   // Required, in Base64 encoding for MIME
+    },
+    "shipments": [                           // Required
+      {"external_id": "123"},
+      {"external_id": "456"}
+    ]
+  }
+}
+
+Response:
+
+```
+{
+  "customer_invoice": {
+    "id": 10,                                       // HubTran's internal id for the customer invoice
+    "customer": {
+      "external_id": "customer-external-id"
+    },
+    "number": "invoice-number",
+    "amount": 1000.00,
+    "date": "2019-04-09",
+    "currency": "USD",
+    "shipments": [
+      {"external_id": "123"},
+      {"external_id": "456"}
+    ]
+  }
+}
 ```
 
 ## Create + Update Customers
@@ -807,10 +970,10 @@ Request:
 {
   "payment": {
     "external_id": "1234",                  // Required
+    "status": "Paid",                       // Required, can be any value you want, but is usually something like Pending, Paid, Voided, etc
     "amount": 123.1,                        // Required
     "date": "2015-12-09",
     "method": "check",
-    "void": true,                           // defaults to false
     "reference": "payment_reference",
     "invoice_number": "invoice_number",     // Optional, but highly desired if it is a payment for an invoice
     "description": "some description",
@@ -927,7 +1090,7 @@ Response:
           "description": "line item description",
           "total": 123.45,
           "customer_total": 150.00,
-          "quantity": 3,
+          "quantity": 3.0,
           "rate": 2.0,
           "type_code": "abc",
           "carrier": {
@@ -1022,6 +1185,85 @@ Response:
 ```
 {
   "ok": true
+}
+```
+
+## Create Carrier Invoice Submissions
+
+If you already have an invoice submission from a carrier (paperwork and/or invoice details)
+you may want to programatically flow that into HubTran. This will create an item in the "New" queue
+just like if HubTran received an email with paperwork.
+
+For invoices submitted via this API, HubTran will not perform machine learning and data extraction
+on the submitted documents. Instead we will use the invoice data you submit, as the sole source of data
+about the invoice.
+
+POST https://api.hubtran.com/broker/invoice_submissions
+
+```
+curl -X POST https://api.hubtran.com/broker/invoice_submissions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Token token=YOUR_TOKEN" \
+  -d '{"invoice": {...}}'
+```
+
+Request:
+
+```
+{
+  "invoice": {
+    "external_id": "456",    // Required, your internal ID
+    "source": "web_billing", // Required
+    "number": "111",         // Required
+    "amount": 123.0,         // Required
+    "date": "2019-04-09",      // Required, in iso8601 format
+    "other": {
+      "trailer": "333",  // Optional
+      "factoring": true, // Optional
+    },
+    "vendor": {
+      "external_id": "789" // Required, the vendor or carrier id that matches id in TMS.
+    },
+    "load_id": "156", // Required, ID of load in TMS
+    "documents": [
+      {
+        "external_id": "d123",      // Optional, your internal ID for the document.
+        "type": "invoice",          // Required, your document type.
+        "file_name": "invoice.pdf", // Required
+        "data": DATA                // Required, base64-encoded document data
+      },
+      {
+        "external_id": "d456",
+        "document_type": "BOL",
+        "file_name": "bol.pdf",
+        "data": DATA
+      }
+    ]
+  }
+}
+```
+
+Success Response:
+
+```
+HTTP Status Code 201
+{
+  "invoice": {
+    "id": 123 // The HubTran ID of the invoice if you want to store it
+  }
+}
+```
+
+Failure Response:
+
+```
+HTTP Status Code 422
+{
+  "errors": [
+    {
+      "message": "carrier is missing" // Error message describing the issue.
+    }
+  ]
 }
 ```
 

@@ -25,13 +25,15 @@ choose which payloads you want to use and ignore the rest.
       "external_id": "load-external-id" // YOUR internal id
     },
     "type": "approved",
-    "id": 7,                            // HubTran's internal id
     "invoice": {
+      "id": 7,                            // HubTran's internal id
       "number": "invoice-number",
-      "date": null,
-      "date_to_pay": "1981-08-13",
+      "date": "2019-07-13",
+      "date_to_pay": "2019-08-13",
       "amount_to_pay": 10.2,
+      "source_invoice_amount": 15.2,
       "currency": "USD",
+      "approved_at": "2020-01-22T00:00:00.000+00:00",
       "quickpay": false,
       "payment_strategy": "direct",     // or "factor"
       "load": {
@@ -84,7 +86,7 @@ present
           "description": "line item description",
           "total": 123.45,
           "customer_total": 150.00,
-          "quantity": 5,
+          "quantity": 5.0,
           "rate": 2.0,
           "type_code": "Line Haul",
           "carrier": {
@@ -114,7 +116,11 @@ present
         "visibility": {
           "carrier": true,
           "customer": true // based on the load customer
-        }
+        },
+        "load": {"external_id": "load-external-id"},
+        "shipments": [
+          {"external_id": "shipment-external-id"}
+        ]
       }
     ],
     "combined_document_urls": [         // All documents of the same type, combined
@@ -158,8 +164,8 @@ present
       "external_id": "load-external-id" // YOUR internal id
     },
     "type": "exception",
-    "id": 1,
     "invoice": {
+      "id": 7,                            // HubTran's internal id
       "processor": {
         "email": "test@example.com"
       },
