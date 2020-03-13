@@ -33,7 +33,7 @@ choose which payloads you want to use and ignore the rest.
       "amount_to_pay": 10.2,
       "source_invoice_amount": 15.2,
       "currency": "USD",
-      "approved_at": "2020-01-22T00:00:00.000+00:00",
+      "approved_at": "2020-01-22T00:00:00.000Z",
       "quickpay": false,
       "payment_strategy": "direct",     // or "factor"
       "load": {
@@ -98,11 +98,11 @@ present
       "email_messages": [
         {
           "subject": "subject of email 1",
-          "received_at": "2020-03-05T00:00:00.000+00:00"
+          "received_at": "2020-03-05T00:00:00.000Z"
         },
         {
           "subject": "subject of email 2",
-          "received_at": "2020-03-06T00:00:00.000+00:00"
+          "received_at": "2020-03-06T00:00:00.000Z"
         }
       ]
     },
@@ -179,11 +179,11 @@ present
       "email_messages": [
         {
           "subject": "subject of email 1",
-          "received_at": "2020-03-05T00:00:00.000+00:00"
+          "received_at": "2020-03-05T00:00:00.000Z"
         },
         {
           "subject": "subject of email 2",
-          "received_at": "2020-03-06T00:00:00.000+00:00"
+          "received_at": "2020-03-06T00:00:00.000Z"
         }
       ]
     },
