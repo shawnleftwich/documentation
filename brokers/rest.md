@@ -641,7 +641,7 @@ Request:
     "postal_code": "Postal code",         // Recommended
     "country": "Country",                 // Recommended
     "account_exec": "Bob",
-    "labels": ["LABEL1","LABEL2"],
+    "labels": ["LABEL1","LABEL2"],        // Omit unless you want to overwrite user-selected labels
     "contacts": [                         // Recommended
       "joe@example.com",
       "tom@example.com"
