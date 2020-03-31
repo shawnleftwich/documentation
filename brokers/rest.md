@@ -24,6 +24,7 @@ If you receive a status code other than 2xx, please retry your request once with
 * [Mark Approved Invoice as Not Verified](#mark-approved-invoice-as-not-verified)
 * [Create Carrier Invoice Submissions](#create-carrier-invoice-submissions)
 * [List Documents](#list-documents)
+* [Mark Transmission as Verified](#mark-transmission-as-verified)
 * [Update Account](#update-account)
 * [Document Types](#document-types)
 
