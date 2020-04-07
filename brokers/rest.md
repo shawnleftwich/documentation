@@ -23,7 +23,7 @@ If you receive a status code other than 2xx, please retry your request once with
 * [Mark Approved Invoice as Verified](#mark-approved-invoice-as-verified)
 * [Mark Approved Invoice as Not Verified](#mark-approved-invoice-as-not-verified)
 * [Create Carrier Invoice Submissions](#create-carrier-invoice-submissions)
-* [List Documents](#list-documents)
+* [List Transmissions](#list-transmissions)
 * [Mark Transmission as Verified](#mark-transmission-as-verified)
 * [Update Account](#update-account)
 * [Document Types](#document-types)
@@ -1155,45 +1155,63 @@ HTTP Status Code 422
 }
 ```
 
-## List Documents
+## List Transmissions
 
-In order to remove documents from this API call you'll have to call the
-transmission verification API with the transmission_id for the document
+In order to remove transmissions from this API call you'll have to call the
+transmission verification API with the transmission_id
 
-GET https://api.hubtran.com/documents
+GET https://api.hubtran.com/tms/transmissions
 
 ```
-curl -X GET https://api.hubtran.com/documents \
+curl -X GET https://api.hubtran.com/tms/transmissions \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN"
 ```
 
 Optional URL params:
 
-1. `results_per_page` - number of results to return per page, max 50
-2. `page` - which page of results to return based on `results_per_page`
+1. `type` - only one type is currently supported: `load_documents_attached_v1` (default is all types)
+2. `results_per_page` - number of results to return per page (default is 20, max is 50)
+3. `page` - which page of results to return based on `results_per_page` (default is 1)
 
-Response:
+Success Response:
 
 ```
+HTTP Status Code 200
 {
   "results_per_page": 20,   // how many results per page
-  "page_count": 2,          // number of pages using results_per_page
+  "page_count": 2,          // total number of pages using results_per_page
   "current_page": 1,        // current page
-  "documents": [
+  "transmissions": [
     {
-      "id": 123,
-      "transmission_id": 456,
-      "load": {
-        "external_id": "LOAD123"
-      },
-      "type": "proofOfDelivery",
-      "proof_of_delivery": true,
-      "url": "https://api.hubtran.com/downloads/documents/unique-id",
-      "visibility": {
-        "carrier": true,
-        "customer": true
-      }
+      "type": "load_documents_attached_v1",           // matches `type` param in request
+      "transmission_id": 123456,                      // used when verifying the transmission
+      "created_at": "2020-04-07T13:30:23-04:00",
+      "load_documents": [
+        {
+          "id": 12345,
+          "type": "billOfLading",
+          "fingerprint": "09e79148e4ba61d971b7f39c9dc245821b890916",
+          "proof_of_delivery": true,
+          "url": "https://api.hubtran.com/downloads/documents/unique-id",
+          "tiff_url: "https://api.hubtran.com/downloads/documents/tiff-url",  // omitted if account is not configured to use TIFF images
+          "load": {"external_id": "external-id"},
+          "shipments": [{"external_id": "external-id"}]         // ommitted when load has no shipments
+        }
+      ]
+    }
+  ]
+}
+```
+
+Failure Response:
+
+```
+HTTP Status Code 422
+{
+  "errors": [
+    {
+      "message": "Fetching more than 50 transmissions per request is not permitted." // Error message describing the issue.
     }
   ]
 }
