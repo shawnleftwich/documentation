@@ -1001,7 +1001,9 @@ Response:
           "id": 14,
           "type": "proofOfDelivery",
           "proof_of_delivery": true,
+          "fingerprint": "09e79148e4ba61d971b7f39c9dc245821b890916",
           "url": "https://api.hubtran.com/downloads/documents/unique-id",
+          "tiff_url": "https://api.hubtran.com/downloads/documents/tiff-url",  //omitted if account does not require TIFF files
           "visibility": {
             "carrier": true,
             "customer": true
@@ -1186,7 +1188,7 @@ HTTP Status Code 200
     {
       "type": "load_documents_attached_v1",           // matches `type` param in request
       "transmission_id": 123456,                      // used when verifying the transmission
-      "created_at": "2020-04-07T13:30:23-04:00",
+      "created_at": "2020-04-10T14:39:39Z",
       "load_documents": [
         {
           "id": 12345,
@@ -1196,7 +1198,7 @@ HTTP Status Code 200
           "url": "https://api.hubtran.com/downloads/documents/unique-id",
           "tiff_url: "https://api.hubtran.com/downloads/documents/tiff-url",  // omitted if account is not configured to use TIFF images
           "load": {"external_id": "external-id"},
-          "shipments": [{"external_id": "external-id"}]         // ommitted when load has no shipments
+          "shipments": [{"external_id": "external-id"}]         // omitted when load has no shipments
         }
       ]
     }
