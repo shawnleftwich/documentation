@@ -1004,6 +1004,9 @@ Response:
           "fingerprint": "09e79148e4ba61d971b7f39c9dc245821b890916",
           "url": "https://api.hubtran.com/downloads/documents/unique-id",
           "tiff_url": "https://api.hubtran.com/downloads/documents/tiff-url",  //omitted if account does not require TIFF files
+          "pages": [
+            {"png_url": "http://api.hubtran.com/downloads/documents/png-url"}
+          ],
           "visibility": {
             "carrier": true,
             "customer": true
@@ -1197,6 +1200,9 @@ HTTP Status Code 200
           "proof_of_delivery": true,
           "url": "https://api.hubtran.com/downloads/documents/unique-id",
           "tiff_url: "https://api.hubtran.com/downloads/documents/tiff-url",  // omitted if account is not configured to use TIFF images
+          "pages": [
+            {"png_url": "http://api.hubtran.com/downloads/documents/png-url"}
+          ],
           "load": {"external_id": "external-id"},
           "shipments": [{"external_id": "external-id"}]         // omitted when load has no shipments
         }
