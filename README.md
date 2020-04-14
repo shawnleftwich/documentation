@@ -30,7 +30,7 @@ account. These will help you when you are mapping our document types
 in our webhook to your document storage types.
 
 ## Fetching Load Documents via the List Transmissions Endpoint
-Load documents can be fetched from the [List Transmisions endpoint](./brokers/rest.md#list-transmissions) endpoint.
+Load documents can be fetched from the [List Transmisions endpoint](./brokers/rest.md#list-transmissions).
 
 Each transmission retrieved from the endpoint will have one or more `load_documents`. These `load_documents` are very much like the `documents` currently included in the [List Approved Invoices endpoint](./brokers/rest.md#list-approved-invoices) except they don't include the unused `visibility` field.
 
@@ -39,8 +39,9 @@ We have also added a `fingerprint` field to both the `load_documents` in _List T
 ### Transmission Types
 Currently, only `load_document_attachment_v1` transmissions will be made available in the _List Transmissions_ endpoint, but we anticipate adding more transmission types in the future. For this reason, we recommend always including the type parameter in requests to the _List Transmissions_ endpoint like this:
 
+```
 GET https://api.hubtran.com/tms/transmissions?type=load_documents_attached_v1
-
+```
 
 This way you won't receive other transmissions and payloads in the response when they're added in the future.
 
