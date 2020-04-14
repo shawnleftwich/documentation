@@ -16,7 +16,7 @@ choose which payloads you want to use and ignore the rest.
 
 * [Invoice Approved Payload](#invoice-approved-payload)
 * [Invoice Exception Payload](#invoice-exception-payload)
-* [Load Documents Attached](#load-documents-attached)
+* [Load Documents Attached](#load-documents-attached-payload)
 * [Notes](#notes)
 
 ## Invoice Approved Payload
