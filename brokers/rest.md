@@ -1204,7 +1204,7 @@ HTTP Status Code 200
             {"png_url": "http://api.hubtran.com/downloads/documents/png-url"}
           ],
           "load": {"external_id": "external-id"},
-          "shipments": [{"external_id": "external-id"}]         // omitted when load has no shipments
+          "shipments": [{"external_id": "external-id"}]
         }
       ]
     }
