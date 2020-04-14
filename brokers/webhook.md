@@ -14,12 +14,12 @@ invoice events and the load documents events sent to different endpoints.
 Each of the payloads will have an event "type" that will allow you to
 choose which payloads you want to use and ignore the rest.
 
-* [Approved Payload](#approved-payload)
-* [Exception Payload](#exception-payload)
+* [Invoice Approved Payload](#invoice-approved-payload)
+* [Invoice Exception Payload](#invoice-exception-payload)
 * [Load Documents Attached](#load-documents-attached)
 * [Notes](#notes)
 
-## Approved Payload
+## Invoice Approved Payload
 
 ```
 {
@@ -166,7 +166,7 @@ present
 }
 ```
 
-## Exception Payload
+## Invoice Exception Payload
 
 ```
 {
