@@ -45,6 +45,7 @@ choose which payloads you want to use and ignore the rest.
               "id": 14,
               "type": "proofOfDelivery",
               "proof_of_delivery": true,
+              "fingerprint": "09e79148e4ba61d971b7f39c9dc245821b890916",
               "url": "https://api.hubtran.com/downloads/documents/unique-id",
               "pages": [
                 {"png_url": "https://api.hubtran.com/downloads/documents/unique-id/pages/123.png"},
@@ -114,6 +115,7 @@ present
         "id": 14,
         "type": "proofOfDelivery",
         "proof_of_delivery": true,
+        "fingerprint": "09e79148e4ba61d971b7f39c9dc245821b890916",
         "url": "https://api.hubtran.com/downloads/documents/unique-id",
         "pages": [
           {"png_url": "https://api.hubtran.com/downloads/documents/unique-id/pages/123.png"},
@@ -204,6 +206,7 @@ present
         "id": 14,
         "type": "proofOfDelivery",
         "proof_of_delivery": true,
+        "fingerprint": "09e79148e4ba61d971b7f39c9dc245821b890916",
         "url": "https://api.hubtran.com/downloads/documents/unique-id",
         "pages": [
           {"png_url": "https://api.hubtran.com/downloads/documents/unique-id/pages/123.png"},
@@ -246,6 +249,7 @@ It will look like this:
         "id": 14,
         "type": "proofOfDelivery",
         "proof_of_delivery": true,
+        "fingerprint": "09e79148e4ba61d971b7f39c9dc245821b890916",
         "url": "https://api.hubtran.com/downloads/documents/unique-id",
         "tiff_url": "https://api.hubtran.com/downloads/documents/unique-id.tiff",
         "pages": [
