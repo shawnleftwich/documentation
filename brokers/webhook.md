@@ -1,18 +1,25 @@
-# Invoice Webhook
+# Webhook
 
-When a carrier invoice is approved or marked as an exception
-we can POST a JSON payload to an endpoint that you provide us. If you
-would like us to authenticate the endpoint you should add a token to the
-URL you provide us and verify that is correct.
+We can POST a JSON payload to an endpoint that you provide us when one of the
+following events occurs in HubTran:
+
+* invoice approved
+* invoice exception
+* load documents attached
+
+If you would like us to authenticate the endpoint you should add a token to
+the URL you provide us and verify that is correct. You may also have the
+invoice events and the load documents events sent to different endpoints.
 
 Each of the payloads will have an event "type" that will allow you to
 choose which payloads you want to use and ignore the rest.
 
-* [Approved Payload](#approved-payload)
-* [Exception Payload](#exception-payload)
+* [Invoice Approved Payload](#invoice-approved-payload)
+* [Invoice Exception Payload](#invoice-exception-payload)
+* [Load Documents Attached](#load-documents-attached-payload)
 * [Notes](#notes)
 
-## Approved Payload
+## Invoice Approved Payload
 
 ```
 {
@@ -159,7 +166,7 @@ present
 }
 ```
 
-## Exception Payload
+## Invoice Exception Payload
 
 ```
 {
@@ -233,6 +240,36 @@ present
         }
       }
     ],
+  }
+}
+```
+
+## Load Documents Attached Payload
+
+```
+{
+  "account": {
+    "alias": "account-alias"
+  },
+  "event":     {
+    "type": "load_documents_attached_v1",
+    "transmission_id": 123456,
+    "created_at": "2020-04-10T14:39:39Z",
+    "load_documents": [
+      {
+        "id": 12345,
+        "type": "billOfLading",
+        "fingerprint": "09e79148e4ba61d971b7f39c9dc245821b890916",
+        "proof_of_delivery": true,
+        "url": "https://api.hubtran.com/downloads/documents/unique-id",
+        "tiff_url: "https://api.hubtran.com/downloads/documents/tiff-url",  // omitted if account is not configured to use TIFF images
+        "pages": [
+          {"png_url": "http://api.hubtran.com/downloads/documents/png-url"}
+        ],
+        "load": {"external_id": "external-id"},
+        "shipments": [{"external_id": "external-id"}]
+      }
+    ]
   }
 }
 ```
