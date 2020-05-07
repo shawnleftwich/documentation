@@ -45,7 +45,13 @@ choose which payloads you want to use and ignore the rest.
       "payment_strategy": "direct",     // or "factor"
       "load": {
         "external_id": "load-external-id", // YOUR internal id
-        "shipments": []
+        "shipments": [
+          {
+            "external_id": "1234",
+            "approved_to_pay": true,
+            "note": "Things look good"
+          }
+        ]
       },
       "approver": {
         "email": "approver@example.com"
@@ -145,7 +151,17 @@ choose which payloads you want to use and ignore the rest.
     },
     "type": "exception",
     "invoice": {
-      "id": 7,                            // HubTran's internal id
+      "id": 7,                             // HubTran's internal id
+      "load": {                            // Will be null if the load could not be found
+        "external_id": "load-external-id", // YOUR internal id
+        "shipments": [
+          {
+            "external_id": "1234",
+            "approved_to_pay": true,
+            "note": "Things look good"
+          }
+        ]
+      },
       "processor": {
         "email": "test@example.com"
       },
