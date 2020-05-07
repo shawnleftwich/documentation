@@ -43,6 +43,7 @@ choose which payloads you want to use and ignore the rest.
       "approved_at": "2020-01-22T00:00:00.000Z",
       "quickpay": false,
       "payment_strategy": "direct",     // or "factor"
+      "note": "Something about the load",
       "load": {
         "external_id": "load-external-id", // YOUR internal id
         "shipments": [
@@ -152,6 +153,7 @@ choose which payloads you want to use and ignore the rest.
     "type": "exception",
     "invoice": {
       "id": 7,                             // HubTran's internal id
+      "note": "Something about the load",
       "load": {                            // Will be null if the load could not be found
         "external_id": "load-external-id", // YOUR internal id
         "shipments": [
