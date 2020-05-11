@@ -76,6 +76,7 @@ Required fields are **bold**.
 * charges_total - recommended
 * charges_currency - recommended
 * actual_shipped_at - recommended
+* actual_delivered_at - recommended
 * quantity
 * weight
 * status
