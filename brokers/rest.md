@@ -773,7 +773,7 @@ Request:
   "customer": {
     "external_id": "customer-external-id",      // Required
     "name": "customer-name",                    // Required
-    "account_number": "customer-account-number" // Required
+    "account_number": "customer-account-number"
   }
 }
 ```
