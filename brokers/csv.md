@@ -198,11 +198,9 @@ in HubTran.
 * remit_to_country
 * document_type_X
 * document_proof_of_delivery_X
-* document_visibility_X
 * document_url_X
 * combined_document_type_X
 * combined_document_proof_of_delivery_X
-* combined_document_visibility_X
 * combined_document_url_X
 * combined_customer_documents_url
 * combined_carrier_documents_url
