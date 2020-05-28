@@ -43,6 +43,7 @@ choose which payloads you want to use and ignore the rest.
       "approved_at": "2020-01-22T00:00:00.000Z",
       "quickpay": false,
       "payment_strategy": "direct",     // or "factor"
+      "note": "Put load id on check.",
       "load": {
         "external_id": "load-external-id", // YOUR internal id
         "shipments": []
