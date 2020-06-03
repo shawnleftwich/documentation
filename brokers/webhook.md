@@ -46,7 +46,10 @@ choose which payloads you want to use and ignore the rest.
       "note": "Put load id on check.",
       "load": {
         "external_id": "load-external-id", // YOUR internal id
-        "shipments": []
+        "shipments": [],
+        "customer": {
+          "external_id": "carrier-external-id"
+        }
       },
       "approver": {
         "email": "approver@example.com"
