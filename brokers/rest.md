@@ -796,7 +796,7 @@ Response:
 POST https://api.hubtran.com/tms/customer_invoices/:number
 
 ```
-curl -X PUT https://api.hubtran.com/tms/customer_invoices \
+curl -X POST https://api.hubtran.com/tms/customer_invoices \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN" \
   -d '{"customer_invoice": {...}}'
