@@ -793,7 +793,7 @@ Response:
 
 ## Create + Update Customer Invoices
 
-POST https://api.hubtran.com/tms/customer_invoices/:number
+POST https://api.hubtran.com/tms/customer_invoices
 
 ```
 curl -X POST https://api.hubtran.com/tms/customer_invoices \
