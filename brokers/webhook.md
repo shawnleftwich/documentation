@@ -50,7 +50,7 @@ choose which payloads you want to use and ignore the rest.
           {
             "status": "approved",
             "details": {
-              "date": "2020-01-22T00:00:00.000Z",
+              "date": "2020-01-22",
               "number": "invoice-number"
             }
           },
@@ -183,7 +183,7 @@ choose which payloads you want to use and ignore the rest.
           {
             "status": "approved",
             "details": {
-              "date": "2020-01-22T00:00:00.000Z",
+              "date": "2020-01-22",
               "number": "invoice-number"
             }
           },
