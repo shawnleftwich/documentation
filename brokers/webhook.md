@@ -46,7 +46,21 @@ choose which payloads you want to use and ignore the rest.
       "note": "Put load id on check.",
       "load": {
         "external_id": "load-external-id", // YOUR internal id
-        "shipments": [],
+        "shipments": [
+          {
+            "status": "approved",
+            "details": {
+              "date": "2020-01-22T00:00:00.000Z",
+              "number": "invoice-number"
+            }
+          },
+          {
+            "status": "rejected",
+            "details": {
+              "reason": "Missing BOL"
+            }
+          }
+        ],
         "customer": {
           "external_id": "carrier-external-id"
         }
@@ -163,7 +177,24 @@ choose which payloads you want to use and ignore the rest.
           "subject": "subject of email 2",
           "received_at": "2020-03-06T00:00:00.000Z"
         }
-      ]
+      ],
+      "load": {
+        "shipments": [ 
+          {
+            "status": "approved",
+            "details": {
+              "date": "2020-01-22T00:00:00.000Z",
+              "number": "invoice-number"
+            }
+          },
+          {
+            "status": "rejected",
+            "details": {
+              "reason": "Missing BOL"
+            }
+          }
+        ]
+      }
     },
     "exceptions": [
       {
