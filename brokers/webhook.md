@@ -48,17 +48,17 @@ choose which payloads you want to use and ignore the rest.
         "external_id": "load-external-id", // YOUR internal id
         "shipments": [
           {
+            "external_id": "shipment-1",
             "status": "approved",
             "details": {
-              "external_id": "shipment-1",
               "date": "2020-01-22",
               "number": "invoice-number"
             }
           },
           {
+            "external_id": "shipment-2",
             "status": "rejected",
             "details": {
-              "external_id": "shipment-2",
               "reason": "Missing BOL"
             }
           }
@@ -183,17 +183,17 @@ choose which payloads you want to use and ignore the rest.
       "load": {
         "shipments": [
           {
+            "external_id": "shipment-1",
             "status": "approved",
             "details": {
-              "external_id": "shipment-1",
               "date": "2020-01-22",
               "number": "invoice-number"
             }
           },
           {
+            "external_id": "shipment-2",
             "status": "rejected",
             "details": {
-              "external_id": "shipment-2",
               "reason": "Missing BOL"
             }
           }
