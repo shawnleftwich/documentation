@@ -1128,7 +1128,7 @@ Request:
     "vendor": {
       "external_id": "789" // Required, the vendor or carrier id that matches id in TMS.
     },
-    "load_id": "156", // Required, ID of load in TMS
+    "load_id": "156", // Optional, ID of load in TMS
     "documents": [
       {
         "external_id": "d123",      // Optional, your internal ID for the document.
