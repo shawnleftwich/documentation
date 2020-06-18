@@ -50,7 +50,7 @@ choose which payloads you want to use and ignore the rest.
           {
             "external_id": "shipment-1",
             "status": "approved",
-            "details": {
+            "status_details": {
               "date": "2020-01-22",
               "number": "invoice-number"
             }
@@ -58,7 +58,7 @@ choose which payloads you want to use and ignore the rest.
           {
             "external_id": "shipment-2",
             "status": "rejected",
-            "details": {
+            "status_details": {
               "reason": "Missing BOL"
             }
           }
@@ -185,7 +185,7 @@ choose which payloads you want to use and ignore the rest.
           {
             "external_id": "shipment-1",
             "status": "approved",
-            "details": {
+            "status_details": {
               "date": "2020-01-22",
               "number": "invoice-number"
             }
@@ -193,7 +193,7 @@ choose which payloads you want to use and ignore the rest.
           {
             "external_id": "shipment-2",
             "status": "rejected",
-            "details": {
+            "status_details": {
               "reason": "Missing BOL"
             }
           }
