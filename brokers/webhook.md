@@ -166,7 +166,10 @@ choose which payloads you want to use and ignore the rest.
           "subject": "subject of email 2",
           "received_at": "2020-03-06T00:00:00.000Z"
         }
-      ]
+      ],
+      "submission": {                    // Only present if invoice was sumbitted through api
+        "id": 1234567                    // Same submission id returned in 201 success response
+      }
     },
     "exceptions": [
       {
