@@ -83,7 +83,7 @@ choose which payloads you want to use and ignore the rest.
         }
       ],
       "submission": {                    // Only present if invoice was sumbitted through api
-        "id": 1234567                    // same submission id returned in 201 success response
+        "id": 1234567                    // Same submission id returned in 201 success response
       }
     },
     "carrier": {
