@@ -83,7 +83,8 @@ choose which payloads you want to use and ignore the rest.
         }
       ],
       "submission": {                    // Only present if invoice was sumbitted through api
-        "id": 1234567                    // Same submission id returned in 201 success response
+        "id": 123,                       // Same submission id returned in 201 success response
+        "external_id: "456"              // Your internal invoice id
       }
     },
     "carrier": {
@@ -168,7 +169,8 @@ choose which payloads you want to use and ignore the rest.
         }
       ],
       "submission": {                    // Only present if invoice was sumbitted through api
-        "id": 1234567                    // Same submission id returned in 201 success response
+        "id": 123,                       // Same submission id returned in 201 success response
+        "external_id: "456"              // Your internal invoice id
       }
     },
     "exceptions": [
