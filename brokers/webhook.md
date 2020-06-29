@@ -61,6 +61,11 @@ choose which payloads you want to use and ignore the rest.
             "status_details": {
               "reason": "Missing BOL"
             }
+          },
+          {
+            "external_id": "shipment-3",
+            "status": "pending",
+            "status_details": {}
           }
         ],
         "customer": {
@@ -196,6 +201,11 @@ choose which payloads you want to use and ignore the rest.
             "status_details": {
               "reason": "Missing BOL"
             }
+          },
+          {
+            "external_id": "shipment-3",
+            "status": "pending",
+            "status_details": {}
           }
         ]
       }
