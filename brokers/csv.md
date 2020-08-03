@@ -44,6 +44,7 @@ Required fields are **bold**.
 * scac - recommended
 * ein
 * dot_number
+* days_to_pay
 * **remit_to_name**
 * remit_to_address_line_1 - recommended
 * remit_to_address_line_2 - recommended
