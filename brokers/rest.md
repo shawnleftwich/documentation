@@ -816,8 +816,8 @@ Request:
     "amount": 1000.00,                       // Required
     "date": "2019-04-09",                    // Required, in ISO 8601 format
     "currency": "USD",                       // Optional, in alphabetic ISO 4217 format. Defaults to "USD".
-    "invoice_document": {
-      data: "base-64-data"                   // Required, in Base64 encoding for MIME
+    "invoice_document": {                    // Optional
+      data: "base-64-data"                   // In Base64 encoding for MIME
     },
     "shipments": [                           // Required
       {"external_id": "123"},
