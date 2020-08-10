@@ -758,10 +758,10 @@ Response:
 
 ## Create + Update Customers
 
-PUT https://api.hubtran.com/tms/customers/:external_id
+POST https://api.hubtran.com/tms/customers/:external_id
 
 ```
-curl -X PUT https://api.hubtran.com/tms/customers/example_id \
+curl -X POST https://api.hubtran.com/tms/customers/example_id \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN" \
   -d '{"customer":  {...}}'
@@ -774,7 +774,38 @@ Request:
   "customer": {
     "external_id": "customer-external-id",      // Required
     "name": "customer-name",                    // Required
-    "account_number": "customer-account-number"
+    "account_number": "customer-account-number",// Required
+    "invoicing": {
+      "bill_to": {
+        "name": "name",
+        "address_line_1": "address1",
+        "address_line_2": "address2",
+        "city": "city",
+        "state": "state",
+        "postal_code": "12345",
+        "country": "US"
+      },
+      "method": "email",                                       // Required. One of "print", "email".
+      "billing_interval": "daily",                             // Optional. One of "daily", "weekly", "monthly", "never". Defaults to "daily".
+      "visible_document_types": [                              // Optional. If not passed, sets it to mirror account defaults.
+        "customerInvoice",                                     // Use document_types endpoints to find possible values.
+        "billOfLading"
+      ],
+      "required_document_types": [                             // Optional. If not passed, sets it to mirror account defaults.
+        "customerInvoice"                                      // Use document_types endpoints to find possible values.
+      ],
+      "invoice_template_name": "generic_template.doc",
+      "generate_statement_invoice": false,
+      "email_settings": {                                      // Use when "method" is "email"
+        "billing_email": "billing@customer.com",
+        "link_or_attachment": "link",                          // One of "link", "attachment". Default is "link".
+        "invoice_grouping_strategy": "email_single"            // See "Possible invoice_grouping_strategy values" section below.
+      }
+    },
+    "references": {
+      "Example Reference Label 1": "Value1",
+      "Example Reference Label 2": "Value2"
+    }
   }
 }
 ```
@@ -787,10 +818,49 @@ Response:
     "id": 20,                               // HubTran's internal id for the customer
     "external_id": "customer-external-id",  // YOUR internal id for the customer
     "name": "customer-name",
-    "account_number": "customer-account-number"
+    "account_number": "customer-account-number",
+    "invoicing": {
+      "bill_to": {
+        "name": "name",
+        "address_line_1": "address1",
+        "address_line_2": "address2",
+        "city": "city",
+        "state": "state",
+        "postal_code": "12345",
+        "country": "US"
+      },
+      "method": "email",
+      "billing_interval": "daily",
+      "visible_document_types": [
+        "customerInvoice",
+        "billOfLading"
+      ],
+      "required_document_types": [
+        "customerInvoice"
+      ],
+      "invoice_template_name": "generic_template.doc",
+      "generate_statement_invoice": false,
+      "email_settings": {
+        "billing_email": "billing@customer.com",
+        "link_or_attachment": "link",
+        "invoice_grouping_strategy": "email_single"
+      }
+    },
+    "references": {
+      "Example Reference Label 1": "Value1",
+      "Example Reference Label 2": "Value2"
+    }
   }
 }
 ```
+
+### Possible `invoice_grouping_strategy` values
+
+| Value | Explanation |
+| ----- | ----- |
+| `email_single` | Send a consolidated email containing all invoices |
+| `email_per_invoice` | Send a separate email for each invoice |
+| `email_account_default` | Defer to the setting on account level |
 
 ## Create + Update Customer Invoices
 
@@ -809,19 +879,47 @@ Request:
 {
   "customer_invoice": {
     "customer": {
-      "external_id": "customer-external-id", // Required
-      "name": "example-name"                 // Optional, recommended if new customer
+      "external_id": "customer-external-id",       // Required
+      "name": "example-name"                       // Optional, recommended if new customer
     },
-    "number": "invoice-number",              // Required
-    "amount": 1000.00,                       // Required
-    "date": "2019-04-09",                    // Required, in ISO 8601 format
-    "currency": "USD",                       // Optional, in alphabetic ISO 4217 format. Defaults to "USD".
-    "invoice_document": {                    // Optional
-      data: "base-64-data"                   // In Base64 encoding for MIME
+    "number": "invoice-number",                    // Required
+    "amount": 1000.00,                             // Required
+    "date": "2019-04-09",                          // Required, in ISO 8601 format
+    "currency": "USD",                             // Optional, in alphabetic ISO 4217 format. Defaults to "USD".
+    "invoice_document": {                          // Optional
+      data: "base-64-data"                         // In Base64 encoding for MIME
     },
-    "shipments": [                           // Required
+    "destination": {                               // Optional
+      "name": "name",
+      "address_line_1": "address1",
+      "address_line_2": "address2",
+      "city": "city",
+      "state": "state",
+      "postal_code": "12345",
+      "country": "US"
+    },
+    "origin": {                                    // Optional
+      "name": "name",
+      "address_line_1": "address1",
+      "address_line_2": "address2",
+      "city": "city",
+      "state": "state",
+      "postal_code": "12345",
+      "country": "US"
+    },
+    "carrier_pay": 800.00,                         // Optional
+    "dropped_off_at": "2019-06-02T18:43:26.000Z",  // Optional
+    "picked_up_at": "2019-06-01T18:43:26.000Z",    // Optional
+    "references": {                                // Optional
+      "Example Reference Label 1": "Value1",
+      "Example Reference Label 2": "Value2"
+    },
+    "shipments": [                                 // Required
       {"external_id": "123"},
       {"external_id": "456"}
+    ],
+    "loads": [                                     // Optional
+      {"external_id": "123"}
     ]
   }
 }
@@ -834,15 +932,47 @@ Response:
   "customer_invoice": {
     "id": 10,                                       // HubTran's internal id for the customer invoice
     "customer": {
-      "external_id": "customer-external-id"
+      "external_id": "customer-external-id",
+      "name": "example-name" 
     },
     "number": "invoice-number",
     "amount": 1000.00,
     "date": "2019-04-09",
     "currency": "USD",
+    "invoice_document": {
+      data: "base-64-data"
+    },
+    "destination": {
+      "name": "name",
+      "address_line_1": "address1",
+      "address_line_2": "address2",
+      "city": "city",
+      "state": "state",
+      "postal_code": "12345",
+      "country": "US"
+    },
+    "origin": {
+      "name": "name",
+      "address_line_1": "address1",
+      "address_line_2": "address2",
+      "city": "city",
+      "state": "state",
+      "postal_code": "12345",
+      "country": "US"
+    },
+    "carrier_pay": 800.00,
+    "dropped_off_at": "2019-06-02T18:43:26.000Z",
+    "picked_up_at": "2019-06-01T18:43:26.000Z",
+    "references": {
+      "Example Reference Label 1": "Value1",
+      "Example Reference Label 2": "Value2"
+    },
     "shipments": [
       {"external_id": "123"},
       {"external_id": "456"}
+    ],
+    "loads": [
+      {"external_id": "123"}
     ]
   }
 }
