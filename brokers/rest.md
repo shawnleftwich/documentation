@@ -794,8 +794,9 @@ Request:
       "required_document_types": [                             // Optional. If not passed, sets it to mirror account defaults.
         "customerInvoice"                                      // Use document_types endpoints to find possible values.
       ],
-      "invoice_template_name": "generic_template.doc",
-      "generate_statement_invoice": false,
+      "invoice_template_name": "generic_template.doc",         // Name of the template to use to render single invoices.
+      "generate_statement_invoice": false,                     // If a statement invoice should be generated when multiple invoices are sent at once.
+      "statement_invoice_template_name": "statement.xlsx"      // Name of statement invoice template to use, if generate_statement_invoice is true.
       "email_settings": {                                      // Use when "method" is "email"
         "billing_email": "billing@customer.com",
         "link_or_attachment": "link",                          // One of "link", "attachment". Default is "link".
@@ -942,6 +943,17 @@ Response:
     "invoice_document": {
       data: "base-64-data"
     },
+    "line_items": [
+      {
+        "description": "line item description",
+        "edi_code": "abc",
+        "total": 123.45,
+        "quantity": 3.0,
+        "rate": 2.0,
+        "rate_qualifier": "PM",
+        
+      }
+    ],
     "destination": {
       "name": "name",
       "address_line_1": "address1",
