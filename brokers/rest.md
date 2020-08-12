@@ -891,6 +891,16 @@ Request:
     "invoice_document": {                          // Optional
       data: "base-64-data"                         // In Base64 encoding for MIME
     },
+    "line_items": [                                // Optional
+      {
+        "description": "line item description",
+        "edi_code": "abc",
+        "total": 123.45,
+        "quantity": 3.0,
+        "rate": 2.0,
+        "rate_qualifier": "PM",
+      }
+    ],
     "destination": {                               // Optional
       "name": "name",
       "address_line_1": "address1",
