@@ -794,6 +794,8 @@ Request:
       "required_document_types": [                             // Optional. If not passed, sets it to mirror account defaults.
         "customerInvoice"                                      // Use document_types endpoints to find possible values.
       ],
+      "invoice_template_name": "generic_template.doc",
+      "generate_statement_invoice": false,
       "email_settings": {                                      // Use when "method" is "email"
         "billing_email": "billing@customer.com",
         "link_or_attachment": "link",                          // One of "link", "attachment". Default is "link".
@@ -836,6 +838,8 @@ Response:
       "required_document_types": [
         "customerInvoice"
       ],
+      "invoice_template_name": "generic_template.doc",
+      "generate_statement_invoice": false,
       "email_settings": {
         "billing_email": "billing@customer.com",
         "link_or_attachment": "link",
