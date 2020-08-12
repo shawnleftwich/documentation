@@ -794,8 +794,9 @@ Request:
       "required_document_types": [                             // Optional. If not passed, sets it to mirror account defaults.
         "customerInvoice"                                      // Use document_types endpoints to find possible values.
       ],
-      "invoice_template_name": "generic_template.doc",
-      "generate_statement_invoice": false,
+      "invoice_template_id": 1,                                // Optional. If not set, uses account's default template.
+      "generate_statement_invoice": false,                     // Optional. If not passed, leaves unchanged.
+      "statement_invoice_template_id": 2,                      // Optional. Needs to exist if generate_statement_invoice is true.
       "email_settings": {                                      // Use when "method" is "email"
         "billing_email": "billing@customer.com",
         "link_or_attachment": "link",                          // One of "link", "attachment". Default is "link".
@@ -838,8 +839,9 @@ Response:
       "required_document_types": [
         "customerInvoice"
       ],
-      "invoice_template_name": "generic_template.doc",
+      "invoice_template_id": 1,
       "generate_statement_invoice": false,
+      "statement_invoice_template_id": 2,
       "email_settings": {
         "billing_email": "billing@customer.com",
         "link_or_attachment": "link",
@@ -1441,5 +1443,32 @@ Response:
     {"name": "Bill of Lading / Packing Slip", "value":"billOfLading"},
     // ...
   ]
+}
+```
+
+
+## Customer Invoice Templates
+
+List all customer invoice templates for this account.
+
+GET https://api.hubtran.com/customer_invoice_templates
+
+```
+curl -X GET https://api.hubtran.com/customer_invoice_templates \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Token token=YOUR_TOKEN"
+```
+
+Response:
+
+```
+{
+  "customer_invoice_templates": [
+    {
+      "id": 1,
+      "filename": "generic_vin_invoice.doc",
+      "url": "https://api.hubtran.com/downloads/customer_invoices/1"
+    }
+  ],
 }
 ```
