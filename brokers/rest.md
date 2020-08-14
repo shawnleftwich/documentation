@@ -936,6 +936,16 @@ Response:
     "invoice_document": {
       data: "base-64-data"
     },
+    "line_items": [
+      {
+        "description": "line item description",
+        "edi_code": "abc",
+        "total": 123.45,
+        "quantity": 3.0,
+        "rate": 2.0,
+        "rate_qualifier": "PM",
+      }
+    ],
     "shipper": {
       "name": "name",
       "address_line_1": "address1",
