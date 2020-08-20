@@ -1458,29 +1458,3 @@ Response:
 }
 ```
 
-
-## Customer Invoice Templates
-
-List all customer invoice templates for this account.
-
-GET https://api.hubtran.com/customer_invoice_templates
-
-```
-curl -X GET https://api.hubtran.com/customer_invoice_templates \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Token token=YOUR_TOKEN"
-```
-
-Response:
-
-```
-{
-  "customer_invoice_templates": [
-    {
-      "id": 1,
-      "filename": "generic_vin_invoice.doc",
-      "url": "https://api.hubtran.com/downloads/customer_invoices/1"
-    }
-  ],
-}
-```
