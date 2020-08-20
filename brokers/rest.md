@@ -785,7 +785,6 @@ Request:
         "postal_code": "12345",
         "country": "US"
       },
-      "method": "email",                                       // Required. One of "print", "email".
       "billing_interval": "daily",                             // Optional. One of "daily", "weekly", "monthly", "never". Defaults to "daily".
       "visible_document_types": [                              // Optional. If not passed, sets it to mirror account defaults.
         "customerInvoice",                                     // Use document_types endpoints to find possible values.
@@ -794,9 +793,15 @@ Request:
       "required_document_types": [                             // Optional. If not passed, sets it to mirror account defaults.
         "customerInvoice"                                      // Use document_types endpoints to find possible values.
       ],
-      "invoice_template_id": 1,                                // Optional. If not set, uses account's default template.
-      "generate_statement_invoice": false,                     // Optional. If not passed, leaves unchanged.
-      "statement_invoice_template_id": 2,                      // Optional. Needs to exist if generate_statement_invoice is true.
+      "invoice_document": {
+          "generate": true,                                    // Optional. If omitted, leaves unchanged.
+          "template_name": "generic_template.doc"              // Optional. If set to nil, uses account's default template.
+      },
+      "statement_invoice_document": {
+          "generate": true,                                    // Optional. If omitted, leaves unchanged.
+          "template_name": "generic_template.doc"              // Optional. Needs to exist if generate is true.
+      },
+      "method": "email",                                       // Required. One of "print", "email".
       "email_settings": {                                      // Use when "method" is "email"
         "billing_email": "billing@customer.com",
         "link_or_attachment": "link",                          // One of "link", "attachment". Default is "link".
@@ -829,8 +834,7 @@ Response:
         "state": "state",
         "postal_code": "12345",
         "country": "US"
-      },
-      "method": "email",
+      }
       "billing_interval": "daily",
       "visible_document_types": [
         "customerInvoice",
@@ -839,9 +843,15 @@ Response:
       "required_document_types": [
         "customerInvoice"
       ],
-      "invoice_template_id": 1,
-      "generate_statement_invoice": false,
-      "statement_invoice_template_id": 2,
+      "invoice_document": {
+          "generate": true,
+          "template_name": "generic_template.doc"
+      },
+      "statement_invoice_document": {
+          "generate": true,
+          "template_name": "generic_template.doc"
+      },
+      "method": "email",
       "email_settings": {
         "billing_email": "billing@customer.com",
         "link_or_attachment": "link",
