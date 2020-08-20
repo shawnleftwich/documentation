@@ -758,10 +758,10 @@ Response:
 
 ## Create + Update Customers
 
-POST https://api.hubtran.com/tms/customers/:external_id
+PUT https://api.hubtran.com/tms/customers/:external_id
 
 ```
-curl -X POST https://api.hubtran.com/tms/customers/example_id \
+curl -X PUT https://api.hubtran.com/tms/customers/example_id \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN" \
   -d '{"customer":  {...}}'
