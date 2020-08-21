@@ -788,13 +788,13 @@ Request:
       "billing_interval": "daily",                             // Optional. One of "daily", "weekly", "monthly", "never". Defaults to "daily".
       "document_visibility": {                                 // Optional. Leaves settings unchanged if omitted.
         "use_account_defaults": false,                         // Required.
-        "include_pod": true,                                   // Optional. Required if use_account_defaults is false.
+        "include_pod": true,                                   // Optional. Required if use_account_defaults is false. Will include pod document even if the document type is not included below.
         "include_document_types": [                            // Optional. Required if use_account_defaults is false.
           "customerInvoice",                                   // Use document_types endpoints to find possible values.
           "billOfLading"
         ]
       },
-      "document_requirements": {                               // Optional. Leaves settings unchanged if omitted.
+      "document_requirements": {                               // Optional. Leaves settings unchanged if omitted. Only customer-visible documents may be required.
         "use_account_defaults": false,                         // Required.
         "require_pod": true,                                   // Optional. Required if use_account_defaults is false.
         "require_document_types": [                           // Optional. Required if use_account_defaults is false.
