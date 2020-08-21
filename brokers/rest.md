@@ -797,7 +797,7 @@ Request:
       "document_requirements": {                               // Optional. Leaves settings unchanged if omitted.
         "use_account_defaults": false,                         // Required.
         "require_pod": true,                                   // Optional. Required if use_account_defaults is false.
-        "required_document_types": [                           // Optional. Required if use_account_defaults is false.
+        "require_document_types": [                           // Optional. Required if use_account_defaults is false.
           "customerInvoice",                                   // Use document_types endpoints to find possible values.
           "billOfLading"
         ]
