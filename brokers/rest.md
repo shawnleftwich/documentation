@@ -845,13 +845,22 @@ Response:
         "country": "US"
       }
       "billing_interval": "daily",
-      "visible_document_types": [
-        "customerInvoice",
-        "billOfLading"
-      ],
-      "required_document_types": [
-        "customerInvoice"
-      ],
+      "document_visibility": {
+        "use_account_defaults": false,
+        "include_pod": true,
+        "include_document_types": [
+          "customerInvoice",
+          "billOfLading"
+        ]
+      },
+      "document_requirements": {
+        "use_account_defaults": false,
+        "require_pod": true,
+        "require_document_types": [
+          "customerInvoice",
+          "billOfLading"
+        ]
+      },
       "invoice_document": {
           "generate": true,
           "template_name": "generic_template.doc"
