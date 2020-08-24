@@ -772,9 +772,9 @@ Request:
 ```
 {
   "customer": {
-    "external_id": "customer-external-id",      // Required
-    "name": "customer-name",                    // Required
-    "account_number": "customer-account-number",// Required
+    "external_id": "customer-external-id",                      // Required
+    "name": "customer-name",                                    // Required
+    "account_number": "customer-account-number",                // Required
     "invoicing": {
       "bill_to": {
         "name": "name",
@@ -786,13 +786,22 @@ Request:
         "country": "US"
       },
       "billing_interval": "daily",                             // Optional. One of "daily", "weekly", "monthly", "never". Defaults to "daily".
-      "visible_document_types": [                              // Optional. If not passed, sets it to mirror account defaults.
-        "customerInvoice",                                     // Use document_types endpoints to find possible values.
-        "billOfLading"
-      ],
-      "required_document_types": [                             // Optional. If not passed, sets it to mirror account defaults.
-        "customerInvoice"                                      // Use document_types endpoints to find possible values.
-      ],
+      "document_visibility": {                                 // Optional. Leaves settings unchanged if omitted.
+        "use_account_defaults": false,                         // Required.
+        "include_pod": true,                                   // Optional. Required if use_account_defaults is false. Will include pod document even if the document type is not included below.
+        "include_document_types": [                            // Optional. Required if use_account_defaults is false.
+          "customerInvoice",                                   // Use document_types endpoints to find possible values.
+          "billOfLading"
+        ]
+      },
+      "document_requirements": {                               // Optional. Leaves settings unchanged if omitted. Only customer-visible documents may be required.
+        "use_account_defaults": false,                         // Required.
+        "require_pod": true,                                   // Optional. Required if use_account_defaults is false.
+        "require_document_types": [                           // Optional. Required if use_account_defaults is false.
+          "customerInvoice",                                   // Use document_types endpoints to find possible values.
+          "billOfLading"
+        ]
+      },
       "invoice_document": {
           "generate": true,                                    // Optional. If omitted, leaves unchanged.
           "template_name": "generic_template.doc"              // Optional. If set to nil, uses account's default template.
