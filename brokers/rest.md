@@ -775,6 +775,10 @@ Request:
     "external_id": "customer-external-id",                      // Required
     "name": "customer-name",                                    // Required
     "account_number": "customer-account-number",                // Required
+    "carrier_invoice_reminders": [                              // Optional
+      "Confirm with Sandy before approving.",
+      "Check this other thing before approving."
+    ],
     "invoicing": {
       "bill_to": {
         "name": "name",
@@ -834,6 +838,10 @@ Response:
     "external_id": "customer-external-id",  // YOUR internal id for the customer
     "name": "customer-name",
     "account_number": "customer-account-number",
+    "carrier_invoice_reminders": [
+      "Confirm with Sandy before approving.",
+      "Check this other thing before approving."
+    ],
     "invoicing": {
       "bill_to": {
         "name": "name",
