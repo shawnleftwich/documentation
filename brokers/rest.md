@@ -937,6 +937,24 @@ Request:
         "rate_qualifier": "PM",
       }
     ],
+    "shipper": {
+      "name": "name",
+      "address_line_1": "address1",
+      "address_line_2": "address2",
+      "city": "city",
+      "state": "state",
+      "postal_code": "12345",
+      "country": "US"
+    },
+    "consignee": {
+      "name": "name",
+      "address_line_1": "address1",
+      "address_line_2": "address2",
+      "city": "city",
+      "state": "state",
+      "postal_code": "12345",
+      "country": "US"
+    },
     "carrier_pay": 800.00,                         // Optional
     "dropped_off_at": "2019-06-02T18:43:26.000Z",  // Optional
     "picked_up_at": "2019-06-01T18:43:26.000Z",    // Optional
