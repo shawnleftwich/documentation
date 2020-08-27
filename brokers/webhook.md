@@ -8,8 +8,7 @@ following events occurs in HubTran:
 * load documents attached
 
 If you would like us to authenticate the endpoint you should add a token to
-the URL you provide us and verify that is correct. You may also have the
-invoice events and the load documents events sent to different endpoints.
+the URL you provide us and verify that is correct.
 
 Each of the payloads will have an event "type" that will allow you to
 choose which payloads you want to use and ignore the rest.
