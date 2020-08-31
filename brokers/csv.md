@@ -91,13 +91,13 @@ Required fields are **bold**.
 * charges_customer_total - recommended
 * created_at
 * updated_at
-* reference_x_label (x is 1-6) - recommended
-* reference_x_value (x is 1-6) - recommended
-* line_item_x_description (x is 1-10)
-* line_item_x_type_code (x is 1-10)
-* line_item_x_total (x is 1-10)
-* line_item_x_customer_total (x is 1-10)
-* line_item_x_carrier_external_id (x is 1-10; value is same as external_id in the carriers file)
+* reference_x_label (x is 1-15) - recommended
+* reference_x_value (x is 1-15) - recommended
+* line_item_x_description (x is 1-100)
+* line_item_x_type_code (x is 1-100)
+* line_item_x_total (x is 1-100)
+* line_item_x_customer_total (x is 1-100)
+* line_item_x_carrier_external_id (x is 1-100; value is same as external_id in the carriers file)
 * tms_created_at - legacy, don't provide if you set created_at
 * tms_updated_at - legacy, don't provide if you set updated_at
 
@@ -143,12 +143,12 @@ file**
 * ship_ref
 * po
 * pickup_reference
-* reference_x_label (x is 1-6)
-* reference_x_value (x is 1-6)
-* pick_reference_x_label (x is 1-6)
-* pick_reference_x_value (x is 1-6)
-* delivery_reference_x_label (x is 1-6)
-* delivery_reference_x_value (x is 1-6)
+* reference_x_label (x is 1-15)
+* reference_x_value (x is 1-15)
+* pick_reference_x_label (x is 1-15)
+* pick_reference_x_value (x is 1-15)
+* delivery_reference_x_label (x is 1-15)
+* delivery_reference_x_value (x is 1-15)
 * created_at
 * updated_at
 
