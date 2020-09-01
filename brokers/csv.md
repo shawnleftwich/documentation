@@ -45,6 +45,7 @@ Required fields are **bold**.
 * ein
 * dot_number
 * days_to_pay
+* quickpay - true or false, default is false
 * **remit_to_name**
 * remit_to_address_line_1 - recommended
 * remit_to_address_line_2 - recommended
@@ -166,6 +167,8 @@ file**
 * state - recommended
 * postal_code - recommended
 * country
+* reference_x_label
+* reference_x_value
 
 ## Invoice Approval Response
 
