@@ -167,8 +167,8 @@ file**
 * state - recommended
 * postal_code - recommended
 * country
-* reference_x_label
-* reference_x_value
+* reference_x_label (x is 1-15)
+* reference_x_value (x is 1-15)
 
 ## Invoice Approval Response
 
