@@ -948,6 +948,15 @@ Request:
       "postal_code": "12345",
       "country": "US"
     },
+    "branch_bill_to": {                            // Optional, to be used if there is a sub "bill-to" that needs to 
+      "name": "name",                              // be rendered on the invoice.
+      "address_line_1": "address1",
+      "address_line_2": "address2",
+      "city": "city",
+      "state": "state",
+      "postal_code": "12345",
+      "country": "US"
+    },
     "consignee": {
       "name": "name",
       "address_line_1": "address1",
