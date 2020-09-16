@@ -971,9 +971,9 @@ Request:
     "loads": [                                         // Optional
       {"external_id": "123"}
     ],
-    "business_unit": {                                 // Optional, if this invoice belongs to a specific billing unit inside your account.
+    "business_unit": {                                 // Optional, if this invoice belongs to a specific business unit inside your account.
       "external_id": "business-unit-external-id",      // Required
-      "name": "example-name"                           // Optional, recommended if new billing unit
+      "name": "example-name"                           // Required
     }
   }
 }
