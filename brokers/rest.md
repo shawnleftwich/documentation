@@ -919,17 +919,17 @@ Request:
 {
   "customer_invoice": {
     "customer": {
-      "external_id": "customer-external-id",       // Required
-      "name": "example-name"                       // Optional, recommended if new customer
+      "external_id": "customer-external-id",           // Required
+      "name": "example-name"                           // Optional, recommended if new customer
     },
-    "number": "invoice-number",                    // Required
-    "amount": 1000.00,                             // Required
-    "date": "2019-04-09",                          // Required, in ISO 8601 format
-    "currency": "USD",                             // Optional, in alphabetic ISO 4217 format. Defaults to "USD".
-    "invoice_document": {                          // Optional
-      data: "base-64-data"                         // In Base64 encoding for MIME
+    "number": "invoice-number",                        // Required
+    "amount": 1000.00,                                 // Required
+    "date": "2019-04-09",                              // Required, in ISO 8601 format
+    "currency": "USD",                                 // Optional, in alphabetic ISO 4217 format. Defaults to "USD".
+    "invoice_document": {                              // Optional
+      data: "base-64-data"                             // In Base64 encoding for MIME
     },
-    "line_items": [                                // Optional
+    "line_items": [                                    // Optional
       {
         "description": "line item description",
         "edi_code": "abc",
@@ -957,20 +957,24 @@ Request:
       "postal_code": "12345",
       "country": "US"
     },
-    "carrier_pay": 800.00,                         // Optional
-    "dropped_off_at": "2019-06-02T18:43:26.000Z",  // Optional
-    "picked_up_at": "2019-06-01T18:43:26.000Z",    // Optional
-    "references": {                                // Optional
+    "carrier_pay": 800.00,                             // Optional
+    "dropped_off_at": "2019-06-02T18:43:26.000Z",      // Optional
+    "picked_up_at": "2019-06-01T18:43:26.000Z",        // Optional
+    "references": {                                    // Optional
       "Example Reference Label 1": "Value1",
       "Example Reference Label 2": "Value2"
     },
-    "shipments": [                                 // Required
+    "shipments": [                                     // Required
       {"external_id": "123"},
       {"external_id": "456"}
     ],
-    "loads": [                                     // Optional
+    "loads": [                                         // Optional
       {"external_id": "123"}
-    ]
+    ],
+    "billing_unit": {                                  // Optional, if this invoice belongs to a specific billing unit inside your account.
+      "external_id": "billing-unit-external-id",       // Required
+      "name": "example-name"                           // Optional, recommended if new billing unit
+    }
   }
 }
 ```
@@ -1033,7 +1037,11 @@ Response:
     ],
     "loads": [
       {"external_id": "123"}
-    ]
+    ],
+    "billing_unit": {
+      "external_id": "billing-unit-external-id",
+      "name": "example-name"
+    }
   }
 }
 ```
