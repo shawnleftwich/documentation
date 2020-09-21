@@ -819,7 +819,7 @@ Request:
       "auto_send_invoices": {                                  // Optional. If omitted will not auto_send. If passed, will set to auto-send. 
         "interval": "weekly",
         "at": 4,
-        "recipient": "user@example.com"
+        "recipients": ["user@example.com"]
       }
       "method": "email",                                       // Required. One of "print", "email".
       "email_settings": {                                      // Use when "method" is "email"
@@ -887,7 +887,7 @@ Response:
       "auto_send_invoices": { 
         "interval": "weekly",
         "at": 4,
-        "recipient": "user@example.com"
+        "recipients": ["user@example.com"]
       }
       "method": "email",
       "email_settings": {
