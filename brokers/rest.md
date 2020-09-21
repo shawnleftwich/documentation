@@ -803,7 +803,7 @@ Request:
       "document_requirements": {                               // Optional. Leaves settings unchanged if omitted. Only customer-visible documents may be required.
         "use_account_defaults": false,                         // Required.
         "require_pod": true,                                   // Optional. Required if use_account_defaults is false.
-        "require_document_types": [                           // Optional. Required if use_account_defaults is false.
+        "require_document_types": [                            // Optional. Required if use_account_defaults is false.
           "customerInvoice",                                   // Use document_types endpoints to find possible values.
           "billOfLading"
         ]
@@ -816,6 +816,11 @@ Request:
           "generate": true,                                    // Optional. If omitted, leaves unchanged.
           "template_name": "generic_template.doc"              // Optional. Needs to exist if generate is true.
       },
+      "auto_send": {                                           // Optional. If omitted will not auto_send. If passed, will set to auto-send. 
+        "interval": "weekly",
+        "at": 4,
+        "recipient": "user@example.com"
+      }
       "method": "email",                                       // Required. One of "print", "email".
       "email_settings": {                                      // Use when "method" is "email"
         "billing_email": "billing@customer.com",
@@ -879,6 +884,11 @@ Response:
           "generate": true,
           "template_name": "generic_template.doc"
       },
+      "auto_send": { 
+        "interval": "weekly",
+        "at": 4,
+        "recipient": "user@example.com"
+      }
       "method": "email",
       "email_settings": {
         "billing_email": "billing@customer.com",
@@ -901,6 +911,18 @@ Response:
 | `email_single` | Send a consolidated email containing all invoices |
 | `email_per_invoice` | Send a separate email for each invoice |
 | `email_account_default` | Defer to the setting on account level |
+
+### `auto_send` values
+| Value | Explanation |
+| ----- | ----- |
+| `daily` | Send once a day |
+| `weekly` | Send once a week |
+| `monthly` | Send once a month |
+
+`at`
+If daily, ignored (will send a bit before midnight in your local time)
+If weekly, specifies a weekday (0-6, Sunday is zero)
+If monthly, specifies day of the month (calendar day of the month, 1-31)
 
 ## Create + Update Customer Invoices
 
