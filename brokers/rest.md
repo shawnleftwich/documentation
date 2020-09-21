@@ -816,7 +816,7 @@ Request:
           "generate": true,                                    // Optional. If omitted, leaves unchanged.
           "template_name": "generic_template.doc"              // Optional. Needs to exist if generate is true.
       },
-      "auto_send": {                                           // Optional. If omitted will not auto_send. If passed, will set to auto-send. 
+      "auto_send_invoices": {                                  // Optional. If omitted will not auto_send. If passed, will set to auto-send. 
         "interval": "weekly",
         "at": 4,
         "recipient": "user@example.com"
@@ -884,7 +884,7 @@ Response:
           "generate": true,
           "template_name": "generic_template.doc"
       },
-      "auto_send": { 
+      "auto_send_invoices": { 
         "interval": "weekly",
         "at": 4,
         "recipient": "user@example.com"
@@ -912,7 +912,7 @@ Response:
 | `email_per_invoice` | Send a separate email for each invoice |
 | `email_account_default` | Defer to the setting on account level |
 
-### `auto_send` values
+### `auto_send_invoices` values
 | Value | Explanation |
 | ----- | ----- |
 | `daily` | Send once a day |
