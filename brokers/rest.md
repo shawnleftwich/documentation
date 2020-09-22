@@ -972,8 +972,9 @@ Request:
       {"external_id": "123"}
     ],
     "business_unit": {                                 // Optional, if this invoice belongs to a specific business unit inside your account.
-      "external_id": "business-unit-external-id",      // Required
-      "name": "example-name"                           // Required
+      "external_id": "business-unit-external-id",      // Required, your internal id for this model
+      "name": "example-name",                          // Required
+      "ein": "355151"                                  // Optional, Federal Employer Identification Number
     }
   }
 }
@@ -1040,7 +1041,8 @@ Response:
     ],
     "business_unit": {
       "external_id": "business-unit-external-id",
-      "name": "example-name"
+      "name": "example-name",
+      "ein": "355151"
     }
   }
 }
