@@ -789,7 +789,9 @@ Request:
         "city": "city",
         "state": "state",
         "postal_code": "12345",
-        "country": "US"
+        "country": "US",
+        "phone": "4039991111",
+        "fax": "4039991112"
       },
       "billing_interval": "daily",                             // Optional. One of "daily", "weekly", "monthly", "never". Defaults to "daily".
       "document_visibility": {                                 // Optional. Leaves settings unchanged if omitted.
@@ -857,7 +859,9 @@ Response:
         "city": "city",
         "state": "state",
         "postal_code": "12345",
-        "country": "US"
+        "country": "US",
+        "phone": "4039991111",
+        "fax": "4039991112"
       }
       "billing_interval": "daily",
       "document_visibility": {
