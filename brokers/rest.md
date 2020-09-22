@@ -817,9 +817,9 @@ Request:
           "template_name": "generic_template.doc"              // Optional. Needs to exist if generate is true.
       },
       "auto_send_invoices": {                                  // Optional. If omitted will not auto_send. If passed, will set to auto-send. 
-        "interval": "weekly",
-        "at": 4,
-        "recipients": ["user@example.com"]
+        "interval": "weekly",                                  // See `auto_send_invoices` values below
+        "at": 4,                                               // Day of week or day of month to send on (a little before midnight on this daty)
+        "print_user_email": "user@example.com"                 // For any invoices set to deliver as "print", what user to email them to.
       }
       "method": "email",                                       // Required. One of "print", "email".
       "email_settings": {                                      // Use when "method" is "email"
@@ -887,7 +887,7 @@ Response:
       "auto_send_invoices": { 
         "interval": "weekly",
         "at": 4,
-        "recipients": ["user@example.com"]
+        "print_user_email": "user@example.com"
       }
       "method": "email",
       "email_settings": {
