@@ -852,7 +852,9 @@ Response:
         "city": "city",
         "state": "state",
         "postal_code": "12345",
-        "country": "US"
+        "country": "US",
+        "phone": "800-111-2222",
+        "fax": "800-111-2223"
       }
       "billing_interval": "daily",
       "document_visibility": {
