@@ -855,7 +855,7 @@ Response:
         "state": "state",
         "postal_code": "12345",
         "country": "US"
-      }
+      },
       "billing_interval": "monthly",
       "trigger": "scheduled",
       "scheduled_day": 15,
