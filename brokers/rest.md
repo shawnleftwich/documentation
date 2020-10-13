@@ -793,7 +793,9 @@ Request:
         "phone": "4039991111",
         "fax": "4039991112"
       },
-      "billing_interval": "daily",                             // Optional. One of "daily", "weekly", "monthly", "never". Defaults to "daily".
+      "billing_interval": "weekly",                            // Optional. One of "daily", "weekly", "monthly", "never". Defaults to "daily".
+      "trigger": "scheduled",                                  // Optional. One of "scheduled", "manual", or "default".
+      "scheduled_day": 4,                                      // Optional. Day of week (0-6, Sunday is zero) or day of month (calendar day of the month, 1-28) to send on. Which one depends on `billing_interval`. Defaults to 1.
       "document_visibility": {                                 // Optional. Leaves settings unchanged if omitted.
         "use_account_defaults": false,                         // Required.
         "include_pod": true,                                   // Optional. Required if use_account_defaults is false. Will include pod document even if the document type is not included below.
@@ -818,10 +820,6 @@ Request:
           "generate": true,                                    // Optional. If omitted, leaves unchanged.
           "template_name": "generic_template.doc"              // Optional. Needs to exist if generate is true.
       },
-      "auto_send_invoices": {                                  // Optional. If omitted will not auto_send. If passed, will set to auto-send.
-        "day": 4,                                              // Day of week (0-6, Sunday is zero) or day of month (calendar day of the month, 1-28) to send on. Which one depends on `billing_interval`.
-        "print_user_email": "user@example.com"                 // For any invoices set to deliver as "print", what user to email them to.
-      }
       "method": "email",                                       // Required. One of "print", "email".
       "email_settings": {                                      // Use when "method" is "email"
         "billing_email": "billing@customer.com",
@@ -862,7 +860,9 @@ Response:
         "phone": "4039991111",
         "fax": "4039991112"
       }
-      "billing_interval": "daily",
+      "billing_interval": "monthly",
+      "trigger": "scheduled",
+      "scheduled_day": 15,
       "document_visibility": {
         "use_account_defaults": false,
         "include_pod": true,
@@ -887,10 +887,6 @@ Response:
           "generate": true,
           "template_name": "generic_template.doc"
       },
-      "auto_send_invoices": { 
-        "day": 4,
-        "print_user_email": "user@example.com"
-      }
       "method": "email",
       "email_settings": {
         "billing_email": "billing@customer.com",
