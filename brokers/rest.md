@@ -789,9 +789,7 @@ Request:
         "city": "city",
         "state": "state",
         "postal_code": "12345",
-        "country": "US",
-        "phone": "4039991111",
-        "fax": "4039991112"
+        "country": "US"
       },
       "billing_interval": "weekly",                            // Optional. One of "daily", "weekly", "monthly", "never". Defaults to "daily".
       "trigger": "scheduled",                                  // Optional. One of "scheduled", "manual", or "default".
@@ -856,9 +854,7 @@ Response:
         "city": "city",
         "state": "state",
         "postal_code": "12345",
-        "country": "US",
-        "phone": "4039991111",
-        "fax": "4039991112"
+        "country": "US"
       }
       "billing_interval": "monthly",
       "trigger": "scheduled",
