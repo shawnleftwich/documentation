@@ -793,7 +793,7 @@ Request:
       },
       "billing_interval": "weekly",                            // Optional. One of "daily", "weekly", "monthly", "never". Defaults to "daily".
       "trigger": "scheduled",                                  // Optional. One of "scheduled", "manual", or "default".
-      "scheduled_day": 4,                                      // Optional. Day of week (0-6, Sunday is zero) or day of month (calendar day of the month, 1-28) to send on. Which one depends on `billing_interval`. Defaults to 1.
+      "scheduled_day": 4,                                      // Optional. Defaults to 1. See "About the scheduled_day setting" section below.
       "document_visibility": {                                 // Optional. Leaves settings unchanged if omitted.
         "use_account_defaults": false,                         // Required.
         "include_pod": true,                                   // Optional. Required if use_account_defaults is false. Will include pod document even if the document type is not included below.
@@ -897,6 +897,14 @@ Response:
   }
 }
 ```
+
+### About the `scheduled_day` setting
+If the `billing_interval` is set to "weekly", this is the day of the week (0-6, Sunday is zero)
+
+If the `billing_interval` is set to "monthly", this is the calendar day of the month (1-28)
+
+Invoices are sent at 4:00 AM UTC of the scheduled days, which may actually occur in the evening of
+the previous day in your local timezone or the customer's local time zone.
 
 ### Possible `invoice_grouping_strategy` values
 
