@@ -903,8 +903,8 @@ If the `billing_interval` is set to "weekly", this is the day of the week (0-6, 
 
 If the `billing_interval` is set to "monthly", this is the calendar day of the month (1-28)
 
-Invoices are sent at 4:00 AM UTC of the scheduled days, which may actually occur in the evening of
-the previous day in your local timezone or the customer's local time zone.
+Invoices are sent at approximately 4:00 AM UTC of the scheduled days, which may actually occur
+in the evening of the previous day in your local timezone or the customer's local time zone.
 
 ### Possible `invoice_grouping_strategy` values
 
