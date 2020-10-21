@@ -799,7 +799,9 @@ Request:
         "postal_code": "12345",
         "country": "US"
       },
-      "billing_interval": "daily",                             // Optional. One of "daily", "weekly", "monthly", "never". Defaults to "daily".
+      "billing_interval": "weekly",                            // Optional. One of "daily", "weekly", "monthly", "never". Defaults to "daily".
+      "trigger": "scheduled",                                  // Optional. One of "scheduled", "manual", or "default".
+      "scheduled_day": 4,                                      // Optional. Defaults to 1. See "About the scheduled_day setting" section below.
       "document_visibility": {                                 // Optional. Leaves settings unchanged if omitted.
         "use_account_defaults": false,                         // Required.
         "include_pod": true,                                   // Optional. Required if use_account_defaults is false. Will include pod document even if the document type is not included below.
@@ -811,7 +813,7 @@ Request:
       "document_requirements": {                               // Optional. Leaves settings unchanged if omitted. Only customer-visible documents may be required.
         "use_account_defaults": false,                         // Required.
         "require_pod": true,                                   // Optional. Required if use_account_defaults is false.
-        "require_document_types": [                           // Optional. Required if use_account_defaults is false.
+        "require_document_types": [                            // Optional. Required if use_account_defaults is false.
           "customerInvoice",                                   // Use document_types endpoints to find possible values.
           "billOfLading"
         ]
@@ -861,8 +863,10 @@ Response:
         "state": "state",
         "postal_code": "12345",
         "country": "US"
-      }
-      "billing_interval": "daily",
+      },
+      "billing_interval": "monthly",
+      "trigger": "scheduled",
+      "scheduled_day": 15,
       "document_visibility": {
         "use_account_defaults": false,
         "include_pod": true,
@@ -901,6 +905,14 @@ Response:
   }
 }
 ```
+
+### About the `scheduled_day` setting
+If the `billing_interval` is set to "weekly", this is the day of the week (0-6, Sunday is zero)
+
+If the `billing_interval` is set to "monthly", this is the calendar day of the month (1-28)
+
+Invoices are sent at approximately 4:00 AM UTC of the scheduled days, which may actually occur
+in the evening of the previous day in your local timezone or the customer's local time zone.
 
 ### Possible `invoice_grouping_strategy` values
 
