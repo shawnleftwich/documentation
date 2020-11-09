@@ -14,7 +14,6 @@ If you receive a status code other than 2xx, please retry your request once with
 * [Load Details](#load-details)
 * [Create + Update Shipments](#create--update-shipments)
 * [Create + Update Carriers](#create--update-carriers)
-* [Bulk Create + Update Carriers](#bulk-create--update-carriers)
 * [Create + Update Customers](#create--update-customers)
 * [Create + Update Customer Invoices](#create--update-customer-invoices)
 * [Create Payments](#create-payments)
@@ -46,8 +45,8 @@ Request:
 ```
 {
   "load": {
-    "load_id": "load-id",                                 // Required
-    "external_id": "external-id",                         // Required
+    "load_id": "load-id",                                 // Required, human-friendly, but for backwards compatibility, will default to external_id
+    "external_id": "external-id",                         // Required, machine-friendly
     "status": "new",                                      // Recommended
     "brokered": true,
     "tms_created_at": "2016-07-15 19:00:00 +0200",
@@ -112,17 +111,15 @@ Request:
       "account_number": "customer-account-number"
     },
     "shipments": [                                        // Used to link the load to shipments created via the shipment API
+      // Shipments will be created if they don't exist
       {
+        "shipment_id": "shipment-id",
         "external_id": "shipment-external-id"
       }
     ],
     "charges": {                                          // Recommended but ignored if line items are sent
       "total": 1200.23,
       "currency": "USD",
-      "line_haul": 1100.32,
-      "fuel": 129.32,
-      "detention": 22.22,
-      "other": 87.87,
       "customer_total": 1500.00
     },
     "picks": [
@@ -291,10 +288,6 @@ Response:
     "charges": {                                // object with null values if null
       "total": 1200.23,
       "currency": "USD",
-      "line_haul": 1100.32,
-      "fuel": 129.32,
-      "detention": 22.22,
-      "other": 87.87,
       "customer_total": 1500.00
     },
     "picks": [                                  // empty array if no picks
@@ -367,7 +360,8 @@ Response:
         "documents": [
           {
             "id": 14,
-            "type": "proofOfDelivery",
+            "type": "billOfLading",
+            "hubtran_type_name": "Bill of Lading / Packing Slip",
             "proof_of_delivery": true,
             "url": "https://api.hubtran.com/downloads/documents/unique-id",
             "visibility": {
@@ -383,7 +377,8 @@ Response:
         ],
         "combined_document_urls": [             // All documents of the same type, combined
           {
-            "type": "proofOfDelivery",
+            "type": "billOfLading",
+            "hubtran_type_name": "Bill of Lading / Packing Slip",
             "url": "https://api.hubtran.com/downloads/documents/combined/unique-id",
             "proof_of_delivery": true,
             "visibility": {
@@ -411,7 +406,8 @@ Response:
     "documents": [             // Documents on the load
       {
         "id": 14,
-        "type": "proofOfDelivery",
+        "type": "billOfLading",
+        "hubtran_type_name": "Bill of Lading / Packing Slip",
         "proof_of_delivery": true,
         "url": "https://api.hubtran.com/downloads/documents/unique-id",
         "visibility": {
@@ -446,7 +442,8 @@ Request:
 {
   "shipments": [
     {
-      "external_id": "shipment-external-id",              // Required
+      "shipment_id": "shipment-id",                       // Required, human-friendly, but for backwards compatibility, will default to external_id
+      "external_id": "external-id",                       // Required, machine-friendly
       "status": "new",                                    // Recommended
       "tms_created_at": "2016-07-10 20:43:00 +0300",
       "tms_updated_at": "2016-07-15 20:43:00 +0300",
@@ -484,17 +481,15 @@ Request:
         "account_number": "customer-account-number"
       },
       "loads": [                                          // Used to link shipments and loads representing a "delivery"
+        // Loads will be created if they don't already exist
         {
+          "load_id": "load-id",
           "external_id": "load-external-id"
         }
       ],
       "charges": {                                        // Recommended
         "total": 1200.23,
-        "currency": "USD",
-        "line_haul": 1100.32,
-        "fuel": 129.32,
-        "detention": 22.22,
-        "other": 87.87
+        "currency": "USD"
       },
       "line_items": [
         {
@@ -580,11 +575,7 @@ Response:
       ],
       "charges": {
         "total": 1200.23,
-        "currency": "USD",
-        "line_haul": 1100.32,
-        "fuel": 129.32,
-        "detention": 22.22,
-        "other": 87.87
+        "currency": "USD"
       },
       "line_items": [
         {
@@ -655,6 +646,7 @@ Request:
     "country": "Country",                 // Recommended
     "account_exec": "Bob",
     "priority": "Tier 1",
+    "days_to_pay": 10,                    // Recommended
     "labels": ["LABEL1","LABEL2"],        // Omit this key unless you want to overwrite user-selected labels
     "contacts": [                         // Recommended
       "joe@example.com",
@@ -696,6 +688,7 @@ Response:
     "postal_code": "Postal code",
     "country": "Country",
     "account_exec": "Bob",
+    "days_to_pay": 10,
     "labels": ["LABEL1","LABEL2"],          // Empty list if there aren't any
 labels
     "contacts": [                           // Empty list if there aren't any contacts
@@ -713,49 +706,6 @@ labels
     }
   }
 }
-```
-
-## Bulk Create + Update Carriers
-
-PUT https://api.hubtran.com/tms/carriers/bulk
-
-```
-curl -X PUT https://api.hubtran.com/tms/carriers/bulk \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Token token=YOUR_TOKEN" \
-  -d '{"carriers": [{"name": "example name", "external_id": "example_id"}]}'
-```
-
-Request:
-
-See [Create + Update Carriers](#create--update-carriers) for the rest of
-the supported carrier params.
-
-```
-{
-  "carriers": [
-    {
-      "name": "carrier name", // Required
-      "external_id": "external-id", // Required
-    }
-  ]
-}
-```
-
-Response:
-
-```
-{
-  "carriers": [
-    {
-      "carrier": {
-        // Same as the single carrier response
-      },
-      "errors": {} // If this carrier had errors and couldn't be updated, they'll be here
-    }
-  ]
-}
-
 ```
 
 ## Create + Update Customers
@@ -791,7 +741,9 @@ Request:
         "postal_code": "12345",
         "country": "US"
       },
-      "billing_interval": "daily",                             // Optional. One of "daily", "weekly", "monthly", "never". Defaults to "daily".
+      "billing_interval": "weekly",                            // Optional. One of "daily", "weekly", "monthly", "never". Defaults to "daily".
+      "trigger": "scheduled",                                  // Optional. One of "scheduled", "manual", or "default".
+      "scheduled_day": 4,                                      // Optional. Defaults to 1. See "About the scheduled_day setting" section below.
       "document_visibility": {                                 // Optional. Leaves settings unchanged if omitted.
         "use_account_defaults": false,                         // Required.
         "include_pod": true,                                   // Optional. Required if use_account_defaults is false. Will include pod document even if the document type is not included below.
@@ -803,7 +755,7 @@ Request:
       "document_requirements": {                               // Optional. Leaves settings unchanged if omitted. Only customer-visible documents may be required.
         "use_account_defaults": false,                         // Required.
         "require_pod": true,                                   // Optional. Required if use_account_defaults is false.
-        "require_document_types": [                           // Optional. Required if use_account_defaults is false.
+        "require_document_types": [                            // Optional. Required if use_account_defaults is false.
           "customerInvoice",                                   // Use document_types endpoints to find possible values.
           "billOfLading"
         ]
@@ -853,8 +805,10 @@ Response:
         "state": "state",
         "postal_code": "12345",
         "country": "US"
-      }
-      "billing_interval": "daily",
+      },
+      "billing_interval": "monthly",
+      "trigger": "scheduled",
+      "scheduled_day": 15,
       "document_visibility": {
         "use_account_defaults": false,
         "include_pod": true,
@@ -893,6 +847,14 @@ Response:
   }
 }
 ```
+
+### About the `scheduled_day` setting
+If the `billing_interval` is set to "weekly", this is the day of the week (0-6, Sunday is zero)
+
+If the `billing_interval` is set to "monthly", this is the calendar day of the month (1-28)
+
+Invoices are sent at approximately 4:00 AM UTC of the scheduled days, which may actually occur
+in the evening of the previous day in your local timezone or the customer's local time zone.
 
 ### Possible `invoice_grouping_strategy` values
 
@@ -949,6 +911,15 @@ Request:
       "country": "US"
     },
     "consignee": {
+      "name": "name",
+      "address_line_1": "address1",
+      "address_line_2": "address2",
+      "city": "city",
+      "state": "state",
+      "postal_code": "12345",
+      "country": "US"
+    },
+    "bill_to": {                                       // Optional, to be used if you want to use a specific "bill-to" other than the one set on this invoice's customer
       "name": "name",
       "address_line_1": "address1",
       "address_line_2": "address2",
@@ -1018,6 +989,15 @@ Response:
       "country": "US"
     },
     "consignee": {
+      "name": "name",
+      "address_line_1": "address1",
+      "address_line_2": "address2",
+      "city": "city",
+      "state": "state",
+      "postal_code": "12345",
+      "country": "US"
+    },
+    "bill_to": {
       "name": "name",
       "address_line_1": "address1",
       "address_line_2": "address2",
@@ -1211,7 +1191,8 @@ Response:
       "documents": [
         {
           "id": 14,
-          "type": "proofOfDelivery",
+          "type": "billOfLading",
+          "hubtran_type_name": "Bill of Lading / Packing Slip",
           "proof_of_delivery": true,
           "fingerprint": "09e79148e4ba61d971b7f39c9dc245821b890916",
           "url": "https://api.hubtran.com/downloads/documents/unique-id",
@@ -1231,7 +1212,8 @@ Response:
       ],
       "combined_document_urls": [ // All documents of the same type, combined
         {
-          "type": "proofOfDelivery",
+          "type": "billOfLading",
+          "hubtran_type_name": "Bill of Lading / Packing Slip",
           "url": "https://api.hubtran.com/downloads/documents/combined/unique-id",
           "proof_of_delivery": true,
           "visibility": {
@@ -1409,6 +1391,7 @@ HTTP Status Code 200
         {
           "id": 12345,
           "type": "billOfLading",
+          "hubtran_type_name": "Bill of Lading / Packing Slip",
           "fingerprint": "09e79148e4ba61d971b7f39c9dc245821b890916",
           "proof_of_delivery": true,
           "url": "https://api.hubtran.com/downloads/documents/unique-id",
