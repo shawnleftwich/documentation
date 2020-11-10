@@ -946,7 +946,7 @@ Request:
       "external_id": "business-unit-external-id",      // Required, your internal id for this model
       "federal_id": "355151",                          // Optional, Federal Employer Identification Number.  Only affects creation.
       "logo_id": 1000,                                 // Optional, the HubTran Logo ID for this business unit. Only affects creation.
-      "name": "example-name",                          // Required if creating a new business unit.  Only affects creation.
+      "name": "example-name"                           // Required if creating a new business unit.  Only affects creation.
     }
   }
 }
@@ -1023,8 +1023,8 @@ Response:
     "business_unit": {
       "external_id": "business-unit-external-id",
       "federal_id": "355151",
-      "logo_id": 1000
-      "name": "example-name",
+      "logo_id": 1000,
+      "name": "example-name"
     }
   }
 }
