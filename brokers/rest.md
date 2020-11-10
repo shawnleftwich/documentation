@@ -919,7 +919,7 @@ Request:
       "postal_code": "12345",
       "country": "US"
     },
-    "bill_to": {                                   // Optional, to be used if you want to use a render a "bill-to" other than the one set on this invoice's customer, inside customer invoices.
+    "bill_to": {                                   // Optional, to be used if you want render a "bill_to" other than the one set on this invoice's customer, inside customer invoices.
       "name": "name",
       "address_line_1": "address1",
       "address_line_2": "address2",
