@@ -881,17 +881,17 @@ Request:
 {
   "customer_invoice": {
     "customer": {
-      "external_id": "customer-external-id",       // Required
-      "name": "example-name"                       // Optional, recommended if new customer
+      "external_id": "customer-external-id",           // Required
+      "name": "example-name"                           // Optional, recommended if new customer
     },
-    "number": "invoice-number",                    // Required
-    "amount": 1000.00,                             // Required
-    "date": "2019-04-09",                          // Required, in ISO 8601 format
-    "currency": "USD",                             // Optional, in alphabetic ISO 4217 format. Defaults to "USD".
-    "invoice_document": {                          // Optional
-      data: "base-64-data"                         // In Base64 encoding for MIME
+    "number": "invoice-number",                        // Required
+    "amount": 1000.00,                                 // Required
+    "date": "2019-04-09",                              // Required, in ISO 8601 format
+    "currency": "USD",                                 // Optional, in alphabetic ISO 4217 format. Defaults to "USD".
+    "invoice_document": {                              // Optional
+      data: "base-64-data"                             // In Base64 encoding for MIME
     },
-    "line_items": [                                // Optional
+    "line_items": [                                    // Optional
       {
         "description": "line item description",
         "edi_code": "abc",
@@ -919,7 +919,7 @@ Request:
       "postal_code": "12345",
       "country": "US"
     },
-    "bill_to": {                                   // Optional, to be used if you want to use a specific "bill-to" other than the one set on this invoice's customer
+    "bill_to": {                                       // Optional, to be used if you want to use a specific "bill-to" other than the one set on this invoice's customer
       "name": "name",
       "address_line_1": "address1",
       "address_line_2": "address2",
@@ -928,20 +928,26 @@ Request:
       "postal_code": "12345",
       "country": "US"
     },
-    "carrier_pay": 800.00,                         // Optional
-    "dropped_off_at": "2019-06-02T18:43:26.000Z",  // Optional
-    "picked_up_at": "2019-06-01T18:43:26.000Z",    // Optional
-    "references": {                                // Optional
+    "carrier_pay": 800.00,                             // Optional
+    "dropped_off_at": "2019-06-02T18:43:26.000Z",      // Optional
+    "picked_up_at": "2019-06-01T18:43:26.000Z",        // Optional
+    "references": {                                    // Optional
       "Example Reference Label 1": "Value1",
       "Example Reference Label 2": "Value2"
     },
-    "shipments": [                                 // Required
+    "shipments": [                                     // Required
       {"external_id": "123"},
       {"external_id": "456"}
     ],
-    "loads": [                                     // Optional
+    "loads": [                                         // Optional
       {"external_id": "123"}
-    ]
+    ],
+    "business_unit": {                                 // Optional, if this invoice belongs to a specific business unit inside your account.
+      "external_id": "business-unit-external-id",      // Required, your internal id for this model
+      "federal_id": "355151",                          // Optional, Federal Employer Identification Number.  Only affects creation.
+      "logo_id": 1000,                                 // Optional, the HubTran Logo ID for this business unit. Only affects creation.
+      "name": "example-name"                           // Required if creating a new business unit.  Only affects creation.
+    }
   }
 }
 ```
@@ -1013,7 +1019,13 @@ Response:
     ],
     "loads": [
       {"external_id": "123"}
-    ]
+    ],
+    "business_unit": {
+      "external_id": "business-unit-external-id",
+      "federal_id": "355151",
+      "logo_id": 1000,
+      "name": "example-name"
+    }
   }
 }
 ```
