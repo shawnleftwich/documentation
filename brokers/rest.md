@@ -920,6 +920,7 @@ Request:
       "country": "US"
     },
     "bill_to": {                                       // Optional, to be used if you want to use a specific "bill-to" other than the one set on this invoice's customer
+      "external_id": "111",                            // Optional, your internal id for this address
       "name": "name",
       "address_line_1": "address1",
       "address_line_2": "address2",
@@ -998,6 +999,7 @@ Response:
       "country": "US"
     },
     "bill_to": {
+      "external_id": "111",
       "name": "name",
       "address_line_1": "address1",
       "address_line_2": "address2",
