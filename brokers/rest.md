@@ -647,6 +647,7 @@ Request:
     "account_exec": "Bob",
     "priority": "Tier 1",
     "days_to_pay": 10,                    // Recommended
+    "payment_strategy": "direct",         // Defaults to "direct", can be overriden with "triumphpay"
     "labels": ["LABEL1","LABEL2"],        // Omit this key unless you want to overwrite user-selected labels
     "contacts": [                         // Recommended
       "joe@example.com",
@@ -689,6 +690,7 @@ Response:
     "country": "Country",
     "account_exec": "Bob",
     "days_to_pay": 10,
+    "payment_strategy": "direct",
     "labels": ["LABEL1","LABEL2"],          // Empty list if there aren't any
 labels
     "contacts": [                           // Empty list if there aren't any contacts
