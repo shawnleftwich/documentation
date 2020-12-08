@@ -647,7 +647,7 @@ Request:
     "account_exec": "Bob",
     "priority": "Tier 1",
     "days_to_pay": 10,                    // Recommended
-    "payment_strategy": "direct",         // Defaults to "direct", can be overriden with "triumphpay"
+    "payment_strategy": "direct",         // direct or triumphpay, defaults to direct
     "labels": ["LABEL1","LABEL2"],        // Omit this key unless you want to overwrite user-selected labels
     "contacts": [                         // Recommended
       "joe@example.com",
