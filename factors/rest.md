@@ -12,6 +12,7 @@ All dates + times should be in
 * [Bulk Create + Update Debtors](#bulk-create--update-debtors)
 * [Invoice Purchased](#invoice-purchased)
 * [Invoice Declined](#invoice-declined)
+* [Verifications](#verifications)
 
 ## Create + Update Debtors
 
