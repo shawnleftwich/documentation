@@ -103,8 +103,8 @@ payloads you want to use and ignore the rest.
             }
           }
         ],
-        verification: {
-          v1: {
+        "verification": {
+          "v1": {
             {
               "state": "success",            // Required
               "disclosure_details": {        // Optional, may be `null`
@@ -114,7 +114,11 @@ payloads you want to use and ignore the rest.
               }
             }
           }
-        }
+        },
+        "labels": [
+          "Fuel Advance",
+          "Rush"
+        ]
       }
     ],
     "non_invoice_images": [
