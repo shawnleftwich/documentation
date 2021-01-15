@@ -273,4 +273,4 @@ in HubTran.
 * date_to_pay - recommended
 * **amount_to_pay**
 * **number**
-* date - recommended
+* **date** - recommended
