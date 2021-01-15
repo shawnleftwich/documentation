@@ -271,6 +271,6 @@ in HubTran.
 * **load_id**
 * **carrier_external_id**
 * date_to_pay
-* amount_to_pay
-* number
+* **amount_to_pay**
+* **number**
 * date
