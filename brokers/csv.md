@@ -3,7 +3,7 @@
 All files should be sent in CSV format.
 
 The names should match what is being uploaded, carriers.csv, loads.csv,
-shipments.csv, stops.csv, customer_invoices.csv, and customers.csv.
+shipments.csv, stops.csv, customer_invoices.csv, customers.csv, and carrier_invoices.
 You should add ".inprogress" to the end of
 the filename while the file is being imported so we don't attempt to
 import partially uploaded files.
@@ -27,6 +27,7 @@ Required fields are **bold**.
 * [Invoice Approval Response](#invoice-approval-response)
 * [Customer Invoices](#customer-invoices)
 * [Customers](#customers)
+* [Carrier Invoices](#carrier-invoices)
 
 ## Carriers
 
@@ -263,3 +264,13 @@ in HubTran.
 * invoicing_days_to_pay
 * invoicing_billing_email
 * invoicing_email_link_or_attachment - "link" or "attachment", default is "link"
+
+## Carrier Invoices
+
+* **external_id**
+* **load_id**
+* **carrier_external_id**
+* date_to_pay
+* amount_to_pay
+* number
+* date
