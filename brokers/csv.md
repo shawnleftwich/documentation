@@ -270,7 +270,7 @@ in HubTran.
 * **external_id**
 * **load_id**
 * **carrier_external_id**
-* date_to_pay
+* date_to_pay - recommended
 * **amount_to_pay**
 * **number**
-* date
+* date - recommended
