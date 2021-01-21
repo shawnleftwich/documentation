@@ -61,6 +61,7 @@ Required fields are **bold**.
 * **carrier_external_id**
 * carrier_name - recommended
 * carrier_scac
+* status
 * origin_name - recommended
 * origin_address_line_1 - recommended
 * origin_address_line_2 - recommended
@@ -81,11 +82,11 @@ Required fields are **bold**.
 * actual_delivered_at - recommended
 * quantity
 * weight
-* status
 * ship_ref
 * po
 * pickup_reference
 * pro_number
+* sales_rep
 * customer_name - recommended
 * customer_external_id - recommended
 * customer_account_number - recommended
