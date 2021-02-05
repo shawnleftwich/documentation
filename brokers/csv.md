@@ -47,7 +47,7 @@ Required fields are **bold**.
 * days_to_pay
 * quickpay - true or false, default is false
 * payment_strategy - direct or triumphpay, defaults to direct
-* **remit_to_name**
+* remit_to_name
 * remit_to_address_line_1 - recommended
 * remit_to_address_line_2 - recommended
 * remit_to_city - recommended
