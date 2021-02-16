@@ -268,7 +268,7 @@ in HubTran.
 ## Carrier Invoices
 
 * **external_id**
-* **load_id**
+* **load_external_id**
 * **carrier_external_id**
 * date_to_pay - recommended
 * **amount_to_pay**
