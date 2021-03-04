@@ -266,6 +266,7 @@ in HubTran.
 * invoicing_days_to_pay
 * invoicing_billing_email
 * invoicing_email_link_or_attachment - "link" or "attachment", default is "link"
+* instructions - notes/comments on the customer
 
 ## Carrier Invoices
 
