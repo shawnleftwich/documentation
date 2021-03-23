@@ -174,6 +174,9 @@ choose which payloads you want to use and ignore the rest.
         "external_id: "456"              // Your internal invoice id
       }
     },
+    "carrier": {
+      "external_id": "carrier-external-id"
+    },
     "exceptions": [
       {
         "id": 1,
