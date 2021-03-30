@@ -82,6 +82,8 @@ Required fields are **bold**.
 * charges_currency - recommended
 * actual_shipped_at - recommended
 * actual_delivered_at - recommended
+* load_note
+* payables_note
 * quantity
 * weight
 * ship_ref
