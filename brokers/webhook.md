@@ -97,6 +97,7 @@ choose which payloads you want to use and ignore the rest.
         "proof_of_delivery": true,
         "fingerprint": "09e79148e4ba61d971b7f39c9dc245821b890916",
         "url": "https://api.hubtran.com/downloads/documents/unique-id",
+        "received_at": "2020-03-05T00:00:00.000Z",
         "pages": [
           {"png_url": "https://api.hubtran.com/downloads/documents/unique-id/pages/123.png"},
           {"png_url": "https://api.hubtran.com/downloads/documents/unique-id/pages/456.png"}
@@ -194,6 +195,7 @@ choose which payloads you want to use and ignore the rest.
         "proof_of_delivery": true,
         "fingerprint": "09e79148e4ba61d971b7f39c9dc245821b890916",
         "url": "https://api.hubtran.com/downloads/documents/unique-id",
+        "received_at": "2020-03-05T00:00:00.000Z",
         "pages": [
           {"png_url": "https://api.hubtran.com/downloads/documents/unique-id/pages/123.png"},
           {"png_url": "https://api.hubtran.com/downloads/documents/unique-id/pages/456.png"}
@@ -248,6 +250,7 @@ choose which payloads you want to use and ignore the rest.
         "proof_of_delivery": true,
         "url": "https://api.hubtran.com/downloads/documents/unique-id",
         "tiff_url: "https://api.hubtran.com/downloads/documents/tiff-url",  // omitted if account is not configured to use TIFF images
+        "received_at": "2020-03-05T00:00:00.000Z",
         "pages": [
           {"png_url": "http://api.hubtran.com/downloads/documents/png-url"}
         ],
@@ -274,6 +277,7 @@ It will look like this:
         "fingerprint": "09e79148e4ba61d971b7f39c9dc245821b890916",
         "url": "https://api.hubtran.com/downloads/documents/unique-id",
         "tiff_url": "https://api.hubtran.com/downloads/documents/unique-id.tiff",
+        "received_at": "2020-03-05T00:00:00.000Z",
         "pages": [
           {"png_url": "https://api.hubtran.com/downloads/documents/unique-id/pages/123.png"},
           {"png_url": "https://api.hubtran.com/downloads/documents/unique-id/pages/456.png"}
