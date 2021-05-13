@@ -648,7 +648,7 @@ Request:
     "priority": "Tier 1",
     "days_to_pay": 10,                    // Recommended
     "payment_strategy": "direct",         // direct or triumphpay, defaults to direct
-    "labels": ["LABEL1","LABEL2"],        // Omit this key unless you want to overwrite user-selected labels
+    "labels": ["LABEL1","LABEL2"],        // Omit this key unless you want to overwrite existing labels set through the API
     "contacts": [                         // Recommended
       "joe@example.com",
       "tom@example.com"
