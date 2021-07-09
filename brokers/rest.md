@@ -1321,13 +1321,11 @@ Request:
     "documents": [
       {
         "external_id": "d123",      // Optional, your internal ID for the document.
-        "document_type": "invoice", // Required, hubtran document type as shown in Document Types section below
         "file_name": "invoice.pdf", // Required
         "data": DATA                // Required, base64-encoded document data
       },
       {
         "external_id": "d456",
-        "document_type": "BOL",
         "file_name": "bol.pdf",
         "data": DATA
       }
