@@ -1315,7 +1315,8 @@ Request:
       "factoring": true, // Optional
     },
     "vendor": {
-      "external_id": "789" // Required, the vendor or carrier id that matches id in TMS.
+      "external_id": "789", // Required, the vendor or carrier id that matches id in TMS.
+      "sender_email": "carrier@example.com" // Optional, email address of carrier who originally submitted paperwork.
     },
     "load_id": "156", // Optional, ID of load in TMS
     "documents": [
