@@ -1286,6 +1286,9 @@ If you already have an invoice submission from a carrier (paperwork and/or invoi
 you may want to programatically flow that into HubTran. This will create an item in the "New" queue
 just like if HubTran received an email with paperwork.
 
+If only an `externai_id` is submitted, `documents` are required, and it's assumed that these are being submitted for
+future processing, and all other invoice fields are ignored.
+
 For invoices submitted via this API, HubTran will not perform machine learning and data extraction
 on the submitted documents. Instead we will use the invoice data you submit, as the sole source of data
 about the invoice.
@@ -1305,10 +1308,10 @@ Request:
 {
   "invoice": {
     "external_id": "456",    // Required, your internal ID
-    "source": "web_billing", // Required
-    "number": "111",         // Required
-    "amount": 123.0,         // Required
-    "date": "2019-04-09",    // Required, in iso8601 format
+    "source": "web_billing", // Required if not only documents
+    "number": "111",         // Required if not only documents
+    "amount": 123.0,         // Required if not only documents
+    "date": "2019-04-09",    // Required if not only documents, in iso8601 format
     "quickpay": true,
     "other": {
       "trailer": "333",  // Optional
