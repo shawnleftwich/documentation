@@ -1327,6 +1327,8 @@ Request:
         "external_id": "d123",      // Optional, your internal ID for the document.
         "file_name": "invoice.pdf", // Required
         "data": DATA                // Required, base64-encoded document data
+        "doctype": "BOL".           // Optional doctype for the document
+        "POD": false,               // Optional flag if document is POD, boolean
       },
       {
         "external_id": "d456",
