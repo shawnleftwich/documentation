@@ -6,4 +6,4 @@ In order to authenticate you need to send an Authorization header with the token
 Authorization: Token token=YOUR_TOKEN
 ```
 
-Email support@hubtran.com to get your API token.
+Email info@triumphpay.com to get your API token.

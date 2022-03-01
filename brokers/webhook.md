@@ -1,7 +1,7 @@
 # Webhook
 
 We can POST a JSON payload to an endpoint that you provide us when one of the
-following events occurs in HubTran:
+following events occurs in TriumphPay Audit:
 
 * invoice approved
 * invoice exception
@@ -32,7 +32,7 @@ choose which payloads you want to use and ignore the rest.
     },
     "type": "approved",
     "invoice": {
-      "id": 7,                            // HubTran's internal id
+      "id": 7,                            // TriumphPay Audit's internal id
       "number": "invoice-number",
       "date": "2019-07-13",
       "date_to_pay": "2019-08-13",
@@ -96,11 +96,11 @@ choose which payloads you want to use and ignore the rest.
         "hubtran_type_name": "Bill of Lading / Packing Slip",
         "proof_of_delivery": true,
         "fingerprint": "09e79148e4ba61d971b7f39c9dc245821b890916",
-        "url": "https://api.hubtran.com/downloads/documents/unique-id",
+        "url": "https://api.audit.triumphpay.com/downloads/documents/unique-id",
         "received_at": "2020-03-05T00:00:00.000Z",
         "pages": [
-          {"png_url": "https://api.hubtran.com/downloads/documents/unique-id/pages/123.png"},
-          {"png_url": "https://api.hubtran.com/downloads/documents/unique-id/pages/456.png"}
+          {"png_url": "https://api.audit.triumphpay.com/downloads/documents/unique-id/pages/123.png"},
+          {"png_url": "https://api.audit.triumphpay.com/downloads/documents/unique-id/pages/456.png"}
         ],
         "visibility": {
           "carrier": true,
@@ -117,11 +117,11 @@ choose which payloads you want to use and ignore the rest.
       {
         "type": "billOfLading",
         "hubtran_type_name": "Bill of Lading / Packing Slip",
-        "url": "https://api.hubtran.com/downloads/documents/combined/unique-id",
+        "url": "https://api.audit.triumphpay.com/downloads/documents/combined/unique-id",
         "proof_of_delivery": true,
         "pages": [
-          {"png_url": "https://api.hubtran.com/downloads/documents/unique-ids/pages/123.png"},
-          {"png_url": "https://api.hubtran.com/downloads/documents/unique-ids/pages/456.png"}
+          {"png_url": "https://api.audit.triumphpay.com/downloads/documents/unique-ids/pages/123.png"},
+          {"png_url": "https://api.audit.triumphpay.com/downloads/documents/unique-ids/pages/456.png"}
         ],
         "visibility": {
           "carrier": true,
@@ -156,7 +156,7 @@ choose which payloads you want to use and ignore the rest.
     },
     "type": "exception",
     "invoice": {
-      "id": 7,                            // HubTran's internal id
+      "id": 7,                            // TriumphPay Audit's internal id
       "processor": {
         "email": "test@example.com"
       },
@@ -195,11 +195,11 @@ choose which payloads you want to use and ignore the rest.
         "hubtran_type_name": "Bill of Lading / Packing Slip",
         "proof_of_delivery": true,
         "fingerprint": "09e79148e4ba61d971b7f39c9dc245821b890916",
-        "url": "https://api.hubtran.com/downloads/documents/unique-id",
+        "url": "https://api.audit.triumphpay.com/downloads/documents/unique-id",
         "received_at": "2020-03-05T00:00:00.000Z",
         "pages": [
-          {"png_url": "https://api.hubtran.com/downloads/documents/unique-id/pages/123.png"},
-          {"png_url": "https://api.hubtran.com/downloads/documents/unique-id/pages/456.png"}
+          {"png_url": "https://api.audit.triumphpay.com/downloads/documents/unique-id/pages/123.png"},
+          {"png_url": "https://api.audit.triumphpay.com/downloads/documents/unique-id/pages/456.png"}
         ],
         "visibility": {
           "carrier": true,
@@ -216,11 +216,11 @@ choose which payloads you want to use and ignore the rest.
       {
         "type": "billOfLading",
         "hubtran_type_name": "Bill of Lading / Packing Slip",
-        "url": "https://api.hubtran.com/downloads/documents/combined/unique-id",
+        "url": "https://api.audit.triumphpay.com/downloads/documents/combined/unique-id",
         "proof_of_delivery": true,
         "pages": [
-          {"png_url": "https://api.hubtran.com/downloads/documents/unique-ids/pages/123.png"},
-          {"png_url": "https://api.hubtran.com/downloads/documents/unique-ids/pages/456.png"}
+          {"png_url": "https://api.audit.triumphpay.com/downloads/documents/unique-ids/pages/123.png"},
+          {"png_url": "https://api.audit.triumphpay.com/downloads/documents/unique-ids/pages/456.png"}
         ],
         "visibility": {
           "carrier": true,
@@ -250,11 +250,11 @@ choose which payloads you want to use and ignore the rest.
         "hubtran_type_name": "Bill of Lading / Packing Slip",
         "fingerprint": "09e79148e4ba61d971b7f39c9dc245821b890916",
         "proof_of_delivery": true,
-        "url": "https://api.hubtran.com/downloads/documents/unique-id",
-        "tiff_url: "https://api.hubtran.com/downloads/documents/tiff-url",  // omitted if account is not configured to use TIFF images
+        "url": "https://api.audit.triumphpay.com/downloads/documents/unique-id",
+        "tiff_url: "https://api.audit.triumphpay.com/downloads/documents/tiff-url",  // omitted if account is not configured to use TIFF images
         "received_at": "2020-03-05T00:00:00.000Z",
         "pages": [
-          {"png_url": "http://api.hubtran.com/downloads/documents/png-url"}
+          {"png_url": "http://api.audit.triumphpay.com/downloads/documents/png-url"}
         ],
         "load": {"external_id": "external-id"},
         "carrier": {"external_id": "external-id"}, // If there is no carrier, it'll come through as null
@@ -268,7 +268,7 @@ choose which payloads you want to use and ignore the rest.
 ## Notes
 
 ### Tiff Documents
-HubTran can optionally enable documents to be fetched in tiff format. If this setting is enabled
+TriumphPay Audit can optionally enable documents to be fetched in tiff format. If this setting is enabled
 there will be a "tiff_url" alongside the "url" in "documents" and "combined_document_urls".
 It will look like this:
 ```
@@ -278,12 +278,12 @@ It will look like this:
         "type": "proofOfDelivery",
         "proof_of_delivery": true,
         "fingerprint": "09e79148e4ba61d971b7f39c9dc245821b890916",
-        "url": "https://api.hubtran.com/downloads/documents/unique-id",
-        "tiff_url": "https://api.hubtran.com/downloads/documents/unique-id.tiff",
+        "url": "https://api.audit.triumphpay.com/downloads/documents/unique-id",
+        "tiff_url": "https://api.audit.triumphpay.com/downloads/documents/unique-id.tiff",
         "received_at": "2020-03-05T00:00:00.000Z",
         "pages": [
-          {"png_url": "https://api.hubtran.com/downloads/documents/unique-id/pages/123.png"},
-          {"png_url": "https://api.hubtran.com/downloads/documents/unique-id/pages/456.png"}
+          {"png_url": "https://api.audit.triumphpay.com/downloads/documents/unique-id/pages/123.png"},
+          {"png_url": "https://api.audit.triumphpay.com/downloads/documents/unique-id/pages/456.png"}
         ],
         "visibility": {
           "carrier": true,
@@ -295,12 +295,12 @@ It will look like this:
       {
         "type": "billOfLading",
         "hubtran_type_name": "Bill of Lading / Packing Slip",
-        "url": "https://api.hubtran.com/downloads/documents/combined/unique-id",
-        "tiff_url": "https://api.hubtran.com/downloads/documents/combined/unique-id.tiff",
+        "url": "https://api.audit.triumphpay.com/downloads/documents/combined/unique-id",
+        "tiff_url": "https://api.audit.triumphpay.com/downloads/documents/combined/unique-id.tiff",
         "proof_of_delivery": true,
         "pages": [
-          {"png_url": "https://api.hubtran.com/downloads/documents/unique-ids/pages/123.png"},
-          {"png_url": "https://api.hubtran.com/downloads/documents/unique-ids/pages/456.png"}
+          {"png_url": "https://api.audit.triumphpay.com/downloads/documents/unique-ids/pages/123.png"},
+          {"png_url": "https://api.audit.triumphpay.com/downloads/documents/unique-ids/pages/456.png"}
         ],
         "visibility": {
           "carrier": true,
