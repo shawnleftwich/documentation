@@ -1,8 +1,8 @@
 # REST API
 
 Very little information is required to actually create objects in
-HubTran, often just a name and external_id. However, in order for
-HubTran to work well, we need as much information as you can give us.
+TriumphPay Audit, often just a name and external_id. However, in order for
+TriumphPay Audit to work well, we need as much information as you can give us.
 
 All dates + times should be in
 [iso8601](https://en.wikipedia.org/wiki/ISO_8601) format. All `external_id`s should be strings.
@@ -16,10 +16,10 @@ All dates + times should be in
 
 ## Create + Update Debtors
 
-PUT https://api.hubtran.com/tms/debtors/:external_id
+PUT https://api.audit.triumphpay.com/tms/debtors/:external_id
 
 ```
-curl -X PUT https://api.hubtran.com/tms/debtors/example_id \
+curl -X PUT https://api.audit.triumphpay.com/tms/debtors/example_id \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN" \
   -d '{"debtor": {"name": "example name", "external_id": "example_id"}}'
@@ -56,7 +56,7 @@ Response:
 ```
 {
   "debtor": {
-    "id": 1,                              // HubTran's internal id for the debtor
+    "id": 1,                              // TriumphPay Audit's internal id for the debtor
     "external_id": "debtor-external-id",  // YOUR internal id for the debtor
     "name": "debtor name",
     "active": true,
@@ -82,10 +82,10 @@ Response:
 
 ## Bulk Create + Update Debtors
 
-PUT https://api.hubtran.com/tms/debtors/bulk
+PUT https://api.audit.triumphpay.com/tms/debtors/bulk
 
 ```
-curl -X PUT https://api.hubtran.com/tms/debtors/bulk \
+curl -X PUT https://api.audit.triumphpay.com/tms/debtors/bulk \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN" \
   -d '{"debtors": [{"name": "example name", "external_id": "example_id"}]}'
@@ -120,10 +120,10 @@ Response:
 
 ## Invoice Purchased
 
-POST https://api.hubtran.com/tms/invoices/:hubtran_id/purchase
+POST https://api.audit.triumphpay.com/tms/invoices/:hubtran_id/purchase
 
 ```
-curl -X PUT https://api.hubtran.com/tms/invoices/example_id/purchase \
+curl -X PUT https://api.audit.triumphpay.com/tms/invoices/example_id/purchase \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN" \
   -d '{"ignored": "true"}'
@@ -139,10 +139,10 @@ Empty JSON on success, error status code on failure
 
 ## Invoice Declined
 
-POST https://api.hubtran.com/tms/invoices/:hubtran_id/decline
+POST https://api.audit.triumphpay.com/tms/invoices/:hubtran_id/decline
 
 ```
-curl -X PUT https://api.hubtran.com/tms/invoices/example_id/decline \
+curl -X PUT https://api.audit.triumphpay.com/tms/invoices/example_id/decline \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN" \
   -d '{"ignored": "true"}'
@@ -159,10 +159,10 @@ Empty JSON on success, error status code on failure
 
 ## Verifications
 
-POST https://api.hubtran.com/verifications
+POST https://api.audit.triumphpay.com/verifications
 
 ```
-curl -X POST https://api.hubtran.com/verifications \
+curl -X POST https://api.audit.triumphpay.com/verifications \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN" \
   -d '{"amount":100.00, "load_id":"123", "debtor":{"external_id":"456"}, "carrier":{"external_id":"789"}}'
