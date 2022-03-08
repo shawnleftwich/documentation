@@ -1384,22 +1384,22 @@ curl -X POST https://api.hubtran.com/broker/invoice_submission_documents \
   "documents": [
      {
         "external_id": "123",
-        "document_type": "invoice". // Optional document_type for the document, see Document Type endpoint for valid values.
-        "POD": false,
+        "document_type": "invoice", // Optional document_type for the document, see Document Type endpoint for valid values.
+        "POD": false,               // Optional flag if document is POD, boolean
         "file_name": "foo.txt",
         "data": DATA                // base64-encoded document data
       },
       {
         "external_id": "456",
-        "document_type": "invoice".  // Optional document_type for the document, see Document Type endpoint for valid values.
-        "POD": true,
+        "document_type": "invoice",  // Optional document_type for the document, see Document Type endpoint for valid values.
+        "POD": true,                 // Optional flag if document is POD, boolean
         "file_name": "bar.txt",
-        "data": DATA                // base64-encoded document data
+        "data": DATA                 // base64-encoded document data
       }
    ],
    "vendor": {
-     "external_id": "a_valid_external_id", // Required
-     "sender_email": "valid_email@example.com"
+     "external_id": "a_valid_external_id", // Required, the vendor or carrier id that matches id in TMS.
+     "sender_email": "carrier@example.com" // Optional, email address of carrier who originally submitted paperwork.
     },
      "load_id": "valid_load_id", // Required
  }
