@@ -1364,8 +1364,7 @@ HTTP Status Code 422
 
 ## Create Documents Only Carrier Invoice Submissions
 
-This endpoint allows documents to be sent via the endpoint for future processing. This will create an item in the "New" queue just like if HubTran received an email with paperwork.
-
+This endpoint allows documents to be sent via the endpoint for future processing. This will create an item in the "New" queue just like if TriumphPay received an email with paperwork.
 
 POST https://api.hubtran.com/broker/invoice_submission_documents
 
