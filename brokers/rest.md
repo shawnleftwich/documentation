@@ -22,6 +22,7 @@ If you receive a status code other than 2xx, please retry your request once with
 * [Mark Approved Invoice as Verified](#mark-approved-invoice-as-verified)
 * [Mark Approved Invoice as Not Verified](#mark-approved-invoice-as-not-verified)
 * [Create Carrier Invoice Submissions](#create-carrier-invoice-submissions)
+* [Create Documents Only Carrier Invoice Submissions](#create-carrier-invoice-submissions-documents-only)
 * [List Transmissions](#list-transmissions)
 * [Mark Transmission as Verified](#mark-transmission-as-verified)
 * [Update Account](#update-account)
@@ -1327,7 +1328,7 @@ Request:
         "external_id": "d123",      // Optional, your internal ID for the document.
         "file_name": "invoice.pdf", // Required
         "data": DATA                // Required, base64-encoded document data
-        "doctype": "BOL".           // Optional doctype for the document
+        "document_type": "BOL".     // Optional document_type for the document, see Document Type endpoint for valid values.
         "POD": false,               // Optional flag if document is POD, boolean
       },
       {
@@ -1359,6 +1360,73 @@ HTTP Status Code 422
   "errors": [
     {
       "message": "carrier is missing" // Error message describing the issue.
+    }
+  ]
+}
+```
+
+## Create Documents Only Carrier Invoice Submissions
+
+This endpoint allows documents to be sent via the endpoint for future processing. This will create an item in the "New" queue just like if HubTran received an email with paperwork.
+
+
+POST https://api.hubtran.com/broker/invoice_submission_documents
+
+```
+curl -X POST https://api.hubtran.com/broker/invoice_submission_documents \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Token token=YOUR_TOKEN" \
+  -d '{...}'
+```
+
+%% Request:
+
+```
+{
+  "external_id": "123123",
+  "documents": [
+     {
+        "external_id": "123",
+        "document_type": "invoice". // Optional document_type for the document, see Document Type endpoint for valid values.
+        "POD": false,
+        "file_name": "foo.txt",
+        "data": DATA                // base64-encoded document data
+      },
+      {
+        "external_id": "456",
+        "document_type": "invoice".  // Optional document_type for the document, see Document Type endpoint for valid values.
+        "POD": true,
+        "file_name": "bar.txt",
+        "data": DATA                // base64-encoded document data
+      }
+   ],
+   "vendor": {
+     "external_id": "a_valid_external_id", // Required
+     "sender_email": "valid_email@example.com"
+    },
+     "load_id": "valid_load_id", // Required
+ }
+ ```
+
+Success Response:
+
+```
+HTTP Status Code 201
+{
+  "invoice": {
+    "id": 123 // The HubTran ID of the invoice if you want to store it
+  }
+}
+```
+
+Failure Response:
+
+```
+HTTP Status Code 422
+{
+  "errors": [
+    {
+      "message": "load_id is missing" // Error message describing the issue.
     }
   ]
 }
