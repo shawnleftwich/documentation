@@ -15,10 +15,10 @@ You might want to take a look at the [high level overview](high_level_overview.p
 
 ## General Notes
 
-In HubTran's terminology, a "load" represents the physical truck move and a "shipment" represents the unit of cargo that is picked up and
-delivered. A load may have one shipment or multiple shipments. A shipment may move on one load or multiple loads. A load is billed on the carrier invoice. A shipment is billed on the broker invoice to its customer. If your TMS is not structured around the concept of loads and shipments, HubTran can map to your structure.
+In TriumphPay Audit's terminology, a "load" represents the physical truck move and a "shipment" represents the unit of cargo that is picked up and
+delivered. A load may have one shipment or multiple shipments. A shipment may move on one load or multiple loads. A load is billed on the carrier invoice. A shipment is billed on the broker invoice to its customer. If your TMS is not structured around the concept of loads and shipments, TriumphPay Audit can map to your structure.
 
-You'll also see references to "external_id". This is our way of linking objects in HubTran with objects in your TMS so it should be YOUR internal id for the object. It should be unique and immutable.
+You'll also see references to "external_id". This is our way of linking objects in TriumphPay Audit with objects in your TMS so it should be YOUR internal id for the object. It should be unique and immutable.
 
 At various times we'll add more keys to our webhook payloads that might not be documented. Your implementation should be able to handle us adding keys without notice. However, we'll never remove a key from the payload without giving you plenty of notice.
 
@@ -40,7 +40,7 @@ We have also added a `fingerprint` field to both the `load_documents` in _List T
 Currently, only `load_document_attachment_v1` transmissions will be made available in the _List Transmissions_ endpoint, but we anticipate adding more transmission types in the future. For this reason, we recommend always including the type parameter in requests to the _List Transmissions_ endpoint like this:
 
 ```
-GET https://api.hubtran.com/tms/transmissions?type=load_documents_attached_v1
+GET https://api.audit.triumphpay.com/tms/transmissions?type=load_documents_attached_v1
 ```
 
 This way you won't receive other transmissions and payloads in the response when they're added in the future.
@@ -52,4 +52,3 @@ In order to verify that you have received and processed a transmission (and to r
 
 ### Pagination
 Though the _List Transmissions_ endpoint supports pagination, we anticipate that the easiest way to integrate with it will simply be to fetch, process, and verify the first page of transmissions. This first page of results will continuously update as you verify transmissions.
-

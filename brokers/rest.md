@@ -1,8 +1,8 @@
 # REST API
 
 Very little information is required to actually create objects in
-HubTran, often just a name and external_id. However, in order for
-HubTran to work well, we need as much information as you can give us.
+TriumphPay Audit, often just a name and external_id. However, in order for
+TriumphPay Audit to work well, we need as much information as you can give us.
 
 All dates + times should be in
 [iso8601](https://en.wikipedia.org/wiki/ISO_8601) format. All `external_id`s should be strings.
@@ -22,6 +22,7 @@ If you receive a status code other than 2xx, please retry your request once with
 * [Mark Approved Invoice as Verified](#mark-approved-invoice-as-verified)
 * [Mark Approved Invoice as Not Verified](#mark-approved-invoice-as-not-verified)
 * [Create Carrier Invoice Submissions](#create-carrier-invoice-submissions)
+* [Create Documents Only Carrier Invoice Submissions](#create-carrier-invoice-submissions-documents-only)
 * [List Transmissions](#list-transmissions)
 * [Mark Transmission as Verified](#mark-transmission-as-verified)
 * [Update Account](#update-account)
@@ -31,10 +32,10 @@ If you receive a status code other than 2xx, please retry your request once with
 
 Below you'll see we have "load_id" and "external_id". "load_id" is what the load would be called in the user interface of your application.  Often it is unique and immutable but some TMSs do not have that guarantee. "external_id" is YOUR internal id for the load. "external_id" should always be unique and immutable.
 
-PUT https://api.hubtran.com/tms/loads/:load_id
+PUT https://api.audit.triumphpay.com/tms/loads/:load_id
 
 ```
-curl -X PUT https://api.hubtran.com/tms/loads/example_id \
+curl -X PUT https://api.audit.triumphpay.com/tms/loads/example_id \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN" \
   -d '{"load": {"load_id": "example_id", "external_id": "example_id"}}'
@@ -189,22 +190,22 @@ Same as the response for the [load details](#load-details) API.
 
 ## Load Details
 
-GET https://api.hubtran.com/tms/loads/:id
+GET https://api.audit.triumphpay.com/tms/loads/:id
 
-Where :id is the HubTran id you previously saved.
+Where :id is the TriumphPay Audit id you previously saved.
 
-If you don't have the HubTran id you can alternatively use one of the
+If you don't have the TriumphPay Audit id you can alternatively use one of the
 following forms:
 
-GET https://api.hubtran.com/tms/loads?load_id=:your_load_id
-GET https://api.hubtran.com/tms/loads?external_id=:your_load_external_id
+GET https://api.audit.triumphpay.com/tms/loads?load_id=:your_load_id
+GET https://api.audit.triumphpay.com/tms/loads?external_id=:your_load_external_id
 
 load_id is what the user sees in the UI and external_id is what you
 would have passed us as your internal, immutable id for the load.
 Sometimes they are the same thing.
 
 ```
-curl -X GET https://api.hubtran.com/tms/loads/example_id \
+curl -X GET https://api.audit.triumphpay.com/tms/loads/example_id \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN"
 ```
@@ -214,7 +215,7 @@ Response:
 ```
 {
   "load": {
-    "id": 5,                                            // HubTran's internal id for the load
+    "id": 5,                                            // TriumphPay Audit's internal id for the load
     "load_id": "load-id",                               // The load_id you sent us when creating the load
     "external_id": "external-id",                       // The external_id you sent us when creating the load
     "status": "new",
@@ -363,14 +364,14 @@ Response:
             "type": "billOfLading",
             "hubtran_type_name": "Bill of Lading / Packing Slip",
             "proof_of_delivery": true,
-            "url": "https://api.hubtran.com/downloads/documents/unique-id",
+            "url": "https://api.audit.triumphpay.com/downloads/documents/unique-id",
             "visibility": {
               "carrier": true,
               "customer": true
             },
             "pages": [
               {
-                "png_url": "https://api.hubtran.com/downloads/documents/unique-id/pages/xxx.png"
+                "png_url": "https://api.audit.triumphpay.com/downloads/documents/unique-id/pages/xxx.png"
               }
             ]
           }
@@ -379,7 +380,7 @@ Response:
           {
             "type": "billOfLading",
             "hubtran_type_name": "Bill of Lading / Packing Slip",
-            "url": "https://api.hubtran.com/downloads/documents/combined/unique-id",
+            "url": "https://api.audit.triumphpay.com/downloads/documents/combined/unique-id",
             "proof_of_delivery": true,
             "visibility": {
               "carrier": true,
@@ -409,14 +410,14 @@ Response:
         "type": "billOfLading",
         "hubtran_type_name": "Bill of Lading / Packing Slip",
         "proof_of_delivery": true,
-        "url": "https://api.hubtran.com/downloads/documents/unique-id",
+        "url": "https://api.audit.triumphpay.com/downloads/documents/unique-id",
         "visibility": {
           "carrier": true,
           "customer": true
         },
         "pages": [
           {
-            "png_url": "https://api.hubtran.com/downloads/documents/unique-id/pages/xxx.png"
+            "png_url": "https://api.audit.triumphpay.com/downloads/documents/unique-id/pages/xxx.png"
           }
         ]
       }
@@ -427,10 +428,10 @@ Response:
 
 ## Create + Update Shipments
 
-POST https://api.hubtran.com/tms/shipments
+POST https://api.audit.triumphpay.com/tms/shipments
 
 ```
-curl -X PUT https://api.hubtran.com/tms/shipments \
+curl -X PUT https://api.audit.triumphpay.com/tms/shipments \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN" \
   -d '{"shipments": [{"external_id": "example_id"}]}'
@@ -535,7 +536,7 @@ Response:
 {
   "shipments": [
     {
-      "id": 1,                                              // HubTran's internal id for the shipment
+      "id": 1,                                              // TriumphPay Audit's internal id for the shipment
       "external_id": "shipment-external-id"                 // YOUR internal id for the shipment
       "status": "new",
       "tms_created_at": "2016-07-10 20:43:00 +0300",
@@ -615,10 +616,10 @@ Response:
 
 ## Create + Update Carriers
 
-PUT https://api.hubtran.com/tms/carriers/:external_id
+PUT https://api.audit.triumphpay.com/tms/carriers/:external_id
 
 ```
-curl -X PUT https://api.hubtran.com/tms/carriers/example_id \
+curl -X PUT https://api.audit.triumphpay.com/tms/carriers/example_id \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN" \
   -d '{"carrier": {"name": "example name", "external_id": "example_id"}}'
@@ -648,7 +649,7 @@ Request:
     "priority": "Tier 1",
     "days_to_pay": 10,                    // Recommended
     "payment_strategy": "direct",         // direct or triumphpay, defaults to direct
-    "labels": ["LABEL1","LABEL2"],        // Omit this key unless you want to overwrite user-selected labels
+    "labels": ["LABEL1","LABEL2"],        // Omit this key unless you want to overwrite existing labels set through the API
     "contacts": [                         // Recommended
       "joe@example.com",
       "tom@example.com"
@@ -673,7 +674,7 @@ Response:
 ```
 {
   "carrier": {
-    "id": 1,                                // HubTran's internal id for the carrier
+    "id": 1,                                // TriumphPay Audit's internal id for the carrier
     "external_id": "carrier-external-id",   // YOUR internal id for the carrier
     "external_vendor_id": "evid",
     "active": true,
@@ -712,10 +713,10 @@ labels
 
 ## Create + Update Customers
 
-PUT https://api.hubtran.com/tms/customers/:external_id
+PUT https://api.audit.triumphpay.com/tms/customers/:external_id
 
 ```
-curl -X PUT https://api.hubtran.com/tms/customers/example_id \
+curl -X PUT https://api.audit.triumphpay.com/tms/customers/example_id \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN" \
   -d '{"customer":  {...}}'
@@ -790,7 +791,7 @@ Response:
 ```
 {
   "customer": {
-    "id": 20,                               // HubTran's internal id for the customer
+    "id": 20,                               // TriumphPay Audit's internal id for the customer
     "external_id": "customer-external-id",  // YOUR internal id for the customer
     "name": "customer-name",
     "account_number": "customer-account-number",
@@ -868,10 +869,10 @@ in the evening of the previous day in your local timezone or the customer's loca
 
 ## Create + Update Customer Invoices
 
-PUT https://api.hubtran.com/tms/customer_invoices
+PUT https://api.audit.triumphpay.com/tms/customer_invoices
 
 ```
-curl -X PUT https://api.hubtran.com/tms/customer_invoices \
+curl -X PUT https://api.audit.triumphpay.com/tms/customer_invoices \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN" \
   -d '{"customer_invoice": {...}}'
@@ -948,7 +949,7 @@ Request:
     "business_unit": {                                 // Optional, if this invoice belongs to a specific business unit inside your account.
       "external_id": "business-unit-external-id",      // Required, your internal id for this model
       "federal_id": "355151",                          // Optional, Federal Employer Identification Number.  Only affects creation.
-      "logo_id": 1000,                                 // Optional, the HubTran Logo ID for this business unit. Only affects creation.
+      "logo_id": 1000,                                 // Optional, the TriumphPay Audit Logo ID for this business unit. Only affects creation.
       "name": "example-name"                           // Required if creating a new business unit.  Only affects creation.
     }
   }
@@ -960,7 +961,7 @@ Response:
 ```
 {
   "customer_invoice": {
-    "id": 10,                                       // HubTran's internal id for the customer invoice
+    "id": 10,                                       // TriumphPay Audit's internal id for the customer invoice
     "customer": {
       "external_id": "customer-external-id",
       "name": "example-name"
@@ -1036,10 +1037,10 @@ Response:
 
 ## Create Payments
 
-POST https://api.hubtran.com/tms/payments
+POST https://api.audit.triumphpay.com/tms/payments
 
 ```
-curl -X POST https://api.hubtran.com/tms/payments \
+curl -X POST https://api.audit.triumphpay.com/tms/payments \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN" \
   -d '{"payment": {...}}'
@@ -1075,7 +1076,7 @@ Response:
 ```
 {
   "payment": {
-    "id": 1,                              // HubTran's internal id for the payment
+    "id": 1,                              // TriumphPay Audit's internal id for the payment
     "external_id": "1234",
     "amount": 123.1,
     "date": "2015-12-09",
@@ -1097,10 +1098,10 @@ Response:
 
 ## Clear Exceptions
 
-POST https://api.hubtran.com/tms/carrier_invoices/:id/exceptions/clear
+POST https://api.audit.triumphpay.com/tms/carrier_invoices/:id/exceptions/clear
 
 ```
-curl -X POST https://api.hubtran.com/tms/carrier_invoices/:id/exceptions/clear \
+curl -X POST https://api.audit.triumphpay.com/tms/carrier_invoices/:id/exceptions/clear \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN" \
   -d '{}'
@@ -1122,10 +1123,10 @@ Response:
 
 ## List Approved Invoices
 
-GET https://api.hubtran.com/tms/carrier_invoices/approved
+GET https://api.audit.triumphpay.com/tms/carrier_invoices/approved
 
 ```
-curl -X GET https://api.hubtran.com/tms/carrier_invoices/approved \
+curl -X GET https://api.audit.triumphpay.com/tms/carrier_invoices/approved \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN"
 ```
@@ -1200,10 +1201,10 @@ Response:
           "hubtran_type_name": "Bill of Lading / Packing Slip",
           "proof_of_delivery": true,
           "fingerprint": "09e79148e4ba61d971b7f39c9dc245821b890916",
-          "url": "https://api.hubtran.com/downloads/documents/unique-id",
-          "tiff_url": "https://api.hubtran.com/downloads/documents/tiff-url",  //omitted if account does not require TIFF files
+          "url": "https://api.audit.triumphpay.com/downloads/documents/unique-id",
+          "tiff_url": "https://api.audit.triumphpay.com/downloads/documents/tiff-url",  //omitted if account does not require TIFF files
           "pages": [
-            {"png_url": "http://api.hubtran.com/downloads/documents/png-url"}
+            {"png_url": "http://api.audit.triumphpay.com/downloads/documents/png-url"}
           ],
           "visibility": {
             "carrier": true,
@@ -1219,7 +1220,7 @@ Response:
         {
           "type": "billOfLading",
           "hubtran_type_name": "Bill of Lading / Packing Slip",
-          "url": "https://api.hubtran.com/downloads/documents/combined/unique-id",
+          "url": "https://api.audit.triumphpay.com/downloads/documents/combined/unique-id",
           "proof_of_delivery": true,
           "visibility": {
             "carrier": true,
@@ -1243,10 +1244,10 @@ Response:
 
 ## Mark Approved Invoice as Verified
 
-POST https://api.hubtran.com/tms/carrier_invoices/:id/verified
+POST https://api.audit.triumphpay.com/tms/carrier_invoices/:id/verified
 
 ```
-curl -X POST https://api.hubtran.com/tms/carrier_invoices/:id/verified \
+curl -X POST https://api.audit.triumphpay.com/tms/carrier_invoices/:id/verified \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN"
 ```
@@ -1264,10 +1265,10 @@ Response:
 This is more for when you're developing and you want to reset an invoice
 to mark as verified again.
 
-POST https://api.hubtran.com/tms/carrier_invoices/:id/not_verified
+POST https://api.audit.triumphpay.com/tms/carrier_invoices/:id/not_verified
 
 ```
-curl -X POST https://api.hubtran.com/tms/carrier_invoices/:id/not_verified \
+curl -X POST https://api.audit.triumphpay.com/tms/carrier_invoices/:id/not_verified \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN"
 ```
@@ -1283,17 +1284,17 @@ Response:
 ## Create Carrier Invoice Submissions
 
 If you already have an invoice submission from a carrier (paperwork and/or invoice details)
-you may want to programatically flow that into HubTran. This will create an item in the "New" queue
-just like if HubTran received an email with paperwork.
+you may want to programatically flow that into TriumphPay Audit. This will create an item in the "New" queue
+just like if TriumphPay Audit received an email with paperwork.
 
-For invoices submitted via this API, HubTran will not perform machine learning and data extraction
+For invoices submitted via this API, TriumphPay Audit will not perform machine learning and data extraction
 on the submitted documents. Instead we will use the invoice data you submit, as the sole source of data
 about the invoice.
 
-POST https://api.hubtran.com/broker/invoice_submissions
+POST https://api.audit.triumphpay.com/broker/invoice_submissions
 
 ```
-curl -X POST https://api.hubtran.com/broker/invoice_submissions \
+curl -X POST https://api.audit.triumphpay.com/broker/invoice_submissions \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN" \
   -d '{"invoice": {...}}'
@@ -1305,7 +1306,7 @@ Request:
 {
   "invoice": {
     "external_id": "456",    // Required, your internal ID
-    "source": "web_billing", // Required
+    "source": "web_billing", // Required, valid sources are "web_billing", "triumphpay"
     "number": "111",         // Required
     "amount": 123.0,         // Required
     "date": "2019-04-09",    // Required, in iso8601 format
@@ -1315,19 +1316,20 @@ Request:
       "factoring": true, // Optional
     },
     "vendor": {
-      "external_id": "789" // Required, the vendor or carrier id that matches id in TMS.
+      "external_id": "789", // Required, the vendor or carrier id that matches id in TMS.
+      "sender_email": "carrier@example.com" // Optional, email address of carrier who originally submitted paperwork.
     },
     "load_id": "156", // Optional, ID of load in TMS
     "documents": [
       {
         "external_id": "d123",      // Optional, your internal ID for the document.
-        "document_type": "invoice", // Required, hubtran document type as shown in Document Types section below
         "file_name": "invoice.pdf", // Required
         "data": DATA                // Required, base64-encoded document data
+        "document_type": "BOL".     // Optional document_type for the document, see Document Type endpoint for valid values.
+        "POD": false,               // Optional flag if document is POD, boolean
       },
       {
         "external_id": "d456",
-        "document_type": "BOL",
         "file_name": "bol.pdf",
         "data": DATA
       }
@@ -1335,6 +1337,72 @@ Request:
   }
 }
 ```
+
+Success Response:
+
+```
+HTTP Status Code 201
+{
+  "invoice": {
+    "id": 123 // The TriumphPay Audit ID of the invoice if you want to store it
+  }
+}
+```
+
+Failure Response:
+
+```
+HTTP Status Code 422
+{
+  "errors": [
+    {
+      "message": "carrier is missing" // Error message describing the issue.
+    }
+  ]
+}
+```
+
+## Create Documents Only Carrier Invoice Submissions
+
+This endpoint allows documents to be sent via the endpoint for future processing. This will create an item in the "New" queue just like if TriumphPay received an email with paperwork.
+
+POST https://api.hubtran.com/broker/invoice_submission_documents
+
+```
+curl -X POST https://api.hubtran.com/broker/invoice_submission_documents \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Token token=YOUR_TOKEN" \
+  -d '{...}'
+```
+
+%% Request:
+
+```
+{
+  "external_id": "123123",
+  "documents": [
+     {
+        "external_id": "123",
+        "document_type": "invoice", // Optional document_type for the document, see Document Type endpoint for valid values.
+        "POD": false,               // Optional flag if document is POD, boolean
+        "file_name": "foo.txt",
+        "data": DATA                // base64-encoded document data
+      },
+      {
+        "external_id": "456",
+        "document_type": "invoice",  // Optional document_type for the document, see Document Type endpoint for valid values.
+        "POD": true,                 // Optional flag if document is POD, boolean
+        "file_name": "bar.txt",
+        "data": DATA                 // base64-encoded document data
+      }
+   ],
+   "vendor": {
+     "external_id": "a_valid_external_id", // Required, the vendor or carrier id that matches id in TMS.
+     "sender_email": "carrier@example.com" // Optional, email address of carrier who originally submitted paperwork.
+    },
+     "load_id": "valid_load_id", // Required
+ }
+ ```
 
 Success Response:
 
@@ -1354,7 +1422,7 @@ HTTP Status Code 422
 {
   "errors": [
     {
-      "message": "carrier is missing" // Error message describing the issue.
+      "message": "load_id is missing" // Error message describing the issue.
     }
   ]
 }
@@ -1365,10 +1433,10 @@ HTTP Status Code 422
 In order to remove transmissions from this API call you'll have to call the
 transmission verification API with the transmission_id
 
-GET https://api.hubtran.com/tms/transmissions
+GET https://api.audit.triumphpay.com/tms/transmissions
 
 ```
-curl -X GET https://api.hubtran.com/tms/transmissions \
+curl -X GET https://api.audit.triumphpay.com/tms/transmissions \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN"
 ```
@@ -1399,10 +1467,10 @@ HTTP Status Code 200
           "hubtran_type_name": "Bill of Lading / Packing Slip",
           "fingerprint": "09e79148e4ba61d971b7f39c9dc245821b890916",
           "proof_of_delivery": true,
-          "url": "https://api.hubtran.com/downloads/documents/unique-id",
-          "tiff_url: "https://api.hubtran.com/downloads/documents/tiff-url",  // omitted if account is not configured to use TIFF images
+          "url": "https://api.audit.triumphpay.com/downloads/documents/unique-id",
+          "tiff_url: "https://api.audit.triumphpay.com/downloads/documents/tiff-url",  // omitted if account is not configured to use TIFF images
           "pages": [
-            {"png_url": "http://api.hubtran.com/downloads/documents/png-url"}
+            {"png_url": "http://api.audit.triumphpay.com/downloads/documents/png-url"}
           ],
           "load": {"external_id": "external-id"},
           "shipments": [{"external_id": "external-id"}]
@@ -1428,10 +1496,10 @@ HTTP Status Code 422
 
 ## Mark Transmission as Verified
 
-POST https://api.hubtran.com/tms/transmissions/:id/verified
+POST https://api.audit.triumphpay.com/tms/transmissions/:id/verified
 
 ```
-curl -X POST https://api.hubtran.com/tms/transmissions/:id/verified \
+curl -X POST https://api.audit.triumphpay.com/tms/transmissions/:id/verified \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN"
 ```
@@ -1446,10 +1514,10 @@ Response:
 
 ## Update Account
 
-PUT https://api.hubtran.com/accounts/ours
+PUT https://api.audit.triumphpay.com/accounts/ours
 
 ```
-curl -X PUT https://api.hubtran.com/accounts/ours \
+curl -X PUT https://api.audit.triumphpay.com/accounts/ours \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN" \
   -d '{"account": {"webhook_url": "http://example.com"}}'
@@ -1480,10 +1548,10 @@ Response:
 This is more of a utility endpoint so it's easy for you to see
 what kinds of document type values you will be receiving via webhook.
 
-GET https://api.hubtran.com/document_types
+GET https://api.audit.triumphpay.com/document_types
 
 ```
-curl -X GET https://api.hubtran.com/document_types \
+curl -X GET https://api.audit.triumphpay.com/document_types \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN"
 ```
@@ -1502,4 +1570,3 @@ Response:
   ]
 }
 ```
-

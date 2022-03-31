@@ -82,6 +82,8 @@ Required fields are **bold**.
 * charges_currency - recommended
 * actual_shipped_at - recommended
 * actual_delivered_at - recommended
+* load_note
+* payables_note
 * quantity
 * weight
 * ship_ref
@@ -185,7 +187,7 @@ are one of these special cases you'll know it.
 
 Once the invoice has been inserted into your TMS you should send a GET
 request to the url listed in `acknowledgement_url` to verify the invoice
-in HubTran.
+in TriumphPay Audit.
 
 * load_id
 * load_external_id
