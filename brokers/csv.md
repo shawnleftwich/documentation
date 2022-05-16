@@ -160,6 +160,9 @@ file**
 
 ## Stops
 
+**This CSV import depends on customers imported from the Load CSV
+file**
+
 * **external_id**
 * **load_external_id** - must match what is in the loads file
 * shipment_external_ids - recommended, comma-separated list of shipment external
