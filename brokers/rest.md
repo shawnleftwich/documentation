@@ -1176,7 +1176,7 @@ Response:
           "rate": 2.0,
           "type_code": "abc",
           "carrier": {
-            "external_id": "carrier-external-id",
+            "external_id": "carrier-external-id"
           }
         }
       ],

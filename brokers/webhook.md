@@ -69,7 +69,7 @@ choose which payloads you want to use and ignore the rest.
           "rate": 2.0,
           "type_code": "Line Haul",
           "carrier": {
-            "external_id": "carrier-external-id",
+            "external_id": "carrier-external-id"
           }
         }
       ],
