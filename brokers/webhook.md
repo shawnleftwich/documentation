@@ -262,10 +262,12 @@ choose which payloads you want to use and ignore the rest.
         "load": {"external_id": "external-id"},
         "carrier": {"external_id": "external-id"}, // If there is no carrier, it'll come through as null
         "shipments": [{"external_id": "external-id"}],
-        "scraped_carrier_invoice_data": {
-          "total_charge_amount": "100",
-          "total_charge_currency: "USD"
-         }
+        "scraped_carrier_invoice": {
+          "total_amount": {
+            "amount": "100",
+            "currency": "USD"
+          }
+        }
       }
     ]
   }
