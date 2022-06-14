@@ -1473,7 +1473,13 @@ HTTP Status Code 200
             {"png_url": "http://api.audit.triumphpay.com/downloads/documents/png-url"}
           ],
           "load": {"external_id": "external-id"},
-          "shipments": [{"external_id": "external-id"}]
+          "shipments": [{"external_id": "external-id"}],
+          "scraped_carrier_invoice": {
+            "total_amount": {
+              "amount": "100",
+              "currency": "USD"
+            }
+          }
         }
       ]
     }
