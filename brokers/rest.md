@@ -1445,7 +1445,7 @@ Optional URL params:
 
 1. `type` - only one type is currently supported: `load_documents_attached_v1` (default is all types)
 2. `results_per_page` - number of results to return per page (default is 20, max is 50)
-3. `page` - which page of results to return based on `results_per_page` (default is 1)
+3. `current_page` - which page of results to return based on `results_per_page` (default is 1)
 
 Success Response:
 
