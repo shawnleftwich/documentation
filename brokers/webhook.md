@@ -259,15 +259,17 @@ choose which payloads you want to use and ignore the rest.
         "pages": [
           {"png_url": "http://api.audit.triumphpay.com/downloads/documents/png-url"}
         ],
-        "load": {"external_id": "external-id"},
+        "load": {
+            "external_id": "external-id",
+            "scraped_carrier_invoice": {
+              "total_amount": {
+                "amount": "100",
+                "currency": "USD"
+              }
+            }
+          },
         "carrier": {"external_id": "external-id"}, // If there is no carrier, it'll come through as null
-        "shipments": [{"external_id": "external-id"}],
-        "scraped_carrier_invoice": {
-          "total_amount": {
-            "amount": "100",
-            "currency": "USD"
-          }
-        }
+        "shipments": [{"external_id": "external-id"}]
       }
     ]
   }
