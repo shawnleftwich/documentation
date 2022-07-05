@@ -1482,6 +1482,10 @@ HTTP Status Code 200
             }
           },
           "shipments": [{"external_id": "external-id"}],
+          "visibility": {
+            "carrier": true,
+            "customer": true
+          }
         }
       ]
     }
