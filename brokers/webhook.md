@@ -5,6 +5,7 @@ following events occurs in TriumphPay Audit:
 
 * invoice approved
 * invoice exception
+* invoice received
 * load documents attached
 
 If you would like us to authenticate the endpoint you should add a token to
@@ -15,6 +16,7 @@ choose which payloads you want to use and ignore the rest.
 
 * [Invoice Approved Payload](#invoice-approved-payload)
 * [Invoice Exception Payload](#invoice-exception-payload)
+* [Invoice Received Payload](#invoice-received-payload)
 * [Load Documents Attached](#load-documents-attached-payload)
 * [Notes](#notes)
 
@@ -216,6 +218,82 @@ choose which payloads you want to use and ignore the rest.
       }
     ],
     "combined_document_urls": [           // All documents of the same type, combined
+      {
+        "type": "billOfLading",
+        "hubtran_type_name": "Bill of Lading / Packing Slip",
+        "url": "https://api.audit.triumphpay.com/downloads/documents/combined/unique-id",
+        "proof_of_delivery": true,
+        "pages": [
+          {"png_url": "https://api.audit.triumphpay.com/downloads/documents/unique-ids/pages/123.png"},
+          {"png_url": "https://api.audit.triumphpay.com/downloads/documents/unique-ids/pages/456.png"}
+        ],
+        "visibility": {
+          "carrier": true,
+          "customer": true // based on the load customer
+        }
+      }
+    ],
+  }
+}
+```
+
+## Invoice Received Payload
+
+```
+{
+  "account": {
+    "alias": "account-alias"
+  },
+  "event": {
+    "load_id": "load-id",
+    "type": "received_invoice",
+    "invoice": {
+      "id": 7,                            // TriumphPay Audit's internal id
+      "number": "invoice-number",
+      "source_invoice_amount": 15.2,
+      "currency": "USD",
+      "carrier": {
+        "external_id": "carrier-external-id"
+      },
+      "indexer": {
+        "email": "indexer@example.com"
+      },
+      "email_messages": [
+        {
+          "subject": "subject of email 1",
+          "received_at": "2020-03-05T00:00:00.000Z"
+        },
+        {
+          "subject": "subject of email 2",
+          "received_at": "2020-03-06T00:00:00.000Z"
+        }
+      ],
+    },
+    "documents": [
+      {
+        "id": 14,
+        "type": "billOfLading",
+        "hubtran_type_name": "Bill of Lading / Packing Slip",
+        "proof_of_delivery": true,
+        "fingerprint": "09e79148e4ba61d971b7f39c9dc245821b890916",
+        "url": "https://api.audit.triumphpay.com/downloads/documents/unique-id",
+        "received_at": "2020-03-05T00:00:00.000Z",
+        "pages": [
+          {"png_url": "https://api.audit.triumphpay.com/downloads/documents/unique-id/pages/123.png"},
+          {"png_url": "https://api.audit.triumphpay.com/downloads/documents/unique-id/pages/456.png"}
+        ],
+        "visibility": {
+          "carrier": true,
+          "customer": true // based on the load customer
+        },
+        "load": {"external_id": "load-external-id"},
+        "carrier": {"external_id": "external-id"}, // If there is no carrier, it'll come through as null
+        "shipments": [
+          {"external_id": "shipment-external-id"}
+        ]
+      }
+    ],
+    "combined_document_urls": [         // All documents of the same type, combined
       {
         "type": "billOfLading",
         "hubtran_type_name": "Bill of Lading / Packing Slip",
