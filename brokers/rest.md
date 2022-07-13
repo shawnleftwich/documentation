@@ -1366,10 +1366,10 @@ HTTP Status Code 422
 
 This endpoint allows documents to be sent via the endpoint for future processing. This will create an item in the "New" queue just like if TriumphPay received an email with paperwork.
 
-POST https://api.hubtran.com/broker/invoice_submission_documents
+POST https://api.audit.triumphpay.com/broker/invoice_submission_documents
 
 ```
-curl -X POST https://api.hubtran.com/broker/invoice_submission_documents \
+curl -X POST https://api.audit.triumphpay.com/broker/invoice_submission_documents \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN" \
   -d '{...}'
