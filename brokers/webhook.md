@@ -193,6 +193,14 @@ choose which payloads you want to use and ignore the rest.
         "resolution": "your circus, your monkeys"
       }
     ],
+    "rule_failures": [
+      { // This is just an example, not a complete list of rule_failures possibilities
+        "rule_type": "document_presence",
+        "failure_type": "missing",
+        "data": { "type": "invoice", "types": ["invoice", "factorInvoice"] },
+        "display_text": "No Carrier Invoice / Billing Statement found."
+      }
+    ],
     "documents": [
       {
         "id": 14,
