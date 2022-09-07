@@ -41,7 +41,7 @@ curl -X PUT https://api.audit.triumphpay.com/tms/loads/example_id \
   -d '{"load": {"load_id": "example_id", "external_id": "example_id"}}'
 ```
 
-Request:
+### Request
 
 ```
 {
@@ -184,9 +184,29 @@ Request:
 }
 ```
 
-Response:
+### Response
+
+#### Success
 
 Same as the response for the [load details](#load-details) API.
+
+#### Failure
+
+##### 422 Unprocessable Entity
+
+```
+{
+  "errors": [] // each element is a String describing an error
+}
+```
+
+##### 423 Locked
+
+```
+{
+  "errors": ["record locked"]
+}
+```
 
 ## Load Details
 
