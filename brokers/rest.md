@@ -230,7 +230,11 @@ curl -X GET https://api.audit.triumphpay.com/tms/loads/example_id \
   -H "Authorization: Token token=YOUR_TOKEN"
 ```
 
-Response:
+### Response
+
+#### Success
+
+##### 200 Ok 
 
 ```
 {
@@ -443,6 +447,16 @@ Response:
       }
     ],
   }
+}
+```
+
+#### Failure
+
+##### 404 Not Found
+
+```
+{
+  "errors": "Not found"
 }
 ```
 
