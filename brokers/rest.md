@@ -715,7 +715,9 @@ is sent
 }
 ```
 
-Response:
+### Response
+
+#### Success
 
 ```
 {
@@ -754,6 +756,32 @@ labels
       "country": "Country"
     }
   }
+}
+```
+
+#### Failure
+
+##### 422 Unprocessable Entity
+
+```
+{
+  "errors": { "name": ["can't be blank"], "external_id": ["can't be blank"] } // This is just an example payload. It will have this format though.
+}
+```
+
+##### 423 Locked
+
+```
+{
+  "errors": ["record locked"]
+}
+```
+
+##### 400 Bad Request
+
+```
+{
+  "errors": ["ID in URL does not match the external_id in the body"]
 }
 ```
 
