@@ -1263,13 +1263,17 @@ curl -X POST https://api.audit.triumphpay.com/tms/carrier_invoices/:id/exception
   -d '{}'
 ```
 
-Request:
+### Request
 
 ```
 {}
 ```
 
-Response:
+### Response
+
+#### Success
+
+##### 200 Ok
 
 ```
 {
@@ -1292,7 +1296,11 @@ Optional URL params:
 1. `results_per_page` - number of results to return per page, max 50
 2. `page` - which page of results to return based on `results_per_page`
 
-Response:
+### Response
+
+#### Success
+
+##### 200 Ok
 
 ```
 {
@@ -1408,7 +1416,11 @@ curl -X POST https://api.audit.triumphpay.com/tms/carrier_invoices/:id/verified 
   -H "Authorization: Token token=YOUR_TOKEN"
 ```
 
-Response:
+### Response
+
+#### Success
+
+##### 200 Ok
 
 ```
 {
@@ -1429,7 +1441,11 @@ curl -X POST https://api.audit.triumphpay.com/tms/carrier_invoices/:id/not_verif
   -H "Authorization: Token token=YOUR_TOKEN"
 ```
 
-Response:
+### Response
+
+#### Success
+
+##### 200 Ok
 
 ```
 {
@@ -1456,7 +1472,7 @@ curl -X POST https://api.audit.triumphpay.com/broker/invoice_submissions \
   -d '{"invoice": {...}}'
 ```
 
-Request:
+### Request
 
 ```
 {
@@ -1494,7 +1510,9 @@ Request:
 }
 ```
 
-Success Response:
+### Response
+
+#### Success
 
 ```
 HTTP Status Code 201
@@ -1505,7 +1523,7 @@ HTTP Status Code 201
 }
 ```
 
-Failure Response:
+#### Failures
 
 ```
 HTTP Status Code 422
@@ -1531,7 +1549,7 @@ curl -X POST https://api.audit.triumphpay.com/broker/invoice_submission_document
   -d '{...}'
 ```
 
-%% Request:
+### Request
 
 ```
 {
@@ -1560,7 +1578,9 @@ curl -X POST https://api.audit.triumphpay.com/broker/invoice_submission_document
  }
  ```
 
-Success Response:
+### Response
+
+#### Success
 
 ```
 HTTP Status Code 201
@@ -1571,7 +1591,7 @@ HTTP Status Code 201
 }
 ```
 
-Failure Response:
+#### Failure
 
 ```
 HTTP Status Code 422
@@ -1603,7 +1623,9 @@ Optional URL params:
 2. `results_per_page` - number of results to return per page (default is 20, max is 50)
 3. `current_page` - which page of results to return based on `results_per_page` (default is 1)
 
-Success Response:
+### Response
+
+#### Success
 
 ```
 HTTP Status Code 200
@@ -1649,7 +1671,7 @@ HTTP Status Code 200
 }
 ```
 
-Failure Response:
+#### Failure
 
 ```
 HTTP Status Code 422
@@ -1672,7 +1694,11 @@ curl -X POST https://api.audit.triumphpay.com/tms/transmissions/:id/verified \
   -H "Authorization: Token token=YOUR_TOKEN"
 ```
 
-Response:
+### Response
+
+#### Success
+
+##### 200 Ok
 
 ```
 {
@@ -1691,7 +1717,7 @@ curl -X PUT https://api.audit.triumphpay.com/accounts/ours \
   -d '{"account": {"webhook_url": "http://example.com"}}'
 ```
 
-Request:
+### Request
 
 ```
 {
@@ -1701,13 +1727,27 @@ Request:
 }
 ```
 
-Response:
+### Response
+
+#### Success
+
+##### 200 Ok
 
 ```
 {
   "account": {
     "webhook_url": "http://example.com"
   }
+}
+```
+
+#### Failure
+
+##### 422 Unprocessable Entity
+
+```
+{
+  "message": "this is not a valid endpoint for factor accounts"
 }
 ```
 
