@@ -796,7 +796,7 @@ curl -X PUT https://api.audit.triumphpay.com/tms/customers/example_id \
   -d '{"customer":  {...}}'
 ```
 
-Request:
+### Request
 
 ```
 {
@@ -860,7 +860,11 @@ Request:
 }
 ```
 
-Response:
+### Response
+
+#### Success
+
+##### 200 Ok
 
 ```
 {
@@ -922,6 +926,16 @@ Response:
       "Example Reference Label 2": "Value2"
     }
   }
+}
+```
+
+#### Failure
+
+##### 400 Bad Request
+
+```
+{
+  "errors": ["..."] // List of Strings
 }
 ```
 
