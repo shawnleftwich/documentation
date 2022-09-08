@@ -471,7 +471,7 @@ curl -X PUT https://api.audit.triumphpay.com/tms/shipments \
   -d '{"shipments": [{"external_id": "example_id"}]}'
 ```
 
-Request:
+### Request
 
 ```
 {
@@ -564,7 +564,9 @@ Request:
 }
 ```
 
-Response:
+### Response
+
+#### Success
 
 ```
 {
@@ -645,6 +647,16 @@ Response:
       }
     }
   ]
+}
+```
+
+#### Failure
+
+##### 422 Unprocessable Entity
+
+```
+{
+  "errors": [] // each element is a String describing an error
 }
 ```
 
