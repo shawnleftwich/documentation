@@ -1180,7 +1180,7 @@ curl -X POST https://api.audit.triumphpay.com/tms/payments \
   -d '{"payment": {...}}'
 ```
 
-Request:
+### Request
 
 ```
 {
@@ -1205,7 +1205,11 @@ Request:
 }
 ```
 
-Response:
+### Response
+
+#### Success
+
+##### 201 Created
 
 ```
 {
@@ -1227,6 +1231,24 @@ Response:
       "external_id": "carrier_external_id"
     }
   }
+}
+```
+
+#### Failures
+
+##### 422 Unprocessable Entity (Other Errors)
+
+```
+{
+  "errors": { "payee": ["can't be blank"] } // This is just an example payload. It will have this format though.
+}
+```
+
+##### 422 Unprocessable Entity (Not Enough Info)
+
+```
+{
+  "errors": "We couldn't find..."
 }
 ```
 
