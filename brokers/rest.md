@@ -966,7 +966,7 @@ curl -X PUT https://api.audit.triumphpay.com/tms/customer_invoices \
   -d '{"customer_invoice": {...}}'
 ```
 
-Request:
+### Request
 
 ```
 {
@@ -1044,7 +1044,11 @@ Request:
 }
 ```
 
-Response:
+### Response
+
+#### Success
+
+##### 200 Ok
 
 ```
 {
@@ -1120,6 +1124,48 @@ Response:
       "name": "example-name"
     }
   }
+}
+```
+
+#### Failures
+
+##### 422 Unprocessable Entity (Missing Required Parameter)
+
+```
+{
+  "errors": { "customer_invoice": ["can't be blank"] }
+}
+```
+
+##### 422 Unprocessable Entity (Invalid Document)
+
+```
+{
+  "errors": { "customer_invoice": [{ "invoice_document": "Invalid content type" }] }
+}
+```
+
+##### 422 Unprocessable Entity (Missing TMS Loads)
+
+```
+{
+  "errors": { "shipments": ["not found"] }
+}
+```
+
+##### 422 Unprocessable Entity (Missing Customer)
+
+```
+{
+  "errors": { "customer": ["not found"] }
+}
+```
+
+##### 422 Unprocessable Entity (Other Errors)
+
+```
+{
+  "errors": { "number": ["can't be blank"], "amount":["can't be blank"] } // This is just an example payload. It will have this format though.
 }
 ```
 
