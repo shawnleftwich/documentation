@@ -88,7 +88,7 @@ choose which payloads you want to use and ignore the rest.
       ],
       "submission": {                    // Only present if invoice was sumbitted through api
         "id": 123,                       // Same submission id returned in 201 success response
-        "external_id: "456"              // Your internal invoice id
+        "external_id": "456"              // Your internal invoice id
       }
     },
     "documents": [
@@ -178,7 +178,7 @@ choose which payloads you want to use and ignore the rest.
       ],
       "submission": {                    // Only present if invoice was sumbitted through api
         "id": 123,                       // Same submission id returned in 201 success response
-        "external_id: "456"              // Your internal invoice id
+        "external_id": "456"              // Your internal invoice id
       }
     },
     "exceptions": [
@@ -340,7 +340,7 @@ choose which payloads you want to use and ignore the rest.
         "fingerprint": "09e79148e4ba61d971b7f39c9dc245821b890916",
         "proof_of_delivery": true,
         "url": "https://api.audit.triumphpay.com/downloads/documents/unique-id",
-        "tiff_url: "https://api.audit.triumphpay.com/downloads/documents/tiff-url",  // omitted if account is not configured to use TIFF images
+        "tiff_url": "https://api.audit.triumphpay.com/downloads/documents/tiff-url",  // omitted if account is not configured to use TIFF images
         "received_at": "2020-03-05T00:00:00.000Z",
         "pages": [
           {"png_url": "http://api.audit.triumphpay.com/downloads/documents/png-url"}
