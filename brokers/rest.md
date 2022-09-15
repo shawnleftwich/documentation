@@ -151,7 +151,8 @@ curl -X PUT https://api.audit.triumphpay.com/tms/loads/example_id \
         "customer_total": 150.00,
         "quantity": 5.0,
         "rate": 2.0,
-        "type_code": "abc",
+        "rate_qualifier": "PM",                           // Optional, e.g. flat or per-mile
+        "type_code": "abc",                               // Optional, i.e. the charge code or EDI code
         "carrier": {                                      // Used to calculate carrier_charge for each carrier
           "external_id": "carrier-external-id",
           "scac": "scac",
@@ -343,6 +344,7 @@ curl -X GET https://api.audit.triumphpay.com/tms/loads/example_id \
         "customer_total": 150.00,
         "quantity": 5.0,
         "rate": 2.0,
+        "rate_qualifier": "PM",
         "type_code": "abc",
         "carrier": {                            // Used to calculate carrier_charge for each carrier
           "external_id": "carrier-external-id",
@@ -533,6 +535,7 @@ curl -X PUT https://api.audit.triumphpay.com/tms/shipments \
           "total": 123.45,                                // Required
           "quantity": 5.0,
           "rate": 2.0,
+          "rate_qualifier": "PM",
           "type_code": "abc"
         }
       ],
@@ -621,6 +624,7 @@ curl -X PUT https://api.audit.triumphpay.com/tms/shipments \
           "total": 123.45,
           "quantity": 5.0,
           "rate": 2.0,
+          "rate_qualifier": "PM",
           "type_code": "abc"
         }
       ],
@@ -1338,6 +1342,7 @@ Optional URL params:
           "customer_total": 150.00,
           "quantity": 3.0,
           "rate": 2.0,
+          "rate_qualifier": "PM",
           "type_code": "abc",
           "carrier": {
             "external_id": "carrier-external-id"
