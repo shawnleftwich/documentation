@@ -45,6 +45,9 @@ choose which payloads you want to use and ignore the rest.
       "quickpay": false,
       "payment_strategy": "direct",     // or "factor"
       "note": "Put load id on check.",
+      "notes": [
+        { "action": "processed", "created_at": "2020-01-22T00:00:00.000Z", "message": "Put load id on check.", "user": { "name": "Mike", "email": "mike@example.com" } }
+      ]
       "load": {
         "external_id": "load-external-id", // YOUR internal id
         "shipments": [],
@@ -179,7 +182,10 @@ choose which payloads you want to use and ignore the rest.
       "submission": {                    // Only present if invoice was sumbitted through api
         "id": 123,                       // Same submission id returned in 201 success response
         "external_id": "456"              // Your internal invoice id
-      }
+      },
+      "notes": [
+        { "action": "processed", "created_at": "2020-01-22T00:00:00.000Z", "message": "Put load id on check.", "user": { "name": "Mike", "email": "mike@example.com" } }
+      ]
     },
     "exceptions": [
       {
@@ -276,6 +282,9 @@ choose which payloads you want to use and ignore the rest.
           "received_at": "2020-03-06T00:00:00.000Z"
         }
       ],
+      "notes": [
+        { "action": "processed", "created_at": "2020-01-22T00:00:00.000Z", "message": "Put load id on check.", "user": { "name": "Mike", "email": "mike@example.com" } }
+      ]
     },
     "documents": [
       {
