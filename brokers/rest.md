@@ -1570,8 +1570,11 @@ curl -X POST https://api.audit.triumphpay.com/broker/invoice_submission_document
         "data": DATA                 // base64-encoded document data
       }
    ],
-   // Either load_id or vendor information is required. If load_id is provided, vendor information not required. If load_id not provided,
-   // vendor->external_id and vendor->sender_email must both be provided.
+   // If load_id is provided, we'll be able to automatically match the documents to that load. 
+   // If vendor.external_id is provided, we'll be able to automatically match the submission ("email") to that carrier.
+   // If vendor.sender_email is provided, we'll be able to show the sender email inside the UI, and provide that email as the "reply to"
+   // on response emails.
+   // Any combination of those three (including none) is allowed.
    "vendor": {
      "external_id": "a_valid_external_id", 
      "sender_email": "carrier@example.com" 
