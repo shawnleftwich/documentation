@@ -698,6 +698,7 @@ Request:
     "account_exec": "Bob",
     "priority": "Tier 1",
     "days_to_pay": 10,                    // Recommended
+    "quickpay": false,                    // Optional. Defaults to false.
     "payment_strategy": "direct",         // direct or triumphpay, defaults to direct
     "labels": ["LABEL1","LABEL2"],        // Omit this key unless you want to overwrite existing labels set through the API
     "contacts": [                         // Recommended
@@ -743,6 +744,7 @@ is sent
     "country": "Country",
     "account_exec": "Bob",
     "days_to_pay": 10,
+    "quickpay": false,                      // If you don't pass this key you'll still get it back with its default (false)
     "payment_strategy": "direct",
     "labels": ["LABEL1","LABEL2"],          // Empty list if there aren't any
 labels
