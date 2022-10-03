@@ -698,6 +698,7 @@ Request:
     "account_exec": "Bob",
     "priority": "Tier 1",
     "days_to_pay": 10,                    // Recommended
+    "quickpay": false,                    // Optional. If passed, will result in ignoring a label of “QuickPay” as this gives you a way to set the property more explicitly. If not passed, carrier will only be 'quickpay' if a label of "QuickPay" is passed. Otherwise carrier will not be quickpay.
     "payment_strategy": "direct",         // direct or triumphpay, defaults to direct
     "labels": ["LABEL1","LABEL2"],        // Omit this key unless you want to overwrite existing labels set through the API
     "contacts": [                         // Recommended
@@ -743,6 +744,7 @@ is sent
     "country": "Country",
     "account_exec": "Bob",
     "days_to_pay": 10,
+    "quickpay": false,                      //If you don’t pass this key you’ll still get it back with the accurate value in our system
     "payment_strategy": "direct",
     "labels": ["LABEL1","LABEL2"],          // Empty list if there aren't any
 labels
