@@ -744,7 +744,7 @@ is sent
     "country": "Country",
     "account_exec": "Bob",
     "days_to_pay": 10,
-    "quickpay": false,                      // If you don't pass this key you'll still get it back with its default (false)
+    "quickpay": false,                      //If you don’t pass this key you’ll still get it back with the accurate value in our system
     "payment_strategy": "direct",
     "labels": ["LABEL1","LABEL2"],          // Empty list if there aren't any
 labels
