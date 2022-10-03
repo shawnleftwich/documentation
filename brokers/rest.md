@@ -698,7 +698,7 @@ Request:
     "account_exec": "Bob",
     "priority": "Tier 1",
     "days_to_pay": 10,                    // Recommended
-    "quickpay": false,                    // Optional. Defaults to false.
+    "quickpay": false,                    // Optional. Defaults to false. Strictly speaking you could pass a label of "QuickPay" and get the same result; this gives you a way to set it more explicitly.
     "payment_strategy": "direct",         // direct or triumphpay, defaults to direct
     "labels": ["LABEL1","LABEL2"],        // Omit this key unless you want to overwrite existing labels set through the API
     "contacts": [                         // Recommended
