@@ -814,6 +814,7 @@ curl -X PUT https://api.audit.triumphpay.com/tms/customers/example_id \
       "Confirm with Sandy before approving.",
       "Check this other thing before approving."
     ],
+    "billing_instructions": "Ensure the invoice is sent to the PO Box", // Optional
     "invoicing": {
       "bill_to": {
         "name": "name",
@@ -883,6 +884,7 @@ curl -X PUT https://api.audit.triumphpay.com/tms/customers/example_id \
       "Confirm with Sandy before approving.",
       "Check this other thing before approving."
     ],
+    "billing_instructions": "Ensure the invoice is sent to the PO Box", // Optional
     "invoicing": {
       "bill_to": {
         "name": "name",
