@@ -131,11 +131,16 @@ curl -X PUT https://api.audit.triumphpay.com/tms/invoices/example_id/purchase \
 
 Request:
 
-The `hubtran_id` in the URL is the value of the `hubtran_id` field in the payload we send you.
+The `hubtran_id` in the URL is the value of the `hubtran_id` field in the "Approved Invoice" payload we sent you.
 
 Response:
 
-Empty JSON on success, error status code on failure
+Empty JSON on success, error status code on failure. 
+
+An example error json is:
+```
+{"error":"Not found","errors":[{"message":"Not found"}]}
+```
 
 ## Invoice Declined
 
@@ -150,12 +155,16 @@ curl -X PUT https://api.audit.triumphpay.com/tms/invoices/example_id/decline \
 
 Request:
 
-The `hubtran_id` in the URL is the value of the `hubtran_id` field in the payload we send you.
+The `hubtran_id` in the URL is the value of the `hubtran_id` field in the "Approved Invoice" payload we sent you.
 
 Response:
 
 Empty JSON on success, error status code on failure
 
+An example error json is:
+```
+{"error":"Not found","errors":[{"message":"Not found"}]}
+```
 
 ## Verifications
 
