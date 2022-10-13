@@ -145,8 +145,8 @@ curl -X PUT https://api.audit.triumphpay.com/tms/loads/example_id \
     ],
     "line_items": [                                       // Recommended, displayed and used to calculate the carrier_charge.
       {
-        "external_id": "line_item_1",                     // You're id for matching up line items when sending back to your TMS
-        "description": "line item description",
+        "external_id": "line_item_1",                     // Your id for matching up line items when sending back to your TMS
+        "description": "line item description",           // Required
         "total": 123.45,                                  // Required
         "customer_total": 150.00,
         "quantity": 5.0,
@@ -338,7 +338,7 @@ curl -X GET https://api.audit.triumphpay.com/tms/loads/example_id \
     ],
     "line_items": [                             // Displayed and used to calculate the carrier_charge. Empty array if no line items.
       {
-        "external_id": "line_item_1",           // You're id for matching up line items when sending back to your TMS
+        "external_id": "line_item_1",           // Your id for matching up line items when sending back to your TMS
         "description": "line item description",
         "total": 123.45,
         "customer_total": 150.00,
