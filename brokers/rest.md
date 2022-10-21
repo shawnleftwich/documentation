@@ -13,6 +13,7 @@ If you receive a status code other than 2xx, please retry your request once with
 * [Create + Update Loads](#create--update-loads)
 * [Load Details](#load-details)
 * [Create + Update Shipments](#create--update-shipments)
+* [Shipment Details](#shipment-details)
 * [Create + Update Carriers](#create--update-carriers)
 * [Create + Update Customers](#create--update-customers)
 * [Create + Update Customer Invoices](#create--update-customer-invoices)
@@ -571,6 +572,58 @@ curl -X PUT https://api.audit.triumphpay.com/tms/shipments \
 
 #### Success
 
+The shape of each shipment object is identical to the [shipment details](#shipment-details) API response.
+
+```
+{
+  "shipments": [
+    {
+      "id": 1,                                              // TriumphPay Audit's internal id for the shipment
+      "external_id": "shipment-external-id"                 // YOUR internal id for the shipment
+      ...
+    }
+  ]
+}
+```
+
+#### Failure
+
+##### 422 Unprocessable Entity
+
+```
+{
+  "errors": [] // each element is a String describing an error
+}
+```
+
+## Shipment Details
+
+GET https://api.audit.triumphpay.com/tms/shipments/:id
+
+Where :id is the TriumphPay Audit id you previously saved.
+
+If you don't have the TriumphPay Audit id you can alternatively use one of the
+following forms:
+
+GET https://api.audit.triumphpay.com/tms/shipments?shipment_id=:your_shipment_id
+GET https://api.audit.triumphpay.com/tms/shipments?external_id=:your_shipment_external_id
+
+shipment_id is what the user sees in the UI and external_id is what you
+would have passed us as your internal, immutable id for the shipment.
+Sometimes they are the same thing.
+
+```
+curl -X GET https://api.audit.triumphpay.com/tms/shipments/example_id \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Token token=YOUR_TOKEN"
+```
+
+### Response
+
+#### Success
+
+##### 200 Ok
+
 ```
 {
   "shipments": [
@@ -656,11 +709,11 @@ curl -X PUT https://api.audit.triumphpay.com/tms/shipments \
 
 #### Failure
 
-##### 422 Unprocessable Entity
+##### 404 Not Found
 
 ```
 {
-  "errors": [] // each element is a String describing an error
+  "errors": "Not found"
 }
 ```
 
