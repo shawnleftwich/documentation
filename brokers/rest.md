@@ -626,84 +626,82 @@ curl -X GET https://api.audit.triumphpay.com/tms/shipments/example_id \
 
 ```
 {
-  "shipments": [
-    {
-      "id": 1,                                              // TriumphPay Audit's internal id for the shipment
-      "external_id": "shipment-external-id"                 // YOUR internal id for the shipment
-      "status": "new",
-      "tms_created_at": "2016-07-10 20:43:00 +0300",
-      "tms_updated_at": "2016-07-15 20:43:00 +0300",
-      "target_ship_start": "2016-07-16 12:00:00 +0200",
-      "target_ship_end": "2016-07-16 14:00:00 +0200",
-      "actual_shipped_at": "2016-07-16 13:00:00 +0200",
-      "target_delivery_start": "2016-07-17 19:00:00 +0200",
-      "target_delivery_end": "2016-07-17 19:00:00 +0200",
-      "actual_delivered_at": "2016-07-17 19:00:00 +0200",
-      "quantity": 1.0,
-      "weight": 1000,
-      "customer_mode": "FSC and Rate Review",
-      "owner": "Owner name",
-      "origin": {
-        "name": "origin-name",
-        "address_line_1": "origin-address-line-1",
-        "address_line_2": "origin-address-line-2",
-        "city": "origin-city",
-        "state": "origin-state",
-        "postal_code": "origin-postal-code",
-        "country": "origin-country"
-      },
-      "destination": {
-        "name": "destination-name",
-        "address_line_1": "destination-address-line-1",
-        "address_line_2": "destination-address-line-2",
-        "city": "destination-city",
-        "state": "destination-state",
-        "postal_code": "destination-postal-code",
-        "country": "destination-country"
-      },
-      "loads": [                                            // Used to link shipments and loads representing a "delivery"
-        {
-          "external_id": "load-external-id"
-        }
-      ],
-      "charges": {
-        "total": 1200.23,
-        "currency": "USD"
-      },
-      "line_items": [
-        {
-          "external_id": "line_item_1",                     // The line external_id you sent us
-          "description": "line item description",
-          "total": 123.45,
-          "quantity": 5.0,
-          "rate": 2.0,
-          "rate_qualifier": "PM",
-          "type_code": "abc"
-        }
-      ],
-      "shipped_items": [
-        {
-          "external_id": "1234",          // Required
-          "description": "Shipped item",  // Required
-          "class_name": '400',
-          "item_type": "CARTON",
-          "nmfc": "82270",
-          "hazardous_material": false,
-          "quantity": 2.0,
-          "weight": 417.0,
-          "weight_unit": "lb",
-          "width": 10.0,
-          "height": 12.0,
-          "length": 20.0
-        }
-      ],
-      "references": {                       // empty object if no references
-        "Example Reference Label 1": "Value1",
-        "Example Reference Label 2": "Value2",
-        "Example Reference Label 3": "Value3a, Value3b"
+  "shipment": {
+    "id": 1,                                              // TriumphPay Audit's internal id for the shipment
+    "external_id": "shipment-external-id"                 // YOUR internal id for the shipment
+    "status": "new",
+    "tms_created_at": "2016-07-10 20:43:00 +0300",
+    "tms_updated_at": "2016-07-15 20:43:00 +0300",
+    "target_ship_start": "2016-07-16 12:00:00 +0200",
+    "target_ship_end": "2016-07-16 14:00:00 +0200",
+    "actual_shipped_at": "2016-07-16 13:00:00 +0200",
+    "target_delivery_start": "2016-07-17 19:00:00 +0200",
+    "target_delivery_end": "2016-07-17 19:00:00 +0200",
+    "actual_delivered_at": "2016-07-17 19:00:00 +0200",
+    "quantity": 1.0,
+    "weight": 1000,
+    "customer_mode": "FSC and Rate Review",
+    "owner": "Owner name",
+    "origin": {
+      "name": "origin-name",
+      "address_line_1": "origin-address-line-1",
+      "address_line_2": "origin-address-line-2",
+      "city": "origin-city",
+      "state": "origin-state",
+      "postal_code": "origin-postal-code",
+      "country": "origin-country"
+    },
+    "destination": {
+      "name": "destination-name",
+      "address_line_1": "destination-address-line-1",
+      "address_line_2": "destination-address-line-2",
+      "city": "destination-city",
+      "state": "destination-state",
+      "postal_code": "destination-postal-code",
+      "country": "destination-country"
+    },
+    "loads": [                                            // Used to link shipments and loads representing a "delivery"
+      {
+        "external_id": "load-external-id"
       }
+    ],
+    "charges": {
+      "total": 1200.23,
+      "currency": "USD"
+    },
+    "line_items": [
+      {
+        "external_id": "line_item_1",                     // The line external_id you sent us
+        "description": "line item description",
+        "total": 123.45,
+        "quantity": 5.0,
+        "rate": 2.0,
+        "rate_qualifier": "PM",
+        "type_code": "abc"
+      }
+    ],
+    "shipped_items": [
+      {
+        "external_id": "1234",          // Required
+        "description": "Shipped item",  // Required
+        "class_name": '400',
+        "item_type": "CARTON",
+        "nmfc": "82270",
+        "hazardous_material": false,
+        "quantity": 2.0,
+        "weight": 417.0,
+        "weight_unit": "lb",
+        "width": 10.0,
+        "height": 12.0,
+        "length": 20.0
+      }
+    ],
+    "references": {                       // empty object if no references
+      "Example Reference Label 1": "Value1",
+      "Example Reference Label 2": "Value2",
+      "Example Reference Label 3": "Value3a, Value3b"
     }
-  ]
+  }
 }
 ```
 
