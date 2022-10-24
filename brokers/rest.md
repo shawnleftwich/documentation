@@ -629,6 +629,7 @@ curl -X GET https://api.audit.triumphpay.com/tms/shipments/example_id \
   "shipment": {
     "id": 1,                                              // TriumphPay Audit's internal id for the shipment
     "external_id": "shipment-external-id"                 // YOUR internal id for the shipment
+    "shipment_id": "shipment-id"                          // The id the user sees for the shipment
     "status": "new",
     "tms_created_at": "2016-07-10 20:43:00 +0300",
     "tms_updated_at": "2016-07-15 20:43:00 +0300",
