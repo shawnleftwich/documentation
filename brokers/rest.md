@@ -754,13 +754,11 @@ Same as the response for the [carrier details](#carrier-details) API.
 
 ## Carrier Details
 
-GET https://api.audit.triumphpay.com/tms/carriers/:external_id
-
+GET https://api.audit.triumphpay.com/tms/carriers?external_id=:external_id
 Where :external_id is your internal id for the carrier.
 
-
 ```
-curl -X GET https://api.audit.triumphpay.com/tms/carriers/example_external_id \
+curl -X GET https://api.audit.triumphpay.com/tms/carriers?external_id=example_external_id \
   -H "Content-Type: application/json" \
   -H "Authorization: Token token=YOUR_TOKEN"
 ```
