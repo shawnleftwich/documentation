@@ -754,8 +754,21 @@ Same as the response for the [carrier details](#carrier-details) API.
 
 ## Carrier Details
 
-GET https://api.audit.triumphpay.com/tms/carriers?external_id=:external_id
-Where :external_id is your internal id for the carrier.
+
+GET https://api.audit.triumphpay.com/tms/carriers/:id
+
+Where :id is the TriumphPay Audit id you previously saved.
+
+If you don't have the TriumphPay Audit id you can alternatively use one of the
+following forms:
+
+GET https://api.audit.triumphpay.com/tms/carriers?external_id=:your_carrier_external_id
+
+```
+curl -X GET https://api.audit.triumphpay.com/tms/carriers/:id \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Token token=YOUR_TOKEN"
+```
 
 ```
 curl -X GET https://api.audit.triumphpay.com/tms/carriers?external_id=example_external_id \
