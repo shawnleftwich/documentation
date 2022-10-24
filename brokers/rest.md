@@ -724,46 +724,7 @@ is sent
 
 #### Success
 
-```
-{
-  "carrier": {
-    "id": 1,                                // TriumphPay Audit's internal id for the carrier
-    "external_id": "carrier-external-id",   // YOUR internal id for the carrier
-    "external_vendor_id": "evid",
-    "active": true,
-    "scac": "scac",
-    "mc_number": "mc_number",
-    "dot_number": "dot_number",
-    "ein": "ein",
-    "address_name": "Address name",
-    "address_line_1": "Address line 1",
-    "address_line_2": "Address line 2",
-    "city": "City",
-    "state": "State",
-    "postal_code": "Postal code",
-    "country": "Country",
-    "account_exec": "Bob",
-    "days_to_pay": 10,
-    "quickpay": false,                      //If you don’t pass this key you’ll still get it back with the accurate value in our system
-    "payment_strategy": "direct",
-    "labels": ["LABEL1","LABEL2"],          // Empty list if there aren't any
-labels
-    "contacts": [                           // Empty list if there aren't any contacts
-      "joe@example.com",
-      "tom@example.com"
-    ],
-    "remit_to": {                           // null if there is no remit to address
-      "name": "Address name",
-      "address_line_1": "Address line 1",
-      "address_line_2": "Address line 2",
-      "city": "City",
-      "state": "State",
-      "postal_code": "Postal code",
-      "country": "Country"
-    }
-  }
-}
-```
+Same as the response for the [carrier details](#carrier-details) API.
 
 #### Failure
 
@@ -788,6 +749,76 @@ labels
 ```
 {
   "errors": ["ID in URL does not match the external_id in the body"]
+}
+```
+
+## Carrier Details
+
+GET https://api.audit.triumphpay.com/tms/carriers/:external_id
+
+Where :external_id is your internal id for the carrier.
+
+
+```
+curl -X GET https://api.audit.triumphpay.com/tms/carriers/example_external_id \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Token token=YOUR_TOKEN"
+```
+
+### Response
+
+#### Success
+
+##### 200 Ok
+
+```
+{
+  "carrier": {
+    "id": 1,                                // TriumphPay Audit's internal id for the carrier
+    "external_id": "carrier-external-id",   // YOUR internal id for the carrier
+    "external_vendor_id": "evid",
+    "active": true,
+    "scac": "scac",
+    "mc_number": "mc_number",
+    "dot_number": "dot_number",
+    "ein": "ein",
+    "address_name": "Address name",
+    "address_line_1": "Address line 1",
+    "address_line_2": "Address line 2",
+    "city": "City",
+    "state": "State",
+    "postal_code": "Postal code",
+    "country": "Country",
+    "account_exec": "Bob",
+    "days_to_pay": 10,
+    "quickpay": false,                      // If you don’t pass this key in the CREATE/UPDATE request you’ll still get it back with the accurate value in our system
+    "payment_strategy": "direct",
+    "labels": ["LABEL1","LABEL2"],          // Empty list if there aren't any
+labels
+    "contacts": [                           // Empty list if there aren't any contacts
+      "joe@example.com",
+      "tom@example.com"
+    ],
+    "remit_to": {                           // null if there is no remit to address
+      "name": "Address name",
+      "address_line_1": "Address line 1",
+      "address_line_2": "Address line 2",
+      "city": "City",
+      "state": "State",
+      "postal_code": "Postal code",
+      "country": "Country"
+    }
+  }
+}
+```
+
+#### Failure
+
+##### 404 Not Found
+
+```
+{
+  "errors": "Not found"
 }
 ```
 
