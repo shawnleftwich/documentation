@@ -925,6 +925,63 @@ curl -X PUT https://api.audit.triumphpay.com/tms/customers/example_id \
 
 ##### 200 Ok
 
+Same as the response for the [customer details](#customer-details) API.
+
+#### Failure
+
+##### 400 Bad Request
+
+```
+{
+  "errors": ["..."] // List of Strings
+}
+```
+
+### About the `scheduled_day` setting
+If the `billing_interval` is set to "weekly", this is the day of the week (0-6, Sunday is zero)
+
+If the `billing_interval` is set to "monthly", this is the calendar day of the month (1-28)
+
+Invoices are sent at approximately 4:00 AM UTC of the scheduled days, which may actually occur
+in the evening of the previous day in your local timezone or the customer's local time zone.
+
+### Possible `invoice_grouping_strategy` values
+
+| Value | Explanation |
+| ----- | ----- |
+| `email_single` | Send a consolidated email containing all invoices |
+| `email_per_invoice` | Send a separate email for each invoice |
+| `email_account_default` | Defer to the setting on account level |
+
+## Customer Details
+
+GET https://api.audit.triumphpay.com/tms/customers/:id
+
+Where :id is the TriumphPay Audit id you previously saved.
+
+If you don't have the TriumphPay Audit id you can alternatively use one of the
+following forms:
+
+GET https://api.audit.triumphpay.com/tms/customers?external_id=:your_customer_external_id
+
+```
+curl -X GET https://api.audit.triumphpay.com/tms/customers/example_id \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Token token=YOUR_TOKEN"
+```
+
+```
+curl -X GET https://api.audit.triumphpay.com/tms/customers?external_id=:example_id \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Token token=YOUR_TOKEN"
+```
+
+### Response
+
+#### Success
+
+##### 200 Ok
+
 ```
 {
   "customer": {
@@ -991,29 +1048,13 @@ curl -X PUT https://api.audit.triumphpay.com/tms/customers/example_id \
 
 #### Failure
 
-##### 400 Bad Request
+##### 404 Not Found
 
 ```
 {
-  "errors": ["..."] // List of Strings
+  "errors": "Not found"
 }
 ```
-
-### About the `scheduled_day` setting
-If the `billing_interval` is set to "weekly", this is the day of the week (0-6, Sunday is zero)
-
-If the `billing_interval` is set to "monthly", this is the calendar day of the month (1-28)
-
-Invoices are sent at approximately 4:00 AM UTC of the scheduled days, which may actually occur
-in the evening of the previous day in your local timezone or the customer's local time zone.
-
-### Possible `invoice_grouping_strategy` values
-
-| Value | Explanation |
-| ----- | ----- |
-| `email_single` | Send a consolidated email containing all invoices |
-| `email_per_invoice` | Send a separate email for each invoice |
-| `email_account_default` | Defer to the setting on account level |
 
 ## Create + Update Customer Invoices
 
