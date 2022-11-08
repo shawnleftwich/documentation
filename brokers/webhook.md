@@ -47,7 +47,7 @@ choose which payloads you want to use and ignore the rest.
       "note": "Put load id on check.",
       "notes": [
         { "action": "processed", "created_at": "2020-01-22T00:00:00.000Z", "message": "Put load id on check.", "user": { "name": "Mike", "email": "mike@example.com" } }
-      ]
+      ],
       "load": {
         "external_id": "load-external-id", // YOUR internal id
         "shipments": [],
